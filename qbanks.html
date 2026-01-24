@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرياضيات 101 - بنوك الأسئلة</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .coming-soon-container {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .coming-soon-icon {
+            font-size: 5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        .coming-soon-title {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .coming-soon-text {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Aurora Background Blobs -->
+    <div class="aurora-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.svg" alt="Math 101 Logo">
+            </a>
+            <button class="hamburger" aria-label="Toggle navigation">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="index.html#book-section">الكتاب</a></li>
+                <li><a href="qbanks.html" class="active">بنوك الأسئلة</a></li>
+                <li><a href="ex+.html">تمارين إثرائية</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="coming-soon-container">
+            <div class="coming-soon-icon">🛡️</div>
+            <h1 class="coming-soon-title">قريباً</h1>
+            <p class="coming-soon-text">نعمل حالياً على جمع وتجهيز أفضل بنوك الأسئلة.
+                ترقبونا!
+            </p>
+            <a href="index.html" class="btn btn-primary">عودة للصفحة الرئيسية</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 الصفحة الالكترونية لمقرر الرياضيات (رياض 101)</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+</body>
+
+</html>

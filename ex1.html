@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>تمارين الوحدة الأولى | المجموعات</title>
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+                rel="stylesheet">
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="styles.css">
+
+        <!-- MathJax -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+        <style>
+                .question-box {
+                        background: #fff;
+                        border-radius: 12px;
+                        padding: 24px;
+                        margin-bottom: 24px;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                        border: 1px solid var(--border);
+                }
+
+                .question-text {
+                        font-size: 1.1rem;
+                        font-weight: 700;
+                        margin-bottom: 1.5rem;
+                        color: var(--primary);
+                }
+
+                .options-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                        gap: 15px;
+                }
+
+                .option-label {
+                        display: flex;
+                        align-items: center;
+                        padding: 12px 16px;
+                        background: var(--bg-body);
+                        border: 2px solid transparent;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        transition: all 0.2s;
+                }
+
+                .option-label:hover {
+                        background: #f8fafc;
+                        border-color: var(--primary-light);
+                }
+
+                .option-radio {
+                        margin-left: 12px;
+                        accent-color: var(--primary);
+                        width: 18px;
+                        height: 18px;
+                }
+
+                .feedback {
+                        margin-top: 16px;
+                        padding: 12px;
+                        border-radius: 8px;
+                        font-weight: bold;
+                        display: none;
+                }
+
+                .feedback.correct {
+                        background: #dcfce7;
+                        color: #166534;
+                }
+
+                .feedback.incorrect {
+                        background: #fee2e2;
+                        color: #991b1b;
+                }
+        </style>
+</head>
+
+<body>
+        <!-- Aurora Background Blobs -->
+        <div class="aurora-blobs">
+                <div class="blob blob-1"></div>
+                <div class="blob blob-2"></div>
+                <div class="blob blob-3"></div>
+        </div>
+
+
+        <!-- Navigation -->
+        <nav class="navbar">
+                <div class="container nav-content">
+                        <a href="index.html" class="nav-logo">
+                                <img src="logo.svg" alt="Math 101 Logo">
+                        </a>
+                        <button class="hamburger" aria-label="Toggle navigation">☰</button>
+                        <ul class="nav-links">
+                                <li><a href="index.html">الرئيسية</a></li>
+                                <li><a href="index.html#book-section">الكتاب</a></li>
+                                <li><a href="qbanks.html">بنوك الأسئلة</a></li>
+                                <li><a href="ex+.html">تمارين إثرائية</a></li>
+                        </ul>
+                </div>
+        </nav>
+
+        <main class="container" style="padding-top: 40px;">
+                <h1 style="text-align: center; margin-bottom: 40px;">تمارين الوحدة الأولى: المجموعات</h1>
+
+                <!-- Question 1 -->
+                <div class="question-box">
+                        <div class="question-text">1. يرمز لمجموعة الأعداد الصحيحة بالرمز:</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q1" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(R\)</label>
+                                <label class="option-label"><input type="radio" name="q1" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(Z\)</label>
+                                <label class="option-label"><input type="radio" name="q1" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(N\)</label>
+                                <label class="option-label"><input type="radio" name="q1" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(Q\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question-box">
+                        <div class="question-text">2. يرمز لمجموعة الأعداد غير الكسرية (غير النسبية) بالرمز:</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q2" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(R\)</label>
+                                <label class="option-label"><input type="radio" name="q2" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(Z\)</label>
+                                <label class="option-label"><input type="radio" name="q2" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(W\)</label>
+                                <label class="option-label"><input type="radio" name="q2" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(\bar{Q}\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question-box">
+                        <div class="question-text">3. يرمز لمجموعة الأعداد الحقيقية بالرمز:</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q3" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(R\)</label>
+                                <label class="option-label"><input type="radio" name="q3" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(Z\)</label>
+                                <label class="option-label"><input type="radio" name="q3" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(W\)</label>
+                                <label class="option-label"><input type="radio" name="q3" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(Q\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question-box">
+                        <div class="question-text">4. يرمز لمجموعة الأعداد الكسرية (النسبية) بالرمز:</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q4" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(R\)</label>
+                                <label class="option-label"><input type="radio" name="q4" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(Z\)</label>
+                                <label class="option-label"><input type="radio" name="q4" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(W\)</label>
+                                <label class="option-label"><input type="radio" name="q4" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(Q\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question-box">
+                        <div class="question-text">5. يرمز لمجموعة الأعداد الكلية بالرمز:</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q5" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(R\)</label>
+                                <label class="option-label"><input type="radio" name="q5" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(Z\)</label>
+                                <label class="option-label"><input type="radio" name="q5" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(W\)</label>
+                                <label class="option-label"><input type="radio" name="q5" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(Q\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="question-box">
+                        <div class="question-text">6. إذا كانت \(A=\{1,2,3\}\) و \(B=\{1,2,3,4,5\}\) فإن:</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q6" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(A \subseteq B\)</label>
+                                <label class="option-label"><input type="radio" name="q6" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(A \nsubseteq B\)</label>
+                                <label class="option-label"><input type="radio" name="q6" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(A \in B\)</label>
+                                <label class="option-label"><input type="radio" name="q6" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(A \notin B\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="question-box">
+                        <div class="question-text">7. إذا كانت \(B=\{1,2,3\}\) فإن:</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q7" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(1 \subseteq B\)</label>
+                                <label class="option-label"><input type="radio" name="q7" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(1 \nsubseteq B\)</label>
+                                <label class="option-label"><input type="radio" name="q7" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(1 \in B\)</label>
+                                <label class="option-label"><input type="radio" name="q7" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(1 \notin B\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 8 -->
+                <div class="question-box">
+                        <div class="question-text">8. يرمز للمجموعة الخالية بالرمز:</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q8" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(A\)</label>
+                                <label class="option-label"><input type="radio" name="q8" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(\phi\)</label>
+                                <label class="option-label"><input type="radio" name="q8" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(U\)</label>
+                                <label class="option-label"><input type="radio" name="q8" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(A^c\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 9 -->
+                <div class="question-box">
+                        <div class="question-text">9. يرمز للمجموعة الشاملة بالرمز:</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q9" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(A\)</label>
+                                <label class="option-label"><input type="radio" name="q9" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\phi\)</label>
+                                <label class="option-label"><input type="radio" name="q9" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(U\)</label>
+                                <label class="option-label"><input type="radio" name="q9" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(A^c\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 10 -->
+                <div class="question-box">
+                        <div class="question-text">10. إذا كانت \(A=\{1,2,3\}\) و \(B=\{4,5\}\) فإن \(A \cup B=\):</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q10" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{4,5\}\)</label>
+                                <label class="option-label"><input type="radio" name="q10" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{1,2,3\}\)</label>
+                                <label class="option-label"><input type="radio" name="q10" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(\{1,2,3,4,5\}\)</label>
+                                <label class="option-label"><input type="radio" name="q10" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\phi\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 11 -->
+                <div class="question-box">
+                        <div class="question-text">11. إذا كانت \(A=\{1,2,3\}\) و \(B=\{3,4\}\) فإن \(A \cap B=\):</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q11" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(\{3\}\)</label>
+                                <label class="option-label"><input type="radio" name="q11" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{1,2,3\}\)</label>
+                                <label class="option-label"><input type="radio" name="q11" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\phi\)</label>
+                                <label class="option-label"><input type="radio" name="q11" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{1,2,3,4,5\}\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 12 -->
+                <div class="question-box">
+                        <div class="question-text">12. إذا كانت \(A=\{1,2,3\}\) و \(B=\{5,4\}\) فإن \(A \cap B=\):</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q12" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{3\}\)</label>
+                                <label class="option-label"><input type="radio" name="q12" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{1,2,3\}\)</label>
+                                <label class="option-label"><input type="radio" name="q12" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(\phi\)</label>
+                                <label class="option-label"><input type="radio" name="q12" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{1,2,3,4,5\}\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 13 -->
+                <div class="question-box">
+                        <div class="question-text">13. إذا كانت \(A=\{1,2,3,4\}\) و \(B=\{1,2\}\) فإن \(A - B=\):</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q13" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{1,2,3,4\}\)</label>
+                                <label class="option-label"><input type="radio" name="q13" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{1\}\)</label>
+                                <label class="option-label"><input type="radio" name="q13" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(\{3,4\}\)</label>
+                                <label class="option-label"><input type="radio" name="q13" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{1,2\}\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 14 -->
+                <div class="question-box">
+                        <div class="question-text">14. إذا كانت \(U=\{1,2,3,4,5\}\) و \(A=\{1,2\}\) فإن \(\bar{A}=\):
+                        </div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q14" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{1,2\}\)</label>
+                                <label class="option-label"><input type="radio" name="q14" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{1,3\}\)</label>
+                                <label class="option-label"><input type="radio" name="q14" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{4,2\}\)</label>
+                                <label class="option-label"><input type="radio" name="q14" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(\{3,4,5\}\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 15 -->
+                <div class="question-box">
+                        <div class="question-text">15. يرمز لمجموعة الأعداد الطبيعية بالرمز:</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q15" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(N\)</label>
+                                <label class="option-label"><input type="radio" name="q15" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(W\)</label>
+                                <label class="option-label"><input type="radio" name="q15" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(Q\)</label>
+                                <label class="option-label"><input type="radio" name="q15" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(R\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 16 -->
+                <div class="question-box">
+                        <div class="question-text">16. \((\overline{A \cap B})=\):</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q16" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\bar{A} \cap \bar{B}\)</label>
+                                <label class="option-label"><input type="radio" name="q16" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(\bar{A} \cup \bar{B}\)</label>
+                                <label class="option-label"><input type="radio" name="q16" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\bar{A} \cup B\)</label>
+                                <label class="option-label"><input type="radio" name="q16" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(A \cap \bar{B}\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 17 -->
+                <div class="question-box">
+                        <div class="question-text">17. \((\overline{A \cup B})=\):</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q17" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(\bar{A} \cap \bar{B}\)</label>
+                                <label class="option-label"><input type="radio" name="q17" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\bar{A} \cup \bar{B}\)</label>
+                                <label class="option-label"><input type="radio" name="q17" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\bar{A} \cup B\)</label>
+                                <label class="option-label"><input type="radio" name="q17" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(A \cap \bar{B}\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 18 -->
+                <div class="question-box">
+                        <div class="question-text">18. العدد التالي يمثل عدد طبيعي:</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q18" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\pi\)</label>
+                                <label class="option-label"><input type="radio" name="q18" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(-1\)</label>
+                                <label class="option-label"><input type="radio" name="q18" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(0\)</label>
+                                <label class="option-label"><input type="radio" name="q18" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(5\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 19 -->
+                <div class="question-box">
+                        <div class="question-text">19. العدد التالي يمثل عدد صحيح:</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q19" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\pi\)</label>
+                                <label class="option-label"><input type="radio" name="q19" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(-6\)</label>
+                                <label class="option-label"><input type="radio" name="q19" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(e\)</label>
+                                <label class="option-label"><input type="radio" name="q19" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\frac{2}{3}\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+                <!-- Question 20 -->
+                <div class="question-box">
+                        <div class="question-text">20. إذا كانت \(A=\{1,2,3\}\) و \(B=\{1,2,4,5\}\) فإن \(A \oplus B\)
+                                تساوي:</div>
+                        <div class="options-grid">
+                                <label class="option-label"><input type="radio" name="q20" class="option-radio"
+                                                onclick="checkAnswer(this, true)"> \(\{3,4,5\}\)</label>
+                                <label class="option-label"><input type="radio" name="q20" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{1,2\}\)</label>
+                                <label class="option-label"><input type="radio" name="q20" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\{1,2,3,4,5\}\)</label>
+                                <label class="option-label"><input type="radio" name="q20" class="option-radio"
+                                                onclick="checkAnswer(this, false)"> \(\phi\)</label>
+                        </div>
+                        <div class="feedback"></div>
+                </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+                <div class="container">
+                        <p>&copy; 2026 الصفحة الالكترونية لمقرر الرياضيات (رياض 101) - تطوير بواسطة نواف العنزي </p>
+                        <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.7;">آخر تحديث: <span
+                                        id="last-updated-date"></span>
+                        </p>
+
+                </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script>
+                function checkAnswer(radio, isCorrect) {
+                        const feedback = radio.closest('.question-box').querySelector('.feedback');
+                        if (isCorrect) {
+                                feedback.textContent = "إجابة صحيحة! أحسنت.";
+                                feedback.className = "feedback correct";
+                        } else {
+                                feedback.textContent = "إجابة خاطئة، حاول مرة أخرى.";
+                                feedback.className = "feedback incorrect";
+                        }
+                        feedback.style.display = 'block';
+
+                        // Re-render math in feedback if relevant (not strictly needed here but good practice)
+                        if (window.MathJax && MathJax.typesetPromise) {
+                                MathJax.typesetPromise([feedback]);
+                        }
+                }
+        </script>
+        <script src="main.js"></script>
+</body>
+
+</html>

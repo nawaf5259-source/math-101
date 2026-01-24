@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرياضيات 101 - التمارين الإثرائية</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .topic-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        body.dark-mode .topic-card {
+            background: var(--bg-card);
+            border-color: var(--border);
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+
+        .topic-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .topic-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-heading);
+        }
+
+        .topic-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+    </style>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.svg" alt="Math 101 Logo">
+            </a>
+            <button class="hamburger" aria-label="Toggle navigation">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="index.html#book-section">الكتاب</a></li>
+                <li><a href="qbanks.html">بنوك الأسئلة</a></li>
+                <li><a href="ex+.html">تمارين إثرائية</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container" style="padding-top: 60px;">
+
+        <header style="text-align: center; margin-bottom: 2rem;">
+            <h1 style="font-size: 2.5rem; color: var(--text-heading); margin-bottom: 1rem;">التمارين الإثرائية</h1>
+        </header>
+
+        <header style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">
+            <h2 style="font-size: 2rem; color: var(--text-heading);">الوحدة الأولى: المجموعات</h2>
+        </header>
+        <div class="topic-grid">
+
+            <!-- 1. Defining Sets -->
+            <a href="تمارين اثرائية/طرق كتابة المجموعة.html" class="topic-card">
+                <div class="topic-icon">📝</div>
+                <div class="topic-title">طرق كتابة المجموعة</div>
+                <div class="topic-desc">أمثلة على طرق السرد، الوصف، والقاعدة.</div>
+            </a>
+
+            <!-- Check if it is a set -->
+            <a href="تمارين اثرائية/تحديد هل هي مجموعة ام لا.html" class="topic-card">
+                <div class="topic-icon">❓</div>
+                <div class="topic-title">هل هي مجموعة؟</div>
+                <div class="topic-desc">أمثلة لتمييز المجموعات الرياضية عن غيرها.</div>
+            </a>
+
+            <!-- 2. Element Relationship -->
+            <a href="تمارين اثرائية/العلاقة بين العنصر والمجموعة.html" class="topic-card">
+                <div class="topic-icon">∈</div>
+                <div class="topic-title">انتماء العناصر</div>
+                <div class="topic-desc">أمثلة على علاقة الانتماء(∈) وعدم الانتماء(∉).</div>
+            </a>
+
+            <!-- Equal Sets (Based on u1.html flow) -->
+            <a href="تمارين اثرائية/تساوي المجموعات.html" class="topic-card">
+                <div class="topic-icon">=</div>
+                <div class="topic-title">تساوي المجموعات</div>
+                <div class="topic-desc">متى تكون المجموعتان متساويتين؟</div>
+            </a>
+
+            <!-- Types of Sets -->
+            <a href="تمارين اثرائية/انواع المجموعات.html" class="topic-card">
+                <div class="topic-icon">∞</div>
+                <div class="topic-title">أنواع المجموعات</div>
+                <div class="topic-desc">المنتهية، غير المنتهية، الخالية، والشاملة.</div>
+            </a>
+
+            <!-- Subsets -->
+            <a href="تمارين اثرائية/المجموعات الجزئية.html" class="topic-card">
+                <div class="topic-icon">⊆</div>
+                <div class="topic-title">المجموعات الجزئية</div>
+                <div class="topic-desc">مفهوم الاحتواء(⊆) بين المجموعات.</div>
+            </a>
+
+            <!-- Operations: Intersection -->
+            <a href="تمارين اثرائية/التقاطع.html" class="topic-card">
+                <div class="topic-icon">∩</div>
+                <div class="topic-title">التقاطع</div>
+                <div class="topic-desc">العناصر المشتركة بين المجموعات.</div>
+            </a>
+
+            <!-- Operations: Union -->
+            <a href="تمارين اثرائية/الاتحاد.html" class="topic-card">
+                <div class="topic-icon">∪</div>
+                <div class="topic-title">الاتحاد</div>
+                <div class="topic-desc">دمج عناصر المجموعات بدون تكرار.</div>
+            </a>
+
+            <!-- Operations: Difference -->
+            <a href="تمارين اثرائية/الفرق بين مجموعتين.html" class="topic-card">
+                <div class="topic-icon">-</div>
+                <div class="topic-title">الفرق</div>
+                <div class="topic-desc">عناصر في A وليست في B.</div>
+            </a>
+
+            <!-- Operations: Complement -->
+            <a href="تمارين اثرائية/المتممة.html" class="topic-card">
+                <div class="topic-icon">A'</div>
+                <div class="topic-title">المتممة</div>
+                <div class="topic-desc">العناصر في U وليست في المجموعة.</div>
+            </a>
+
+            <!-- Operations: Symmetric Difference -->
+            <a href="تمارين اثرائية/الفرق التناظري.html" class="topic-card">
+                <div class="topic-icon">⊕</div>
+                <div class="topic-title">الفرق التناظري</div>
+                <div class="topic-desc">العناصر غير المشتركة بين المجموعتين.</div>
+            </a>
+
+            <!-- Number Sets -->
+            <a href="تمارين اثرائية/المجموعات العددية.html" class="topic-card">
+                <div class="topic-icon">ℝ</div>
+                <div class="topic-title">المجموعات العددية</div>
+                <div class="topic-desc">الطبيعية، الصحيحة، النسبية، والحقيقية.</div>
+            </a>
+
+        </div>
+
+        <header style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">
+            <h2 style="font-size: 2rem; color: var(--text-heading);">الوحدة الثانية: العمليات الحسابية</h2>
+        </header>
+
+        <div class="topic-grid">
+            <!-- Multiplication of Fractions -->
+            <a href="تمارين اثرائية/ضرب الكسور.html" class="topic-card">
+                <div class="topic-icon">✖️</div>
+                <div class="topic-title">ضرب الكسور</div>
+                <div class="topic-desc">ضرب البسط في البسط والمقام في المقام.</div>
+            </a>
+
+            <!-- Division of Fractions -->
+            <a href="تمارين اثرائية/قسمة الكسور.html" class="topic-card">
+                <div class="topic-icon">➗</div>
+                <div class="topic-title">قسمة الكسور</div>
+                <div class="topic-desc">ثبت، حول، اقلب (المقلوب).</div>
+            </a>
+
+            <!-- Add/Sub Fractions (Equal) -->
+            <a href="تمارين اثرائية/جمع وطرح الكسور (مقامات متساوية).html" class="topic-card">
+                <div class="topic-icon">➕</div>
+                <div class="topic-title">جمع وطرح الكسور (1)</div>
+                <div class="topic-desc">عندما تكون المقامات متساوية.</div>
+            </a>
+
+            <!-- Add/Sub Fractions (Unequal) -->
+            <a href="تمارين اثرائية/جمع وطرح الكسور (مقامات غير متساوية).html" class="topic-card">
+                <div class="topic-icon">📏</div>
+                <div class="topic-title">جمع وطرح الكسور (2)</div>
+                <div class="topic-desc">توحيد المقامات باستخدام طريقة المقص.</div>
+            </a>
+
+            <!-- Decimal Add/Sub -->
+            <a href="تمارين اثرائية/جمع وطرح الأعداد العشرية.html" class="topic-card">
+                <div class="topic-icon">🔢</div>
+                <div class="topic-title">جمع وطرح العشري</div>
+                <div class="topic-desc">محاذاة الفواصل وتوحيد الخانات.</div>
+            </a>
+
+            <!-- Decimal Multiply -->
+            <a href="تمارين اثرائية/ضرب الأعداد العشرية.html" class="topic-card">
+                <div class="topic-icon">💠</div>
+                <div class="topic-title">ضرب الأعداد العشرية</div>
+                <div class="topic-desc">التعامل مع الفواصل في الناتج.</div>
+            </a>
+
+            <!-- Decimal Divide -->
+            <a href="تمارين اثرائية/قسمة الأعداد العشرية.html" class="topic-card">
+                <div class="topic-icon">💎</div>
+                <div class="topic-title">قسمة الأعداد العشرية</div>
+                <div class="topic-desc">التخلص من الفاصلة في المقسوم عليه.</div>
+            </a>
+
+            <!-- Rounding -->
+            <a href="تمارين اثرائية/تقريب الأعداد العشرية.html" class="topic-card">
+                <div class="topic-icon">🎯</div>
+                <div class="topic-title">تقريب الأعداد</div>
+                <div class="topic-desc">قواعد التقريب لأقرب جزء عشري.</div>
+            </a>
+
+            <!-- Properties of Real Numbers -->
+            <a href="تمارين اثرائية/خصائص الأعداد الحقيقية.html" class="topic-card">
+                <div class="topic-icon">⚖️</div>
+                <div class="topic-title">خصائص الأعداد</div>
+                <div class="topic-desc">النظير الجمعي، الضربي، وغيرها.</div>
+            </a>
+
+            <!-- Order of Operations -->
+            <a href="تمارين اثرائية/ترتيب العمليات الحسابية.html" class="topic-card">
+                <div class="topic-icon">⛓️</div>
+                <div class="topic-title">ترتيب العمليات</div>
+                <div class="topic-desc">أاولويات الأقواس، الأسس، الضرب والقسمة.</div>
+            </a>
+        </div>
+
+        <header style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">
+            <h2 style="font-size: 2rem; color: var(--text-heading);">الوحدة الثالثة: كثيرات الحدود</h2>
+        </header>
+
+        <div class="topic-grid">
+            <!-- Polynomial Degree -->
+            <a href="تمارين اثرائية/كثيرة الحدود ودرجتها .html" class="topic-card">
+                <div class="topic-icon">📐</div>
+                <div class="topic-title">الحد الجبري ودرجته</div>
+                <div class="topic-desc">تحديد المعامل والدرجة للحدود الجبرية.</div>
+            </a>
+
+            <!-- Add/Sub Polynomials -->
+            <a href="تمارين اثرائية/جمع وطرح كثيرات الحدود.html" class="topic-card">
+                <div class="topic-icon">➕</div>
+                <div class="topic-title">جمع وطرح كثيرات الحدود</div>
+                <div class="topic-desc">جمع وطرح المعاملات للحدود المتشابهة.</div>
+            </a>
+
+            <!-- Multiply Polynomials -->
+            <a href="تمارين اثرائية/ضرب كثيرات الحدود.html" class="topic-card">
+                <div class="topic-icon">✖️</div>
+                <div class="topic-title">ضرب كثيرات الحدود</div>
+                <div class="topic-desc">توزيع الحدود وجمع الأسس عند الضرب.</div>
+            </a>
+
+            <!-- Divide Polynomials -->
+            <a href="تمارين اثرائية/قسمة كثيرات الحدود.html" class="topic-card">
+                <div class="topic-icon">➗</div>
+                <div class="topic-title">قسمة كثيرات الحدود</div>
+                <div class="topic-desc">القسمة المطولة لكثيرات الحدود.</div>
+            </a>
+
+            <!-- Identities -->
+            <a href="تمارين اثرائية/المتطابقات الجبرية الشهيرة.html" class="topic-card">
+                <div class="topic-icon">⭐</div>
+                <div class="topic-title">المتطابقات الجبرية</div>
+                <div class="topic-desc">مربع المجموع والفرق، وفرق المربعين.</div>
+            </a>
+
+            <!-- GCF Analysis -->
+            <a href="تمارين اثرائية/التحليل بالعامل المشترك الأكبر.html" class="topic-card">
+                <div class="topic-icon">🗝️</div>
+                <div class="topic-title">العامل المشترك الأكبر</div>
+                <div class="topic-desc">استخراج الحد المشترك بين جميع الحدود.</div>
+            </a>
+
+            <!-- Difference of Squares -->
+            <a href="تمارين اثرائية/تحليل فرق المربعين.html" class="topic-card">
+                <div class="topic-icon">⏹️</div>
+                <div class="topic-title">تحليل فرق المربعين</div>
+                <div class="topic-desc">تحليل المقادير على صورة x² - y².</div>
+            </a>
+
+            <!-- Trinomial Case 1 -->
+            <a href="تمارين اثرائية/تحليل المقدار الثلاثي (الحالة الأولى).html" class="topic-card">
+                <div class="topic-icon">🔢</div>
+                <div class="topic-title">المقدار الثلاثي (1)</div>
+                <div class="topic-desc">تحليل ثلاثي الحدود عندما يكون a=1.</div>
+            </a>
+
+            <!-- Trinomial Case 2 -->
+            <a href="تمارين اثرائية/تحليل المقدار الثلاثي (الحالة الثانية).html" class="topic-card">
+                <div class="topic-icon">🧮</div>
+                <div class="topic-title">المقدار الثلاثي (2)</div>
+                <div class="topic-desc">تحليل ثلاثي الحدود عندما يكون a≠1.</div>
+            </a>
+
+            <!-- Algebraic Fractions -->
+            <a href="تمارين اثرائية/تبسيط الكسور الجبرية.html" class="topic-card">
+                <div class="topic-icon">📉</div>
+                <div class="topic-title">تبسيط الكسور الجبرية</div>
+                <div class="topic-desc">اختصار وحذف الحدود المتشابهة من البسط والمقام.</div>
+            </a>
+        </div>
+
+
+        <header style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">
+            <h2 style="font-size: 2rem; color: var(--text-heading);">الوحدة الرابعة: المصفوفات والمحددات</h2>
+        </header>
+
+        <div class="topic-grid">
+            <!-- Types of Matrices -->
+            <a href="تمارين اثرائية/انواع المصفوفات.html" class="topic-card">
+                <div class="topic-icon">▦</div>
+                <div class="topic-title">أنواع المصفوفات</div>
+                <div class="topic-desc">مصفوفة الصف، العمود، المربعة، الصفرية، وغيرها.</div>
+            </a>
+
+            <!-- Matrix Order -->
+            <a href="تمارين اثرائية/رتبة المصفوفة.html" class="topic-card">
+                <div class="topic-icon">📏</div>
+                <div class="topic-title">رتبة المصفوفة</div>
+                <div class="topic-desc">تحديد رتبة المصفوفة وقيمة عناصر محددة.</div>
+            </a>
+
+            <!-- Add/Sub -->
+            <a href="تمارين اثرائية/جمع وطرح المصفوفات.html" class="topic-card">
+                <div class="topic-icon">➕</div>
+                <div class="topic-title">جمع وطرح المصفوفات</div>
+                <div class="topic-desc">العمليات الحسابية الأساسية على المصفوفات.</div>
+            </a>
+
+            <!-- Scalar Ops -->
+            <a href="تمارين اثرائية/ضرب وقسمة المصفوفة بعدد.html" class="topic-card">
+                <div class="topic-icon">🔢</div>
+                <div class="topic-title">ضرب وقسمة المصفوفة بعدد</div>
+                <div class="topic-desc">ضرب المصفوفة في عدد حقيقي (قياسي).</div>
+            </a>
+
+            <!-- Row x Col -->
+            <a href="تمارين اثرائية/ضرب صف في عمود.html" class="topic-card">
+                <div class="topic-icon">➖│</div>
+                <div class="topic-title">ضرب صف في عمود</div>
+                <div class="topic-desc">العملية الأساسية لضرب المصفوفات.</div>
+            </a>
+
+            <!-- Matrix x Matrix -->
+            <a href="تمارين اثرائية/ضرب مصفوفة في مصفوفة.html" class="topic-card">
+                <div class="topic-icon">✖️</div>
+                <div class="topic-title">ضرب المصفوفات</div>
+                <div class="topic-desc">ضرب مصفوفة في مصفوفة أخرى.</div>
+            </a>
+
+            <!-- Determinants -->
+            <a href="تمارين اثرائية/المحددات.html" class="topic-card">
+                <div class="topic-icon">│A│</div>
+                <div class="topic-title">المحددات</div>
+                <div class="topic-desc">حساب قيمة المحدد 2×2 و 3×3.</div>
+            </a>
+
+            <!-- Inverse -->
+            <a href="تمارين اثرائية/مقلوب المصفوفة.html" class="topic-card">
+                <div class="topic-icon">↩️</div>
+                <div class="topic-title">معكوس المصفوفة</div>
+                <div class="topic-desc">إيجاد المعكوس الضربي للمصفوفة المربعة.</div>
+            </a>
+        </div>
+
+
+        <header style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">
+            <h2 style="font-size: 2rem; color: var(--text-heading);">الوحدة الخامسة: المعادلات وأنظمتها</h2>
+        </header>
+
+        <div class="topic-grid">
+            <!-- Linear Equations -->
+            <a href="تمارين اثرائية/معادلات الدرجة الأولى.html" class="topic-card">
+                <div class="topic-icon">①</div>
+                <div class="topic-title">معادلات الدرجة الأولى</div>
+                <div class="topic-desc">حل المعادلات الخطية بمجهول واحد.</div>
+            </a>
+
+            <!-- Quadratic Equations -->
+            <a href="تمارين اثرائية/المعادلات التربيعية.html" class="topic-card">
+                <div class="topic-icon">②</div>
+                <div class="topic-title">المعادلات التربيعية</div>
+                <div class="topic-desc">الحل باستخدام القانون العام.</div>
+            </a>
+
+            <!-- Discriminant -->
+            <a href="تمارين اثرائية/المميز وعدد الحلول.html" class="topic-card">
+                <div class="topic-icon">⚠️</div>
+                <div class="topic-title">المميز وعدد الحلول</div>
+                <div class="topic-desc">تحديد نوع وعدد جذور المعادلة.</div>
+            </a>
+
+            <!-- Cramer -->
+            <a href="تمارين اثرائية/حل نظام خطي (كرايمر).html" class="topic-card">
+                <div class="topic-icon">📊</div>
+                <div class="topic-title">أنظمة خطية (كرايمر)</div>
+                <div class="topic-desc">حل الأنظمة باستخدام المحددات (كرايمر).</div>
+            </a>
+
+            <!-- Matrix Inversion Systems -->
+            <a href="تمارين اثرائية/حل نظام خطي (المصفوفات).html" class="topic-card">
+                <div class="topic-icon">↩️</div>
+                <div class="topic-title">أنظمة خطية (المصفوفات)</div>
+                <div class="topic-desc">حل الأنظمة باستخدام المعكوس الضربي.</div>
+            </a>
+        </div>
+
+
+        <header style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">
+            <h2 style="font-size: 2rem; color: var(--text-heading);">الوحدة السادسة: الهندسة</h2>
+        </header>
+
+        <div class="topic-grid">
+            <!-- The Square -->
+            <a href="تمارين اثرائية/المربع.html" class="topic-card">
+                <div class="topic-icon">⬜</div>
+                <div class="topic-title">المربع</div>
+                <div class="topic-desc">حساب المحيط والمساحة مع أمثلة تطبيقية.</div>
+            </a>
+
+            <!-- The Rectangle -->
+            <a href="تمارين اثرائية/المستطيل.html" class="topic-card">
+                <div class="topic-icon">▭</div>
+                <div class="topic-title">المستطيل</div>
+                <div class="topic-desc">حساب المحيط والمساحة وإيجاد الأبعاد الناقصة.</div>
+            </a>
+
+            <!-- The Triangle -->
+            <a href="تمارين اثرائية/المثلث.html" class="topic-card">
+                <div class="topic-icon">🔺</div>
+                <div class="topic-title">المثلث</div>
+                <div class="topic-desc">حساب المساحة والمحيط وتطبيقات فيثاغورس.</div>
+            </a>
+
+            <!-- The Rhombus -->
+            <a href="تمارين اثرائية/المعين.html" class="topic-card">
+                <div class="topic-icon">🔶</div>
+                <div class="topic-title">المعين</div>
+                <div class="topic-desc">حساب المساحة بدلالة القطرين أو الارتفاع.</div>
+            </a>
+
+            <!-- The Parallelogram -->
+            <a href="تمارين اثرائية/متوازي الأضلاع.html" class="topic-card">
+                <div class="topic-icon">▱</div>
+                <div class="topic-title">متوازي الأضلاع</div>
+                <div class="topic-desc">حساب المساحة والمحيط وإيجاد الارتفاع.</div>
+            </a>
+
+            <!-- The Circle -->
+            <a href="تمارين اثرائية/الدائرة.html" class="topic-card">
+                <div class="topic-icon">⭕</div>
+                <div class="topic-title">الدائرة</div>
+                <div class="topic-desc">حساب المساحة والمحيط وتطبيقات نصف القطر.</div>
+            </a>
+
+            <!-- The Trapezoid -->
+            <a href="تمارين اثرائية/شبه المنحرف.html" class="topic-card">
+                <div class="topic-icon">⏢</div>
+                <div class="topic-title">شبه المنحرف</div>
+                <div class="topic-desc">حساب المساحة بمعلومية القاعدتين والارتفاع.</div>
+            </a>
+
+            <!-- The Cube -->
+            <a href="تمارين اثرائية/المكعب.html" class="topic-card">
+                <div class="topic-icon">📦</div>
+                <div class="topic-title">المكعب</div>
+                <div class="topic-desc">حساب الحجم والمساحة الكلية للمجسم.</div>
+            </a>
+
+            <!-- The Rectangular Prism -->
+            <a href="تمارين اثرائية/متوازي المستطيلات.html" class="topic-card">
+                <div class="topic-icon">🧱</div>
+                <div class="topic-title">متوازي المستطيلات</div>
+                <div class="topic-desc">حساب الحجم والمساحة الكلية للأبعاد المختلفة.</div>
+            </a>
+
+            <!-- The Cylinder -->
+            <a href="تمارين اثرائية/الاسطوانة.html" class="topic-card">
+                <div class="topic-icon">🛢️</div>
+                <div class="topic-title">الاسطوانة</div>
+                <div class="topic-desc">حساب الحجم والمساحة الجانبية والكلية.</div>
+            </a>
+
+            <!-- The Cone -->
+            <a href="تمارين اثرائية/المخروط.html" class="topic-card">
+                <div class="topic-icon">🍦</div>
+                <div class="topic-title">المخروط</div>
+                <div class="topic-desc">حساب الحجم والمولد والمساحة الجانبية.</div>
+            </a>
+
+            <!-- The Sphere -->
+            <a href="تمارين اثرائية/الكرة.html" class="topic-card">
+                <div class="topic-icon">⚽</div>
+                <div class="topic-title">الكرة</div>
+                <div class="topic-desc">حساب الحجم ومساحة السطح وتطبيقات.</div>
+            </a>
+
+            <a href="تمارين اثرائية/البيضوي_ثلاثي_الأبعاد.html" class="topic-card">
+                <div class="topic-icon">🥚</div>
+                <div class="topic-title">البيضاوي</div>
+                <div class="topic-desc">حساب الحجم ومساحة السطح (التقريبية).</div>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 الصفحة الالكترونية لمقرر الرياضيات (رياض 101)</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+    </body>
+
+</html>
