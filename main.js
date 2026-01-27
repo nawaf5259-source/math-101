@@ -4,6 +4,9 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+    initHeader();
+    initFooter();
+
     initNavigation();
     initDarkModeAndScroll();
     initFeedbackSystem();
@@ -14,10 +17,80 @@ document.addEventListener("DOMContentLoaded", () => {
     initShowSolution();
     initTOC();
     initUnitNavigation();
-    initUnitNavigation();
-    initProtectedDownloads();
 
 });
+
+// 0. Dynamic Header & Footer
+function initHeader() {
+    // Prevent duplicate header
+    if (document.querySelector('.navbar')) return;
+
+    // Check if we are in a sub-directory
+    const path = window.location.pathname;
+    const isSubdir = path.includes('تمارين اثرائية') || path.includes('%D8%AA%D9%85%D8%A7%D8%B1%D9%8A%D9%86%20%D8%A7%D8%AB%D8%B1%D8%A7%D8%A6%D9%8A%D8%A9');
+    const isRoot = path.endsWith('index.html') || path.endsWith('/') || path === '';
+
+    const prefix = isSubdir ? '../' : '';
+
+    // Get Title and Subtitle from data attributes or defaults
+    let heroTitle = document.body.dataset.heroTitle || document.title.split('|')[0].split('-')[0].trim();
+    let heroSubtitle = document.body.dataset.heroSubtitle || "";
+
+    // Home page specific defaults
+    if (isRoot) {
+        heroTitle = "الرياضيات (رياض 101)";
+        heroSubtitle = "بوابتك الرقمية الشاملة لمقرر الرياضيات - الكلية التقنية";
+    }
+
+    const headerHtml = `
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="${prefix}index.html" class="nav-logo">
+                <img src="${prefix}logo.svg" alt="Math 101 Logo">
+            </a>
+            <button class="hamburger" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="${prefix}index.html">الرئيسية</a></li>
+                <li><a href="${prefix}index.html#book-section">الكتاب</a></li>
+                <li><a href="${prefix}qbanks.html">بنوك الأسئلة</a></li>
+                <li><a href="${prefix}ex+.html">تمارين إثرائية</a></li>
+            </ul>
+        </div>
+    </nav>
+    <header class="hero">
+        <div class="container">
+            <h1>${heroTitle}</h1>
+            ${heroSubtitle ? `<p>${heroSubtitle}</p>` : ''}
+        </div>
+    </header>
+    `;
+
+    // Insert after aurora-blobs if it exists, otherwise prepend to body
+    const aurora = document.querySelector('.aurora-blobs');
+    if (aurora) {
+        aurora.insertAdjacentHTML('afterend', headerHtml);
+    } else {
+        document.body.insertAdjacentHTML('afterbegin', headerHtml);
+    }
+}
+
+function initFooter() {
+    const footerHtml = `
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 الصفحة الالكترونية لمقرر الرياضيات (رياض 101) - تطوير بواسطة نواف العنزي </p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.7;">آخر تحديث: <span id="last-updated-date"></span>
+            </p>
+        </div>
+    </footer>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', footerHtml);
+}
 
 // 1. Mobile Navigation
 function initNavigation() {
@@ -27,14 +100,14 @@ function initNavigation() {
     if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+            hamburger.classList.toggle('active');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
                 navLinks.classList.remove('active');
-                hamburger.textContent = '☰';
+                hamburger.classList.remove('active');
             }
         });
     }
@@ -185,9 +258,16 @@ function initTOC() {
     }
 
     // 1. Create Wrapper Layout
+    // 1. Create Wrapper Layout
     const sidebar = document.createElement('aside');
     sidebar.className = 'toc-sidebar';
-    sidebar.innerHTML = `<h3>شريط التنقل</h3><ul class="toc-list"></ul>`;
+    sidebar.innerHTML = `
+        <div class="toc-header">
+            <h3>شريط التنقل</h3>
+            <button class="toc-toggle" aria-label="Toggle Navigation">➖</button>
+        </div>
+        <ul class="toc-list"></ul>
+    `;
 
     const contentWrapper = document.createElement('div');
     contentWrapper.className = 'content-wrapper';
@@ -202,8 +282,23 @@ function initTOC() {
     main.appendChild(contentWrapper);
     main.classList.add('with-sidebar');
 
-    // 2. Build Links
+    // Toggle Logic
+    const toggleBtn = sidebar.querySelector('.toc-toggle');
     const tocList = sidebar.querySelector('.toc-list');
+
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+        if (sidebar.classList.contains('collapsed')) {
+            toggleBtn.innerHTML = '➕';
+            toggleBtn.setAttribute('aria-label', 'Expand Navigation');
+        } else {
+            toggleBtn.innerHTML = '➖';
+            toggleBtn.setAttribute('aria-label', 'Collapse Navigation');
+        }
+    });
+
+    // 2. Build Links
+    // Removed duplicate declaration
 
     Headings.forEach((heading, index) => {
         // Ensure ID
@@ -408,101 +503,6 @@ function initLastUpdated() {
     const el = document.getElementById('last-updated-date');
     if (el) {
         el.innerText = new Date().toLocaleDateString('ar-SA');
-    }
-}
-
-// 5. Visitor Counter
-
-let pendingDownloadUrl = null;
-const CORRECT_PIN = "2030";
-
-function initProtectedDownloads() {
-    // Inject Modal HTML if not exists
-    if (!document.getElementById('pin-modal-overlay')) {
-        const modalHTML = `
-            <div id="pin-modal-overlay">
-                <div id="pin-modal">
-                    <h3>🔒 محتوى محمي</h3>
-                    <p>الرجاء إدخال الرمز السري لتحميل الملف</p>
-                    <input type="password" id="pin-input" class="pin-input" maxlength="4" placeholder="----">
-                    <div id="pin-error" class="pin-error">الرمز غير صحيح!</div>
-                    <div class="pin-buttons">
-                        <button class="pin-btn pin-btn-cancel" onclick="closePinModal()">إلغاء</button>
-                        <button class="pin-btn pin-btn-submit" onclick="submitPin()">تحميل</button>
-                    </div>
-                </div>
-            </div>
-        `;
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
-
-        // Enter key support
-        document.getElementById('pin-input').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') submitPin();
-        });
-
-        // Clear error on input
-        document.getElementById('pin-input').addEventListener('input', function () {
-            document.getElementById('pin-error').style.display = 'none';
-        });
-    }
-
-    // Attach listeners to protected links
-    document.addEventListener('click', function (e) {
-        const link = e.target.closest('.protected-link');
-        if (link) {
-            e.preventDefault();
-            pendingDownloadUrl = link.href;
-            openPinModal();
-        }
-    });
-}
-
-function openPinModal() {
-    const overlay = document.getElementById('pin-modal-overlay');
-    const modal = document.getElementById('pin-modal');
-    const input = document.getElementById('pin-input');
-
-    overlay.style.display = 'flex';
-    // Small delay to allow display flex to apply before adding active class for animation
-    setTimeout(() => modal.classList.add('active'), 10);
-
-    input.value = '';
-    document.getElementById('pin-error').style.display = 'none';
-    input.focus();
-}
-
-function closePinModal() {
-    const overlay = document.getElementById('pin-modal-overlay');
-    const modal = document.getElementById('pin-modal');
-
-    modal.classList.remove('active');
-    setTimeout(() => {
-        overlay.style.display = 'none';
-        pendingDownloadUrl = null;
-    }, 200);
-}
-
-function submitPin() {
-    const input = document.getElementById('pin-input');
-    const error = document.getElementById('pin-error');
-
-    if (input.value === CORRECT_PIN) {
-        // Success
-        closePinModal();
-        if (pendingDownloadUrl) {
-            window.location.href = pendingDownloadUrl;
-        }
-    } else {
-        // Failure
-        error.style.display = 'block';
-        input.value = '';
-        input.focus();
-
-        // Shake animation effect
-        const modal = document.getElementById('pin-modal');
-        modal.style.transform = 'translateX(10px)';
-        setTimeout(() => modal.style.transform = 'translateX(-10px)', 100);
-        setTimeout(() => modal.style.transform = 'translate(0)', 200);
     }
 }
 

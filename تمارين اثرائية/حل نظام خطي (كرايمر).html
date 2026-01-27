@@ -88,9 +88,10 @@
             font-size: 1rem;
             color: var(--text-muted);
             background: rgba(33, 150, 243, 0.1);
-            padding: 1rem;
-            border-radius: 6px;
+            padding: 1.25rem;
+            border-radius: 8px;
             margin-top: 0.5rem;
+            text-align: center;
         }
 
         body.dark-mode .ex-explanation {
@@ -100,7 +101,7 @@
     </style>
 </head>
 
-<body>
+<body data-hero-subtitle="استخدام قاعدة كرايمر وحساب المحددات لحل أنظمة المعادلات الخطية">
     <!-- Aurora Background Blobs -->
     <div class="aurora-blobs">
         <div class="blob blob-1"></div>
@@ -108,28 +109,26 @@
         <div class="blob blob-3"></div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-content">
-            <a href="../index.html" class="nav-logo">
-                <img src="../logo.svg" alt="Math 101 Logo">
-            </a>
-            <ul class="nav-links">
-                <li><a href="../index.html">الرئيسية</a></li>
-                <li><a href="../qbanks.html">بنوك الأسئلة</a></li>
-                <li><a href="../ex+.html" class="active">تمارين إثرائية</a></li>
-            </ul>
-        </div>
-    </nav>
-
     <main class="container" style="padding-top: 60px; padding-bottom: 60px;">
 
-        <header style="text-align: center; margin-bottom: 3rem;">
-            <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-heading);">حل نظام خطي (كرايمر)</h1>
-            <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;">
-                استخدام قاعدة كرايمر وحساب المحددات لحل أنظمة المعادلات الخطية.
-            </p>
-        </header>
+
+        <section class="slide">
+            <h2 style="margin-top: 0;">خطوات الحل باستخدام قاعدة كرايمر</h2>
+            <div class="definition">
+                <p>لحل نظام من معادلتين خطيتين بالصورة:</p>
+                \[ a_1x + b_1y = c_1 \], \[ a_2x + b_2y = c_2 \]
+                <ol>
+                    <li><strong>حساب محدد المصفوفة (D):</strong> \( D = \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2
+                        \end{vmatrix} = a_1b_2 - b_1a_2 \)</li>
+                    <li><strong>حساب محدد (D_x):</strong> (استبدال عمود x بالثوابت) \( D_x = \begin{vmatrix} c_1 & b_1
+                        \\ c_2 & b_2 \end{vmatrix} \)</li>
+                    <li><strong>حساب محدد (D_y):</strong> (استبدال عمود y بالثوابت) \( D_y = \begin{vmatrix} a_1 & c_1
+                        \\ a_2 & c_2 \end{vmatrix} \)</li>
+                    <li><strong>إيجاد القيم:</strong> \( x = \frac{D_x}{D}, \quad y = \frac{D_y}{D} \quad (D \neq 0) \)
+                    </li>
+                </ol>
+            </div>
+        </section>
 
         <div class="example-grid">
 
@@ -137,18 +136,23 @@
             <div class="example-card">
                 <div class="ex-badge">المثال الأول</div>
                 <div class="ex-problem">
-                    حل النظام: <br>
+                    حل النظام التالي باستخدام قاعدة كرايمر: <br>
                     \( 2x + 3y = 7 \) <br>
                     \( x - y = 1 \)
                 </div>
                 <div class="ex-answer">
-                    \( (2, 1) \)
+                    \( (x, y) = (2, 1) \)
                 </div>
                 <div class="ex-explanation">
-                    <strong>الشرح:</strong>
-                    \( D = \begin{vmatrix} 2 & 3 \\ 1 & -1 \end{vmatrix} = -5 \). <br>
-                    \( D_x = \begin{vmatrix} 7 & 3 \\ 1 & -1 \end{vmatrix} = -10 \). <br>
-                    \( x = \frac{-10}{-5} = 2 \), \( y = 1 \).
+                    <strong>خطوات الحل:</strong><br>
+                    نحسب محدد المعاملات العام \( D \): <br>
+                    \( D = \begin{vmatrix} 2 & 3 \\ 1 & -1 \end{vmatrix} = -2 - 3 = -5 \)<br>
+                    نحسب محدد المجهول \( x \) باستبدال العمود الأول بالثوابت: <br>
+                    \( D_x = \begin{vmatrix} 7 & 3 \\ 1 & -1 \end{vmatrix} = -7 - 3 = -10 \)<br>
+                    نحسب محدد المجهول \( y \) باستبدال العمود الثاني بالثوابت: <br>
+                    \( D_y = \begin{vmatrix} 2 & 7 \\ 1 & 1 \end{vmatrix} = 2 - 7 = -5 \)<br>
+                    نوجد قيم المجاهيل بالقسمة على \( D \): <br>
+                    \( x = \frac{-10}{-5} = 2 \), \( y = \frac{-5}{-5} = 1 \)
                 </div>
             </div>
 
@@ -164,10 +168,15 @@
                     \( x = 2, \quad y = 1 \)
                 </div>
                 <div class="ex-explanation">
-                    <strong>الشرح:</strong>
-                    \( D = 5(1)-2(2) = 1 \). <br>
-                    \( D_x = 12(1)-2(5) = 2 \). <br>
-                    \( x = 2/1 = 2 \).
+                    <strong>خطوات الحل:</strong><br>
+                    نبدأ بحساب محدد المعاملات \( D \): <br>
+                    \( D = \begin{vmatrix} 5 & 2 \\ 2 & 1 \end{vmatrix} = 5 - 4 = 1 \)<br>
+                    نحسب \( D_x \) باستبدال عمود معاملات \( x \) بالثوابت: <br>
+                    \( D_x = \begin{vmatrix} 12 & 2 \\ 5 & 1 \end{vmatrix} = 12 - 10 = 2 \)<br>
+                    نحسب \( D_y \) باستبدال عمود معاملات \( y \) بالثوابت: <br>
+                    \( D_y = \begin{vmatrix} 5 & 12 \\ 2 & 5 \end{vmatrix} = 25 - 24 = 1 \)<br>
+                    نطبق القاعدة: <br>
+                    \( x = \frac{2}{1} = 2, \quad y = \frac{1}{1} = 1 \)
                 </div>
             </div>
 
@@ -175,17 +184,21 @@
             <div class="example-card">
                 <div class="ex-badge">المثال الثالث</div>
                 <div class="ex-problem">
-                    ما قيمة محدد النظام \( D \) للنظام: <br>
+                    ابحث في حل النظام التالي باستخدام قيمة المحدد \( D \): <br>
                     \( 3x + y = 5 \) <br>
                     \( 6x + 2y = 10 \)
                 </div>
                 <div class="ex-answer">
-                    \( D = 0 \) (لا نهائي من الحلول)
+                    عدد لا نهائي من الحلول
                 </div>
                 <div class="ex-explanation">
-                    <strong>الشرح:</strong>
-                    \( D = (3)(2) - (1)(6) = 6 - 6 = 0 \).
-                    بما أن \( D_x \) و \( D_y \) أيضاً أصفار، فالنظام له عدد لا نهائي من الحلول.
+                    <strong>خطوات الحل:</strong><br>
+                    نحسب محدد المعاملات أولاً: <br>
+                    \( D = \begin{vmatrix} 3 & 1 \\ 6 & 2 \end{vmatrix} = 6 - 6 = 0 \)<br>
+                    نحسب محدد المجهول \( x \): <br>
+                    \( D_x = \begin{vmatrix} 5 & 1 \\ 10 & 2 \end{vmatrix} = 10 - 10 = 0 \)<br>
+                    بما أن \( D = 0 \) وجميع المحددات الأخرى \( D_x, D_y \) تساوي صفراً، فإن للنظام عدد لا نهائي من
+                    الحلول.
                 </div>
             </div>
 
@@ -201,10 +214,15 @@
                     \( x = 2, \quad y = 1 \)
                 </div>
                 <div class="ex-explanation">
-                    <strong>الشرح:</strong>
-                    \( D = -1 - 6 = -7 \). <br>
-                    \( D_x = -4 - 10 = -14 \). <br>
-                    \( x = -14/-7 = 2 \).
+                    <strong>خطوات الحل:</strong><br>
+                    نحسب المحدد العام للمصفوفة: <br>
+                    \( D = \begin{vmatrix} 1 & 2 \\ 3 & -1 \end{vmatrix} = -1 - 6 = -7 \)<br>
+                    نحسب محدد المجهول \( x \): <br>
+                    \( D_x = \begin{vmatrix} 4 & 2 \\ 5 & -1 \end{vmatrix} = -4 - 10 = -14 \)<br>
+                    نحسب محدد المجهول \( y \): <br>
+                    \( D_y = \begin{vmatrix} 1 & 4 \\ 3 & 5 \end{vmatrix} = 5 - 12 = -7 \)<br>
+                    القسمة النهائية لإيجاد الحل: <br>
+                    \( x = \frac{-14}{-7} = 2, \quad y = \frac{-7}{-7} = 1 \)
                 </div>
             </div>
 
@@ -212,26 +230,22 @@
             <div class="example-card">
                 <div class="ex-badge">المثال الخامس</div>
                 <div class="ex-problem">
-                    في نظام 3 معادلات، إذا كان \( D = 2 \) و \( D_z = 6 \). فما قيمة \( z \)؟
+                    في نظام مكون من 3 معادلات خطية، إذا علمت أن محدد المعاملات \( D = 2 \) ومحدد المجهول \( z \) هو \(
+                    D_z = 6 \)، أوجد قيمة \( z \).
                 </div>
                 <div class="ex-answer">
                     \( z = 3 \)
                 </div>
                 <div class="ex-explanation">
-                    <strong>الشرح:</strong>
-                    وفقاً لقاعدة كرايمر: \( z = \frac{D_z}{D} = \frac{6}{2} = 3 \).
+                    <strong>خطوات الحل:</strong><br>
+                    قاعدة كرايمر: \( z = \frac{D_z}{D} \)<br>
+                    \( z = \frac{6}{2} = 3 \)
                 </div>
             </div>
 
         </div>
 
     </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 الصفحة الالكترونية لمقرر الرياضيات (رياض 101)</p>
-        </div>
-    </footer>
 
     <script src="../main.js"></script>
 </body>
