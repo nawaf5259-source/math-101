@@ -1521,3 +1521,439 @@ main.with-sidebar {
     color: var(--accent);
     border-color: var(--accent);
 }
+/* ==========================================================================
+   Mobile app shell: top bar, bottom tab bar, slide deck, math fit
+   (colors come from the site's own variables)
+   ========================================================================== */
+:root {
+    --bar-bg: #1e1b4b;
+    --bar-fg: #ffffff;
+    --bar-muted: rgba(255, 255, 255, 0.7);
+    --bar-active: #38bdf8;
+    --topbar-h: 56px;
+    --tabbar-h: 62px;
+}
+
+body.dark-mode {
+    --bar-bg: #0f172a;
+}
+
+.m-topbar,
+.m-tabbar,
+.deck-bar,
+.present-controls,
+.present-btn {
+    display: none;
+}
+
+/* Floating buttons stack (dark mode / scroll top / presentation) */
+.float-stack {
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9998;
+}
+
+/* Wide equations: never overflow the screen */
+mjx-container[display="true"] {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.slide svg,
+.slide img,
+.example-card svg,
+.example-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Phone layout -------------------------------------------------------- */
+@media (max-width: 768px) {
+    body.has-mobile-chrome {
+        padding-top: var(--topbar-h);
+        padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px));
+    }
+
+    body.has-mobile-chrome .navbar {
+        display: none;
+    }
+
+    .m-topbar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: var(--topbar-h);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0 0.5rem;
+        background: var(--bar-bg);
+        color: var(--bar-fg);
+        z-index: 1000;
+        box-shadow: 0 6px 20px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .m-topbar .m-icon-btn {
+        width: 44px;
+        height: 44px;
+        border: none;
+        background: transparent;
+        color: var(--bar-fg);
+        font-size: 1.3rem;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex: 0 0 auto;
+    }
+
+    .m-topbar .m-icon-btn:active {
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    .m-topbar .m-title {
+        flex: 1;
+        font-weight: 700;
+        font-size: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+    }
+
+    .m-topbar .m-logo {
+        height: 30px;
+        width: auto;
+        display: block;
+    }
+
+    .m-tabbar {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        height: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px));
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        display: flex;
+        justify-content: space-around;
+        align-items: stretch;
+        background: var(--bar-bg);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        z-index: 1000;
+    }
+
+    .m-tabbar a {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        color: var(--bar-muted);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 4px 0;
+    }
+
+    .m-tabbar a .m-tab-icon {
+        font-size: 1.3rem;
+        line-height: 1;
+    }
+
+    .m-tabbar a.active {
+        color: var(--bar-active);
+    }
+
+    .m-tabbar a.active .m-tab-icon {
+        transform: translateY(-1px);
+    }
+
+    /* Lift floating widgets above the tab bar */
+    body.has-mobile-chrome #feedback-btn {
+        bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px) + 12px);
+        left: 12px;
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    body.has-mobile-chrome .float-stack {
+        bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px) + 64px);
+        left: 12px;
+    }
+
+    body.has-mobile-chrome .hero {
+        padding: 2.25rem 0;
+    }
+
+    body.has-mobile-chrome .hero h1 {
+        font-size: 1.6rem;
+    }
+
+    body.has-mobile-chrome .hero p {
+        font-size: 0.95rem;
+    }
+
+    .slide {
+        padding: 1.5rem 1.1rem;
+        margin-bottom: 1.5rem;
+        border-radius: 18px;
+    }
+
+    .slide h1 {
+        font-size: 1.7rem;
+    }
+
+    .slide h2 {
+        font-size: 1.35rem;
+    }
+
+    /* --- Swipeable slide cards ------------------------------------------- */
+    .slide-deck {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        margin: 0 -1rem;
+        padding: 0 1rem;
+        scrollbar-width: none;
+        overscroll-behavior-x: contain;
+    }
+
+    .slide-deck::-webkit-scrollbar {
+        display: none;
+    }
+
+    .slide-deck > .slide {
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: 100%;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        margin: 0;
+        height: var(--card-h, calc(100dvh - var(--topbar-h) - var(--tabbar-h) - 260px));
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+        box-sizing: border-box;
+    }
+
+    /* Compact hero and no scroll-top button while swiping cards */
+    body.deck-cards .hero {
+        padding: 1.1rem 0;
+    }
+
+    body.deck-cards .hero h1 {
+        font-size: 1.3rem;
+        margin: 0;
+    }
+
+    body.deck-cards .hero p {
+        display: none;
+    }
+
+    body.deck-cards main.container {
+        padding-top: 0.75rem !important;
+    }
+
+    body.deck-cards .float-stack button[title="للأعلى"] {
+        display: none !important;
+    }
+
+    .deck-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.4rem;
+        margin: 0 0 0.6rem;
+        padding: 0.5rem 0.6rem;
+        background: var(--bg-card);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+        border-radius: 14px;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .deck-bar button {
+        font-family: inherit;
+        font-weight: 700;
+        font-size: 0.85rem;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--text-main);
+        border-radius: 10px;
+        padding: 0.5rem 0.8rem;
+        cursor: pointer;
+    }
+
+    .deck-bar button.primary {
+        background: var(--gradient-accent);
+        color: #fff;
+        border-color: transparent;
+    }
+
+    .deck-bar button:disabled {
+        opacity: 0.4;
+    }
+
+    .deck-bar .deck-counter {
+        font-weight: 800;
+        color: var(--text-heading);
+        font-size: 0.9rem;
+        min-width: 3.5rem;
+        text-align: center;
+    }
+
+    .deck-bar .deck-dots {
+        display: flex;
+        gap: 4px;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex: 1;
+    }
+
+    .deck-bar .deck-toggle {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.6rem;
+        white-space: nowrap;
+    }
+
+    .deck-bar .deck-dots i {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--border);
+        display: block;
+    }
+
+    .deck-bar .deck-dots i.on {
+        background: var(--accent);
+        width: 16px;
+        border-radius: 3px;
+    }
+
+    .deck-bar.all-mode .deck-prev,
+    .deck-bar.all-mode .deck-next,
+    .deck-bar.all-mode .deck-counter,
+    .deck-bar.all-mode .deck-dots {
+        display: none;
+    }
+
+    .deck-bar.all-mode {
+        justify-content: center;
+    }
+
+    .deck-bar .deck-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .deck-bar {
+        flex-wrap: wrap;
+    }
+}
+
+/* --- Desktop presentation mode (unit pages, opt-in) ----------------------- */
+@media (min-width: 769px) {
+    .present-btn {
+        display: flex;
+    }
+
+    body.present-mode main .slide {
+        display: none;
+    }
+
+    body.present-mode main .slide.is-active {
+        display: block;
+        min-height: calc(100vh - 260px);
+        animation: presentIn 0.35s ease;
+    }
+
+    body.present-mode .unit-nav,
+    body.present-mode .footer {
+        display: none;
+    }
+
+    body.present-mode .present-controls {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.6rem 0.9rem;
+        background: rgba(30, 27, 75, 0.92);
+        color: #fff;
+        border-radius: 999px;
+        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        backdrop-filter: var(--glass-blur);
+    }
+
+    .present-controls button {
+        font-family: inherit;
+        font-weight: 700;
+        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border-radius: 999px;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+
+    .present-controls button:hover {
+        background: var(--accent);
+    }
+
+    .present-controls button:disabled {
+        opacity: 0.4;
+        cursor: default;
+    }
+
+    .present-controls .present-counter {
+        font-weight: 800;
+        min-width: 4rem;
+        text-align: center;
+    }
+
+    .present-controls .present-hint {
+        font-size: 0.75rem;
+        opacity: 0.7;
+    }
+}
+
+@keyframes presentIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media print {
+
+    .m-topbar,
+    .m-tabbar,
+    .deck-bar,
+    .present-controls {
+        display: none !important;
+    }
+}
