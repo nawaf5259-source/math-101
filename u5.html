@@ -2,7 +2,6 @@
 <html dir="rtl" lang="ar">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>المعادلات</title>
@@ -14,35 +13,59 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1e1b4b">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="رياض 101">
-  <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64.png">
-  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
+  <style>
+    .problem-sol { margin: .4rem 0; }
+  </style>
 
   <!-- MathJax -->
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      loader: { load: ['[tex]/cancel', '[tex]/color', '[tex]/boldsymbol', '[tex]/html'] },
+      tex: {
+        packages: { '[+]': ['cancel', 'color', 'boldsymbol', 'html'] },
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        macros: { hla: ['\\class{hl-a}{#1}', 1], hlb: ['\\class{hl-b}{#1}', 1] }
+      },
+      svg: { fontCache: 'global', mtextInheritFont: true },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+    };
+    let mathQueue = Promise.resolve();
+    window.renderMath = function (elements) {
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        mathQueue = mathQueue.then(() => window.MathJax.typesetPromise(elements)).catch(() => { });
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
 </head>
 
-<body>
-  <!-- Aurora Background Blobs -->
-  <div class="aurora-blobs">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-  </div>
+<body class="deck-modern">
+
+  <!-- Navigation -->
+  <div id="navbar-container"></div>
 
   <main class="container" style="padding-top: 40px;">
 
-    <!-- Slide 1 -->
+    <!-- ===================== Cover ===================== -->
+    <section class="slide slide-cover">
+      <span class="cover-badge">الوحدة الخامسة</span>
+      <h1>المعادلات</h1>
+      
+      <div class="cover-meta">
+        <span>رياض 101</span>
+        <span>12 ساعات تدريبية</span>
+      </div>
+    </section>
+    <!-- ===================== Objectives ===================== -->
     <section class="slide">
-      <h1 id="المعادلات">المعادلات</h1>
+      <h3>أهداف الوحدة</h3>
       <div class="objectives">
-        <p><strong>الهدف العام:</strong><br />
+        <p><strong>الهدف العام:</strong><br>
           تهدف هذه الوحدة إلى معرفة المعادلات والقدرة على حلها باستخدام الطرق الجبرية المختلفة.</p>
-        <p><strong>الأهداف التفصيلية:</strong><br />
+        <p><strong>الأهداف التفصيلية:</strong><br>
           من المتوقع في نهاية هذه الوحدة التدريبية أن يكون المتدرب قادراً وبكفاءة على أن:</p>
         <ol>
           <li>يميز مفهوم المعادلة وأجزائها.</li>
@@ -55,10 +78,23 @@
         <p><strong>الوقت المستغرق للتدريب:</strong> 12 ساعة تدريبية.</p>
       </div>
     </section>
-
-    <!-- Slide 3 -->
     <section class="slide">
+      <h3>محتويات الوحدة</h3>
+      <ol class="agenda">
+        <li><span class="num">01</span> مفهوم المعادلات</li>
+        <li><span class="num">02</span> المعادلات من الدرجة الأولى</li>
+        <li><span class="num">03</span> معادلات من الدرجة الثانية</li>
+        <li><span class="num">04</span> أنظمة المعادلات الخطية</li>
+      </ol>
+    </section>
+
+    <!-- ===================== Part 1 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">01</span>
       <h2 id="المعادلات-1">مفهوم المعادلات</h2>
+    </section>
+
+    <section class="slide">
       <div class="definition">
         <p>المعادلة هي التساوي بين عبارتين (ككثيرتي حدود)، وتكون هذه المعادلة صحيحة لقيم معينة للمجهول وخاطئة لقيم أخرى.
         </p>
@@ -69,9 +105,13 @@
       </div>
     </section>
 
-    <!-- Slide 4 -->
-    <section class="slide">
+    <!-- ===================== Part 2 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">02</span>
       <h2 id="المعادلات-الدرجة-الاولى">المعادلات من الدرجة الأولى</h2>
+    </section>
+
+    <section class="slide">
       <div class="definition">
         <p>المعادلة الخطية هي التي تكتب على الصورة \(ax+b=0\) حيث \(a\) و \(b\) أعداد حقيقية و \(a \neq 0\). ويكون الحل
           العام \(x = \frac{-b}{a}\).</p>
@@ -81,34 +121,36 @@
       </div>
     </section>
 
-    <!-- Slide 5 -->
     <section class="slide">
       <h3>حل معادلات الدرجة الأولى (تفصيل الخطوات)</h3>
       <div class="example">
         <p><strong>a)</strong> \[2x = 10\]</p>
         <p>نقسم الطرفين على 2:</p>
-        <p>\[\begin{aligned} 2x &= 10 \\ \frac{2}{2}x &= \frac{10}{2} \\ x &= 5 \end{aligned}\]</p>
+        <p>\[\begin{aligned} 2x &amp;= 10 \\ \frac{2}{2}x &amp;= \frac{10}{2} \\ x &amp;= 5 \end{aligned}\]</p>
         <hr>
         <p><strong>b)</strong> \[3x + 2 = 8\]</p>
         <p>نطرح 2 من الطرفين، ثم نقسم على 3:</p>
-        <p>\[\begin{aligned} 3x + 2 &= 8 \\ 3x &= 8 - 2 \\ 3x &= 6 \\ x &= \frac{6}{3} \\ x &= 2 \end{aligned}\]</p>
+        <p>\[\begin{aligned} 3x + 2 &amp;= 8 \\ 3x &amp;= 8 - 2 \\ 3x &amp;= 6 \\ x &amp;= \frac{6}{3} \\ x &amp;= 2 \end{aligned}\]</p>
       </div>
     </section>
 
-    <!-- Slide 6 -->
     <section class="slide">
       <h3>تابع حل معادلات الدرجة الأولى</h3>
       <div class="example">
         <p><strong>c)</strong> \[5x + 1 = \frac{x}{2} + 10\]</p>
         <p>نضرب المعادلة كلها في 2 للتخلص من الكسر:</p>
-        <p>\[\begin{aligned} 5x + 1 &= \frac{x}{2} + 10 \\ 2 \times (5x + 1) &= 2 \times \left( \frac{x}{2} + 10 \right)
-          \\ 10x + 2 &= x + 20 \\ 10x - x &= 20 - 2 \\ 9x &= 18 \\ x &= \frac{18}{9} \\ x &= 2 \end{aligned}\]</p>
+        <p>\[\begin{aligned} 5x + 1 &amp;= \frac{x}{2} + 10 \\ 2 \times (5x + 1) &amp;= 2 \times \left( \frac{x}{2} + 10 \right)
+          \\ 10x + 2 &amp;= x + 20 \\ 10x - x &amp;= 20 - 2 \\ 9x &amp;= 18 \\ x &amp;= \frac{18}{9} \\ x &amp;= 2 \end{aligned}\]</p>
       </div>
     </section>
 
-    <!-- Slide 7 -->
-    <section class="slide">
+    <!-- ===================== Part 3 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">03</span>
       <h2 id="معادلات-من-الدرجة-الثانية">معادلات من الدرجة الثانية</h2>
+    </section>
+
+    <section class="slide">
       <div class="definition">
         <p>معادلة من الدرجة الثانية في مجهول واحد يمكن كتابتها على الصورة القياسية التالية: \[ax^2 + bx + c = 0 \qquad ,
           \quad a \neq 0\]</p>
@@ -124,7 +166,6 @@
       </div>
     </section>
 
-    <!-- Slide 8 -->
     <section class="slide">
       <h3>المميز وعدد الحلول</h3>
       <p>يلعب المميز دوراً أساسياً في تحديد عدد جذور (حلول) المعادلة في \(\mathbb{R}\) كما يوضحه الجدول الآتي:</p>
@@ -138,7 +179,7 @@
           </thead>
           <tbody>
             <tr>
-              <td style="text-align: left;">\(\Delta > 0\)</td>
+              <td style="text-align: left;">\(\Delta &gt; 0\)</td>
               <td style="text-align: left;">حلان حقيقيان</td>
             </tr>
             <tr>
@@ -146,7 +187,7 @@
               <td style="text-align: left;">حل واحد حقيقي</td>
             </tr>
             <tr>
-              <td style="text-align: left;">\(\Delta < 0\)</td>
+              <td style="text-align: left;">\(\Delta &lt; 0\)</td>
               <td style="text-align: left;">لا توجد حلول حقيقية</td>
             </tr>
           </tbody>
@@ -154,7 +195,6 @@
       </div>
     </section>
 
-    <!-- Slide 9 -->
     <section class="slide">
       <h3>أمثلة على المعادلات التربيعية (1)</h3>
       <div class="example">
@@ -163,29 +203,27 @@
           <li>نكتب المعادلة على الصورة القياسية: \(x^2 + 5x + 6 = 0\)</li>
           <li>نحدد المعاملات: \(a = 1, \quad b = 5, \quad c = 6\).</li>
           <li>نوجد قيمة المميز \(\Delta\): \[\Delta = b^2 - 4ac = (5)^2 - 4(1)(6) = 25 - 24 = 1\] <strong>بما أن
-              \(\Delta = 1 > 0\)، إذن يوجد حلان حقيقيان.</strong></li>
-          <li>نعوض في القانون العام: \[\begin{aligned} x &= \frac{-b \pm \sqrt{\Delta}}{2a} = \frac{-5 \pm
-            \sqrt{1}}{2(1)} = \frac{-5 \pm 1}{2} \\ x_1 &= \frac{-5 + 1}{2} = \frac{-4}{2} = -2 \\ x_2 &= \frac{-5 -
+              \(\Delta = 1 &gt; 0\)، إذن يوجد حلان حقيقيان.</strong></li>
+          <li>نعوض في القانون العام: \[\begin{aligned} x &amp;= \frac{-b \pm \sqrt{\Delta}}{2a} = \frac{-5 \pm
+            \sqrt{1}}{2(1)} = \frac{-5 \pm 1}{2} \\ x_1 &amp;= \frac{-5 + 1}{2} = \frac{-4}{2} = -2 \\ x_2 &amp;= \frac{-5 -
             1}{2} = \frac{-6}{2} = -3 \end{aligned}\] <strong>وبالتالي الحلان هما: \(-2, -3\).</strong></li>
         </ol>
       </div>
     </section>
 
-    <!-- Slide 10 -->
     <section class="slide">
       <h3>أمثلة على المعادلات التربيعية (2)</h3>
       <div class="example">
         <p><strong>b)</strong> المعادلة \(2x^2 - 4x + 2 = 0\):</p>
         <ol>
           <li>المعادلة مكتوبة على الصورة القياسية. المعاملات هي: \(a=2, \ b=-4, \ c=2\).</li>
-          <li>نعوض مباشرة في القانون العام: \[\begin{aligned} x &= \frac{-(-4) \pm \sqrt{(-4)^2 - 4(2)(2)}}{2(2)} \\ &=
-            \frac{4 \pm \sqrt{16 - 16}}{4} = \frac{4 \pm \sqrt{0}}{4} \\ &= \frac{4}{4} = 1 \end{aligned}\] <strong>بما
+          <li>نعوض مباشرة في القانون العام: \[\begin{aligned} x &amp;= \frac{-(-4) \pm \sqrt{(-4)^2 - 4(2)(2)}}{2(2)} \\ &amp;=
+            \frac{4 \pm \sqrt{16 - 16}}{4} = \frac{4 \pm \sqrt{0}}{4} \\ &amp;= \frac{4}{4} = 1 \end{aligned}\] <strong>بما
               أن المميز \(\Delta = 0\)، يوجد حل واحد فقط وهو \(1\).</strong></li>
         </ol>
       </div>
     </section>
 
-    <!-- Slide 11 -->
     <section class="slide">
       <h3>أمثلة على المعادلات التربيعية (3)</h3>
       <div class="example">
@@ -193,29 +231,35 @@
         <ol>
           <li>نكتب المعادلة على الصورة القياسية: \(3x^2 + 2x + 1 = 0\).</li>
           <li>المعاملات: \(a=3, \ b=2, \ c=1\).</li>
-          <li>نوجد قيمة المميز: \[\Delta = b^2 - 4ac = (2)^2 - 4(3)(1) = 4 - 12 = -8\] <strong>بما أن \(\Delta = -8 <
+          <li>نوجد قيمة المميز: \[\Delta = b^2 - 4ac = (2)^2 - 4(3)(1) = 4 - 12 = -8\] <strong>بما أن \(\Delta = -8 &lt;
                 0\) (سالب)، إذن لا يوجد حل حقيقي للمعادلة.</strong>
           </li>
         </ol>
       </div>
     </section>
 
-    <!-- Slide 12 -->
-    <section class="slide">
+    <!-- ===================== Part 4 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">04</span>
       <h2 id="أنظمة-معادلات-خطية">أنظمة المعادلات الخطية</h2>
+    </section>
+
+    <section class="slide">
       <div class="definition">
         <p>المعادلة الخطية هي معادلة من الدرجة الأولى، مثل \(5x + 10 = 0\) أو \(2x + 3y = 5\).</p>
         <p>أنظمة المعادلات الخطية هي عبارة عن مجموعة من المعادلات الخطية (معادلتين أو أكثر) تشترك في نفس المتغيرات.</p>
       </div>
-      <h3 id="حل-نظام-معادلتين-خطيتين-ذات-مجهولين">حل نظام معادلتين خطيتين (طريقة ضرب المصفوفات)</h3>
+    </section>
+
+    <section class="slide">
+      <h3>حل نظام معادلتين خطيتين (طريقة ضرب المصفوفات)</h3>
       <div class="myrule">
         <p>لتحويل النظام \(\begin{cases} a_1 x + b_1 y = c_1 \\ a_2 x + b_2 y = c_2 \end{cases}\) إلى مصفوفات:</p>
-        <p>\[\underbrace{\begin{bmatrix} a_1 & b_1 \\ a_2 & b_2 \end{bmatrix}}_{A} \cdot \underbrace{\begin{bmatrix} x
+        <p>\[\underbrace{\begin{bmatrix} a_1 &amp; b_1 \\ a_2 &amp; b_2 \end{bmatrix}}_{A} \cdot \underbrace{\begin{bmatrix} x
           \\ y \end{bmatrix}}_{X} = \underbrace{\begin{bmatrix} c_1 \\ c_2 \end{bmatrix}}_{C}\]</p>
       </div>
     </section>
 
-    <!-- Slide 13 -->
     <section class="slide">
       <h3>استخدام المعكوس الضربي لحل النظام</h3>
       <div class="note">
@@ -224,81 +268,76 @@
         <p>حل المعادلة هو حاصل ضرب النظير الضربي لمصفوفة المعاملات في مصفوفة الثوابت.</p>
       </div>
       <div class="myrule">
-        <p>النظير الضربي للمصفوفة \(A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}\) هو:</p>
-        <p>\[A^{-1} = \frac{1}{|A|} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}\]</p>
+        <p>النظير الضربي للمصفوفة \(A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\) هو:</p>
+        <p>\[A^{-1} = \frac{1}{|A|} \begin{bmatrix} d &amp; -b \\ -c &amp; a \end{bmatrix}\]</p>
         <p>بشرط \(|A| \neq 0\).</p>
       </div>
     </section>
 
-    <!-- Slide 14 -->
     <section class="slide">
       <h3>مثال 1: حل نظام معادلات بالمصفوفات</h3>
       <div class="example">
         <p>حل النظام: \(\begin{cases} 2x + 3y = 1 \\ 3x - 4y = 2 \end{cases}\)</p>
         <p><strong>الحل:</strong></p>
         <ol>
-          <li><strong>المعادلة المصفوفية \(AX = B\):</strong> \[\begin{bmatrix} 2 & 3 \\ 3 & -4 \end{bmatrix}
+          <li><strong>المعادلة المصفوفية \(AX = B\):</strong> \[\begin{bmatrix} 2 &amp; 3 \\ 3 &amp; -4 \end{bmatrix}
             \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}\]</li>
           <li><strong>إيجاد المحدد \(\Delta\):</strong> \[\Delta = (2 \times -4) - (3 \times 3) = -8 - 9 = -17\] بما أن
             \(\Delta \neq 0\)، يوجد حل وحيد.</li>
-          <li><strong>إيجاد المعكوس الضربي \(A^{-1}\):</strong> \[A^{-1} =\frac{1}{\Delta} \begin{bmatrix} d & -b \\ -c
-            & a \end{bmatrix} = \frac{1}{-17} \begin{bmatrix} -4 & -3 \\ -3 & 2 \end{bmatrix}\]</li>
+          <li><strong>إيجاد المعكوس الضربي \(A^{-1}\):</strong> \[A^{-1} =\frac{1}{\Delta} \begin{bmatrix} d &amp; -b \\ -c
+            &amp; a \end{bmatrix} = \frac{1}{-17} \begin{bmatrix} -4 &amp; -3 \\ -3 &amp; 2 \end{bmatrix}\]</li>
         </ol>
       </div>
     </section>
 
-    <!-- Slide 15 -->
     <section class="slide">
       <h3>تابع مثال 1 (ضرب المحاليل)</h3>
       <div class="example">
         <p><strong>4. إيجاد الحل \(X = A^{-1}B\):</strong></p>
         <p>نقوم بضرب المعكوس في مصفوفة الثوابت:</p>
-        <p>\[\begin{aligned} \begin{bmatrix} x \\ y \end{bmatrix} &= \frac{1}{-17} \begin{bmatrix} -4 & -3 \\ -3 & 2
-          \end{bmatrix} \begin{bmatrix} 1 \\ 2 \end{bmatrix} \\ &= \frac{1}{-17} \begin{bmatrix} (-4)(1) + (-3)(2) \\
-          (-3)(1) + (2)(2) \end{bmatrix} \\ &= \frac{1}{-17} \begin{bmatrix} -10 \\ 1 \end{bmatrix} \\ &=
+        <p>\[\begin{aligned} \begin{bmatrix} x \\ y \end{bmatrix} &amp;= \frac{1}{-17} \begin{bmatrix} -4 &amp; -3 \\ -3 &amp; 2
+          \end{bmatrix} \begin{bmatrix} 1 \\ 2 \end{bmatrix} \\ &amp;= \frac{1}{-17} \begin{bmatrix} (-4)(1) + (-3)(2) \\
+          (-3)(1) + (2)(2) \end{bmatrix} \\ &amp;= \frac{1}{-17} \begin{bmatrix} -10 \\ 1 \end{bmatrix} \\ &amp;=
           \begin{bmatrix} -10/-17 \\ 1/-17 \end{bmatrix} = \begin{bmatrix} 10/17 \\ -1/17 \end{bmatrix} \end{aligned}\]
         </p>
         <p><strong>إذن الحل هو:</strong> \(x = 10/17 , \quad y = -1/17\)</p>
       </div>
     </section>
 
-    <!-- Slide 16 -->
     <section class="slide">
       <h3>مثال 2: حل نظام معادلات بالمصفوفات</h3>
       <div class="example">
         <p>حل النظام: \(\begin{cases} x + y = 5 \\ x - y = 1 \end{cases}\)</p>
         <p><strong>الحل:</strong></p>
         <ol>
-          <li><strong>المعادلة المصفوفية:</strong> \[\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} \begin{bmatrix} x \\
+          <li><strong>المعادلة المصفوفية:</strong> \[\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix} \begin{bmatrix} x \\
             y \end{bmatrix} = \begin{bmatrix} 5 \\ 1 \end{bmatrix}\]</li>
           <li><strong>إيجاد المحدد:</strong> \[\Delta = (1)(-1) - (1)(1) = -1 - 1 = -2\]</li>
-          <li><strong>إيجاد المعكوس الضربي:</strong> \[A^{-1} = \frac{1}{-2} \begin{bmatrix} -1 & -1 \\ -1 & 1
+          <li><strong>إيجاد المعكوس الضربي:</strong> \[A^{-1} = \frac{1}{-2} \begin{bmatrix} -1 &amp; -1 \\ -1 &amp; 1
             \end{bmatrix}\]</li>
         </ol>
       </div>
     </section>
 
-    <!-- Slide 17 -->
     <section class="slide">
       <h3>تابع مثال 2</h3>
       <div class="example">
         <p><strong>4. إيجاد قيم المجاهيل:</strong></p>
-        <p>\[\begin{aligned} \begin{bmatrix} x \\ y \end{bmatrix} &= \frac{1}{-2} \begin{bmatrix} -1 & -1 \\ -1 & 1
-          \end{bmatrix} \begin{bmatrix} 5 \\ 1 \end{bmatrix} \\ &= \frac{1}{-2} \begin{bmatrix} (-1)(5) + (-1)(1) \\
-          (-1)(5) + (1)(1) \end{bmatrix} \\ &= \frac{1}{-2} \begin{bmatrix} -6 \\ -4 \end{bmatrix} \\ &= \begin{bmatrix}
+        <p>\[\begin{aligned} \begin{bmatrix} x \\ y \end{bmatrix} &amp;= \frac{1}{-2} \begin{bmatrix} -1 &amp; -1 \\ -1 &amp; 1
+          \end{bmatrix} \begin{bmatrix} 5 \\ 1 \end{bmatrix} \\ &amp;= \frac{1}{-2} \begin{bmatrix} (-1)(5) + (-1)(1) \\
+          (-1)(5) + (1)(1) \end{bmatrix} \\ &amp;= \frac{1}{-2} \begin{bmatrix} -6 \\ -4 \end{bmatrix} \\ &amp;= \begin{bmatrix}
           -6/-2 \\ -4/-2 \end{bmatrix} = \begin{bmatrix} 3 \\ 2 \end{bmatrix} \end{aligned}\]</p>
         <p><strong>إذن الحل هو:</strong> \(x = 3 , \quad y = 2\)</p>
       </div>
     </section>
 
-    <!-- Slide 18 -->
     <section class="slide">
       <h3>مثال 3: حالة لا يوجد حل</h3>
       <div class="example">
         <p>حل النظام: \(\begin{cases} 3x + y = 5 \\ 6x + 2y = 1 \end{cases}\)</p>
         <p><strong>الحل:</strong></p>
         <ol>
-          <li><strong>المعادلة المصفوفية:</strong> \[\begin{bmatrix} 3 & 1 \\ 6 & 2 \end{bmatrix} \begin{bmatrix} x \\ y
+          <li><strong>المعادلة المصفوفية:</strong> \[\begin{bmatrix} 3 &amp; 1 \\ 6 &amp; 2 \end{bmatrix} \begin{bmatrix} x \\ y
             \end{bmatrix} = \begin{bmatrix} 5 \\ 1 \end{bmatrix}\]</li>
           <li><strong>إيجاد المحدد:</strong> \[\Delta = (3 \times 2) - (1 \times 6) = 6 - 6 = 0\]</li>
           <li><strong>الاستنتاج:</strong> <strong>بما أن \(\Delta = 0\)، فإن المصفوفة ليس لها معكوس ضربي، وبالتالي لا
@@ -307,7 +346,6 @@
       </div>
     </section>
 
-    <!-- Slide 19 -->
     <section class="slide">
       <h3>طريقة قاعدة كرايمر (Cramer's Rule)</h3>
       <div class="myrule">
@@ -315,14 +353,13 @@
         <p>\[x = \frac{D_x}{D}, \quad y = \frac{D_y}{D}\]</p>
         <p>حيث:</p>
         <ul>
-          <li>\(D = \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix}\)</li>
-          <li>\(D_x = \begin{vmatrix} c_1 & b_1 \\ c_2 & b_2 \end{vmatrix}\) (نستبدل معاملات \(x\) بالثوابت)</li>
-          <li>\(D_y = \begin{vmatrix} a_1 & c_1 \\ a_2 & c_2 \end{vmatrix}\) (نستبدل معاملات \(y\) بالثوابت)</li>
+          <li>\(D = \begin{vmatrix} a_1 &amp; b_1 \\ a_2 &amp; b_2 \end{vmatrix}\)</li>
+          <li>\(D_x = \begin{vmatrix} c_1 &amp; b_1 \\ c_2 &amp; b_2 \end{vmatrix}\) (نستبدل معاملات \(x\) بالثوابت)</li>
+          <li>\(D_y = \begin{vmatrix} a_1 &amp; c_1 \\ a_2 &amp; c_2 \end{vmatrix}\) (نستبدل معاملات \(y\) بالثوابت)</li>
         </ul>
       </div>
     </section>
 
-    <!-- Slide 20 -->
     <section class="slide">
       <h3>حالات الحل في قاعدة كرايمر</h3>
       <div class="note">
@@ -339,16 +376,15 @@
       </div>
     </section>
 
-    <!-- Slide 21 -->
     <section class="slide">
       <h3>أمثلة على قاعدة كرايمر (1)</h3>
       <div class="example">
         <p><strong>a)</strong> \(\begin{cases} 4x + 5y = 3 \\ x + y = 1 \end{cases}\)</p>
         <ol>
-          <li><strong>أولاً: نحسب محدد النظام \(D\):</strong> \[D = \begin{vmatrix} 4 & 5 \\ 1 & 1 \end{vmatrix} =
+          <li><strong>أولاً: نحسب محدد النظام \(D\):</strong> \[D = \begin{vmatrix} 4 &amp; 5 \\ 1 &amp; 1 \end{vmatrix} =
             (4)(1) - (5)(1) = 4 - 5 = -1\] <strong>بما أن \(D = -1 \neq 0\)، إذن يوجد حل وحيد للنظام.</strong></li>
-          <li><strong>ثانياً: نحسب محددات المجاهيل \(D_x\) و \(D_y\):</strong> \[D_x = \begin{vmatrix} 3 & 5 \\ 1 & 1
-            \end{vmatrix} = (3)(1) - (5)(1) = 3 - 5 = -2\] \[D_y = \begin{vmatrix} 4 & 3 \\ 1 & 1 \end{vmatrix} = (4)(1)
+          <li><strong>ثانياً: نحسب محددات المجاهيل \(D_x\) و \(D_y\):</strong> \[D_x = \begin{vmatrix} 3 &amp; 5 \\ 1 &amp; 1
+            \end{vmatrix} = (3)(1) - (5)(1) = 3 - 5 = -2\] \[D_y = \begin{vmatrix} 4 &amp; 3 \\ 1 &amp; 1 \end{vmatrix} = (4)(1)
             - (3)(1) = 4 - 3 = 1\]</li>
           <li><strong>ثالثاً: نوجد قيم \(x\) و \(y\):</strong> \[x = \frac{D_x}{D} = \frac{-2}{-1} = 2 \quad , \quad y =
             \frac{D_y}{D} = \frac{1}{-1} = -1\] <strong>الحل هو: \((2, -1)\).</strong></li>
@@ -356,16 +392,15 @@
       </div>
     </section>
 
-    <!-- Slide 22 -->
     <section class="slide">
       <h3>أمثلة على قاعدة كرايمر (2)</h3>
       <div class="example">
         <p><strong>b)</strong> \(\begin{cases} 2x + 6y = 4 \\ x + 3y = 2 \end{cases}\)</p>
         <ol>
-          <li><strong>أولاً: نحسب محدد النظام \(D\):</strong> \[D = \begin{vmatrix} 2 & 6 \\ 1 & 3 \end{vmatrix} =
+          <li><strong>أولاً: نحسب محدد النظام \(D\):</strong> \[D = \begin{vmatrix} 2 &amp; 6 \\ 1 &amp; 3 \end{vmatrix} =
             (2)(3) - (6)(1) = 6 - 6 = 0\]</li>
-          <li><strong>ثانياً: نحسب محددات المجاهيل \(D_x\) و \(D_y\):</strong> \[D_x = \begin{vmatrix} 4 & 6 \\ 2 & 3
-            \end{vmatrix} = (4)(3) - (6)(2) = 12 - 12 = 0\] \[D_y = \begin{vmatrix} 2 & 4 \\ 1 & 2 \end{vmatrix} =
+          <li><strong>ثانياً: نحسب محددات المجاهيل \(D_x\) و \(D_y\):</strong> \[D_x = \begin{vmatrix} 4 &amp; 6 \\ 2 &amp; 3
+            \end{vmatrix} = (4)(3) - (6)(2) = 12 - 12 = 0\] \[D_y = \begin{vmatrix} 2 &amp; 4 \\ 1 &amp; 2 \end{vmatrix} =
             (2)(2) - (4)(1) = 4 - 4 = 0\]</li>
           <li><strong>الاستنتاج:</strong> <strong>بما أن \(D = 0\) وجميع محددات المجاهيل تساوي صفراً (\(D_x = D_y =
               0\))، إذن للنظام عدد لا نهائي من الحلول.</strong></li>
@@ -373,15 +408,14 @@
       </div>
     </section>
 
-    <!-- Slide 23 -->
     <section class="slide">
       <h3>أمثلة على قاعدة كرايمر (3)</h3>
       <div class="example">
         <p><strong>c)</strong> \(\begin{cases} -2x + y = 5 \\ x - 0.5y = 2 \end{cases}\)</p>
         <ol>
-          <li><strong>أولاً: نحسب محدد النظام \(D\):</strong> \[D = \begin{vmatrix} -2 & 1 \\ 1 & -0.5 \end{vmatrix} =
+          <li><strong>أولاً: نحسب محدد النظام \(D\):</strong> \[D = \begin{vmatrix} -2 &amp; 1 \\ 1 &amp; -0.5 \end{vmatrix} =
             (-2)(-0.5) - (1)(1) = 1 - 1 = 0\]</li>
-          <li><strong>ثانياً: نحسب محدد المجهول \(D_x\):</strong> \[D_x = \begin{vmatrix} 5 & 1 \\ 2 & -0.5
+          <li><strong>ثانياً: نحسب محدد المجهول \(D_x\):</strong> \[D_x = \begin{vmatrix} 5 &amp; 1 \\ 2 &amp; -0.5
             \end{vmatrix} = (5)(-0.5) - (1)(2) = -2.5 - 2 = -4.5\]</li>
           <li><strong>الاستنتاج:</strong> <strong>بما أن محدد النظام \(D = 0\) ومحدد المجهول \(D_x \neq 0\) (لا يساوي
               صفر)، إذن النظام مستحيل الحل.</strong></li>
@@ -389,9 +423,8 @@
       </div>
     </section>
 
-    <!-- Slide 24 -->
     <section class="slide">
-      <h3 id="حل-نظام-ثلاث-معادلات-خطية-ذات-ثلاثة-مجاهيل">حل نظام 3 معادلات بـ 3 مجاهيل</h3>
+      <h3>حل نظام 3 معادلات بـ 3 مجاهيل</h3>
       <p>يمكن تعميم قاعدة كرايمر لحل الأنظمة الخطية ذات الأبعاد الأعلى.</p>
       <div class="myrule">
         <p>لحل النظام الخطي المكون من ثلاث معادلات وثلاثة مجاهيل (\(x, y, z\)):</p>
@@ -400,11 +433,10 @@
       </div>
     </section>
 
-    <!-- Slide 25 -->
     <section class="slide">
       <h3>كيفية حساب المحدد \(3\times 3\)</h3>
       <div class="note">
-        <p>لحساب قيمة المحدد من الرتبة \(3\times 3\): \[\begin{vmatrix} a & b & c \\ d & e & f \\ g & h & i
+        <p>لحساب قيمة المحدد من الرتبة \(3\times 3\): \[\begin{vmatrix} a &amp; b &amp; c \\ d &amp; e &amp; f \\ g &amp; h &amp; i
           \end{vmatrix}\]</p>
         <p>يمكن استخدام <strong>طريقة الأقطار (قاعدة ساروس)</strong>:</p>
         <ol>
@@ -416,34 +448,31 @@
       </div>
     </section>
 
-    <!-- Slide 26 -->
     <section class="slide">
       <h3>مثال شامل (3x3) - وصف النظام</h3>
       <div class="example">
         <p>أوجد مجموعة الحل للنظام الآتي باستخدام قاعدة كرايمر:</p>
         <p>\[\begin{cases} x + y + z = 6 \\ 2x + 3y + z = 11 \\ 3x + 2y + 2z = 13 \end{cases}\]</p>
         <p><strong>الحل:</strong></p>
-        <p>مصفوفة المعاملات: \[A = \begin{bmatrix} 1 & 1 & 1 \\ 2 & 3 & 1 \\ 3 & 2 & 2 \end{bmatrix}\]</p>
+        <p>مصفوفة المعاملات: \[A = \begin{bmatrix} 1 &amp; 1 &amp; 1 \\ 2 &amp; 3 &amp; 1 \\ 3 &amp; 2 &amp; 2 \end{bmatrix}\]</p>
       </div>
     </section>
 
-    <!-- Slide 27 -->
     <section class="slide">
       <h3>مثال شامل (3x3) - حساب محدد النظام \(D\)</h3>
       <div class="example">
-        <p>نحسب \(D\): \[D = \begin{vmatrix} 1 & 1 & 1 \\ 2 & 3 & 1 \\ 3 & 2 & 2 \end{vmatrix}\]</p>
+        <p>نحسب \(D\): \[D = \begin{vmatrix} 1 &amp; 1 &amp; 1 \\ 2 &amp; 3 &amp; 1 \\ 3 &amp; 2 &amp; 2 \end{vmatrix}\]</p>
         <p>الأقطار الرئيسية: \((1\times 3\times 2) + (1\times 1\times 3) + (1\times 2\times 2) = 6 + 3 + 4 = 13\)</p>
         <p>الأقطار الثانوية: \((3\times 3\times 1) + (2\times 1\times 1) + (2\times 2\times 1) = 9 + 2 + 4 = 15\)</p>
         <p>\[D = 13 - 15 = -2\]</p>
       </div>
     </section>
 
-    <!-- Slide 28 -->
     <section class="slide">
       <h3>مثال شامل (3x3) - حساب \(D_x\)</h3>
       <div class="example">
         <p>نستبدل العمود الأول (معاملات \(x\)) بالثوابت \((6, 11, 13)\):</p>
-        <p>\[D_x = \begin{vmatrix} 6 & 1 & 1 \\ 11 & 3 & 1 \\ 13 & 2 & 2 \end{vmatrix}\]</p>
+        <p>\[D_x = \begin{vmatrix} 6 &amp; 1 &amp; 1 \\ 11 &amp; 3 &amp; 1 \\ 13 &amp; 2 &amp; 2 \end{vmatrix}\]</p>
         <p>الأقطار الرئيسية: \((6\times 3\times 2) + (1\times 1\times 13) + (1\times 11\times 2) = 36 + 13 + 22 = 71\)
         </p>
         <p>الأقطار الثانوية: \((13\times 3\times 1) + (2\times 1\times 6) + (2\times 11\times 1) = 39 + 12 + 22 = 73\)
@@ -452,12 +481,11 @@
       </div>
     </section>
 
-    <!-- Slide 29 -->
     <section class="slide">
       <h3>مثال شامل (3x3) - حساب \(D_y\)</h3>
       <div class="example">
         <p>نستبدل العمود الثاني بالثوابت:</p>
-        <p>\[D_y = \begin{vmatrix} 1 & 6 & 1 \\ 2 & 11 & 1 \\ 3 & 13 & 2 \end{vmatrix}\]</p>
+        <p>\[D_y = \begin{vmatrix} 1 &amp; 6 &amp; 1 \\ 2 &amp; 11 &amp; 1 \\ 3 &amp; 13 &amp; 2 \end{vmatrix}\]</p>
         <p>الأقطار الرئيسية: \((1\times 11\times 2) + (6\times 1\times 3) + (1\times 2\times 13) = 22 + 18 + 26 = 66\)
         </p>
         <p>الأقطار الثانوية: \((3\times 11\times 1) + (13\times 1\times 1) + (2\times 2\times 6) = 33 + 13 + 24 = 70\)
@@ -466,12 +494,11 @@
       </div>
     </section>
 
-    <!-- Slide 30 -->
     <section class="slide">
       <h3>مثال شامل (3x3) - حساب \(D_z\)</h3>
       <div class="example">
         <p>نستبدل العمود الثالث بالثوابت:</p>
-        <p>\[D_z = \begin{vmatrix} 1 & 1 & 6 \\ 2 & 3 & 11 \\ 3 & 2 & 13 \end{vmatrix}\]</p>
+        <p>\[D_z = \begin{vmatrix} 1 &amp; 1 &amp; 6 \\ 2 &amp; 3 &amp; 11 \\ 3 &amp; 2 &amp; 13 \end{vmatrix}\]</p>
         <p>الأقطار الرئيسية: \((1\times 3\times 13) + (1\times 11\times 3) + (6\times 2\times 2) = 39 + 33 + 24 = 96\)
         </p>
         <p>الأقطار الثانوية: \((3\times 3\times 6) + (2\times 11\times 1) + (13\times 2\times 1) = 54 + 22 + 26 = 102\)
@@ -480,7 +507,6 @@
       </div>
     </section>
 
-    <!-- Slide 31 -->
     <section class="slide">
       <h3>مثال شامل (3x3) - النتيجة النهائية</h3>
       <div class="example">
@@ -494,7 +520,10 @@
 
   </main>
 
-  <script src="main.js"></script>
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <script src="main.js" defer></script>
 </body>
 
 </html>

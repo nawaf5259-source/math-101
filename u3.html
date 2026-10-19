@@ -2,7 +2,6 @@
 <html dir="rtl" lang="ar">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>كثيرات الحدود</title>
@@ -14,37 +13,60 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1e1b4b">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="رياض 101">
-  <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64.png">
-  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
+  <style>
+    .problem-sol { margin: .4rem 0; }
+  </style>
 
   <!-- MathJax -->
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      loader: { load: ['[tex]/cancel', '[tex]/color', '[tex]/boldsymbol', '[tex]/html'] },
+      tex: {
+        packages: { '[+]': ['cancel', 'color', 'boldsymbol', 'html'] },
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        macros: { hla: ['\\class{hl-a}{#1}', 1], hlb: ['\\class{hl-b}{#1}', 1] }
+      },
+      svg: { fontCache: 'global', mtextInheritFont: true },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+    };
+    let mathQueue = Promise.resolve();
+    window.renderMath = function (elements) {
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        mathQueue = mathQueue.then(() => window.MathJax.typesetPromise(elements)).catch(() => { });
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
 </head>
 
-<body>
-  <!-- Aurora Background Blobs -->
-  <div class="aurora-blobs">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-  </div>
+<body class="deck-modern">
+
+  <!-- Navigation -->
+  <div id="navbar-container"></div>
 
   <main class="container" style="padding-top: 40px;">
 
-    <!-- Slide 1 -->
+    <!-- ===================== Cover ===================== -->
+    <section class="slide slide-cover">
+      <span class="cover-badge">الوحدة الثالثة</span>
+      <h1>كثيرات الحدود</h1>
+      
+      <div class="cover-meta">
+        <span>رياض 101</span>
+        <span>10 ساعات تدريبية</span>
+      </div>
+    </section>
+    <!-- ===================== Objectives ===================== -->
     <section class="slide">
-      <h1 id="كثيرات-الحدود">كثيرات الحدود</h1>
-
+      <h3>أهداف الوحدة</h3>
       <div class="objectives">
-        <p><strong>الهدف العام</strong><br />
+        <p><strong>الهدف العام</strong><br>
           يهدف هذا القسم إلى إكساب المتدرب المعرفة التامة بكثيرات الحدود والكسور الجبرية وكيفية اختصارها.</p>
         <hr style="border-color: #ffe0b2;">
-        <p><strong>الأهداف التفصيلية</strong><br />
+        <p><strong>الأهداف التفصيلية</strong><br>
           يتوقع من المتدرب بعد دراسة هذه الوحدة أن يكون قادراً وبكفاءة على تحقيق الآتي:</p>
         <ol>
           <li>أجراء العمليات الحسابية المختلفة (مثل الجمع، الطرح، والضرب) على كثيرات الحدود.</li>
@@ -54,17 +76,31 @@
         <p><strong>الوقت المستغرق للتدريب:</strong> 10 ساعات تدريبية.</p>
       </div>
     </section>
-
-    <!-- Slide 3 -->
     <section class="slide">
-      <h2 class="unnumbered" id="الحد-الجبري">الحد الجبري</h2>
+      <h3>محتويات الوحدة</h3>
+      <ol class="agenda">
+        <li><span class="num">01</span> الحد الجبري</li>
+        <li><span class="num">02</span> الحدود المتشابهة</li>
+        <li><span class="num">03</span> تعريف كثيرات الحدود</li>
+        <li><span class="num">04</span> العمليات الحسابية على كثيرات الحدود</li>
+        <li><span class="num">05</span> تحليل كثيرات الحدود</li>
+        <li><span class="num">06</span> الكسور الجبرية</li>
+      </ol>
+    </section>
+
+    <!-- ===================== Part 1 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">01</span>
+      <h2 id="الحد-الجبري">الحد الجبري</h2>
+    </section>
+
+    <section class="slide">
       <p>نبدأ بتعريف الوحدة الأساسية التي تتكون منها كثيرات الحدود.</p>
       <div class="definition">
         <p>الحد الجبري يكون إما ثابتاً أو متغيراً أو حاصل ضرب ثابت في متغير واحد أو أكثر، بشرط أن يكون أس المتغير عدداً
           صحيحاً غير سالب. يسمى الثابت <strong>معامل الحد الجبري</strong>، وتكون <strong>درجة الحد الجبري</strong> هي
           حاصل جمع أسس المتغيرات فيه.</p>
       </div>
-
       <div class="example">
         <p>ما معامل ودرجة الحد الجبري التالي: \[ -2 x^3 y \]</p>
         <p><strong>الحل:</strong></p>
@@ -76,9 +112,13 @@
       </div>
     </section>
 
-    <!-- Slide 4 -->
+    <!-- ===================== Part 2 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">02</span>
+      <h2 id="الحدود-المتشابهة">الحدود المتشابهة</h2>
+    </section>
+
     <section class="slide">
-      <h2 class="unnumbered" id="الحدود-المتشابهة">الحدود المتشابهة</h2>
       <p>هي الحدود التي تحتوي على نفس المتغير (بما فيها الأس).</p>
       <div class="example">
         <ul>
@@ -93,17 +133,19 @@
       </div>
     </section>
 
-    <!-- Slide 5 -->
-    <section class="slide">
+    <!-- ===================== Part 3 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">03</span>
       <h2 id="تعريف-كثيرات-الحدود">تعريف كثيرات الحدود</h2>
+    </section>
+
+    <section class="slide">
       <div class="definition">
         <p>كثيرات الحدود هي عبارة عن جمع عدد منتهٍ من الحدود الجبرية، ودرجتها هي أكبر درجة حد فيها.</p>
       </div>
       <div class="myrule">
         <p>إذا كانت \(n\) عدد صحيح غير سالب، فإن دالة كثيرة الحدود من الدرجة \(n\) يمكن كتابتها على الصورة: \[ a_n x^n +
           a_{n-1} x^{n-1} + \dots + a_1 x^1 + a_0 \] حيث \(a_n \neq 0\).</p>
-      </div>
-
       </div>
       <p>الجدول التالي يبين المعامل الرئيسي، الدرجة، والحدود والمعاملات لكثيرات الحدود:</p>
       <div class="center" style="overflow-x: auto;">
@@ -146,13 +188,16 @@
           </tbody>
         </table>
       </div>
-      </div>
     </section>
 
-    <!-- Slide 7 -->
-    <section class="slide">
+    <!-- ===================== Part 4 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">04</span>
       <h2 id="العمليات-الحسابية-على-كثيرات-الحدود">العمليات الحسابية على كثيرات الحدود</h2>
-      <h3 id="جمع-وطرح-كثيرات-الحدود">جمع وطرح كثيرات الحدود</h3>
+    </section>
+
+    <section class="slide">
+      <h3>جمع وطرح كثيرات الحدود</h3>
       <p>القاعدة الأساسية في الجمع والطرح بسيطة جداً:</p>
       <div class="myrule">
         <p>عند جمع أو طرح كثيرتي حدود، فإننا نقوم بجمع أو طرح <strong>معاملات الحدود المتشابهة</strong> فقط.</p>
@@ -167,7 +212,6 @@
       </div>
     </section>
 
-    <!-- Slide 8 -->
     <section class="slide">
       <h3>أمثلة على الجمع والطرح (1)</h3>
       <div class="example">
@@ -180,36 +224,34 @@
         <p><strong>الحل التفصيلي:</strong></p>
         <p><strong>أولاً (a):</strong> نجمع الحدود المتشابهة (التربيعية معاً والخطية معاً):
           \[\begin{aligned}
-          &= \textcolor{red}{2x^2} + \textcolor{cyan}{3x} + 5 + \textcolor{red}{x^2} - \textcolor{cyan}{x} + 2 \\
-          &= (\textcolor{red}{2x^2 + x^2}) + (\textcolor{cyan}{3x - x}) + (5 + 2) \\
-          &= 3x^2 + 2x + 7
+          &amp;= \textcolor{red}{2x^2} + \textcolor{cyan}{3x} + 5 + \textcolor{red}{x^2} - \textcolor{cyan}{x} + 2 \\
+          &amp;= (\textcolor{red}{2x^2 + x^2}) + (\textcolor{cyan}{3x - x}) + (5 + 2) \\
+          &amp;= 3x^2 + 2x + 7
           \end{aligned}\]</p>
       </div>
     </section>
 
-    <!-- Slide 9 -->
     <section class="slide">
       <h3>أمثلة على الجمع والطرح (2)</h3>
       <div class="example">
         <p><strong>ثانياً (b):</strong> انتبه لتوزيع إشارة السالب على القوس الثاني:
           \[\begin{aligned}
-          &= 3x^2 - 5x + 6 \textbf{ - } 2x^2 \textbf{ - } 3x \textbf{ + } 3 \\
-          &= (\textcolor{red}{3x^2 - 2x^2}) + (\textcolor{cyan}{-5x - 3x}) + (6 + 3) \\
-          &= \textcolor{red}{x^2} \textcolor{cyan}{- 8x} + 9
+          &amp;= 3x^2 - 5x + 6 \textbf{ - } 2x^2 \textbf{ - } 3x \textbf{ + } 3 \\
+          &amp;= (\textcolor{red}{3x^2 - 2x^2}) + (\textcolor{cyan}{-5x - 3x}) + (6 + 3) \\
+          &amp;= \textcolor{red}{x^2} \textcolor{cyan}{- 8x} + 9
           \end{aligned}\]</p>
 
         <p><strong>ثالثاً (c):</strong>
           \[\begin{aligned}
-          &= \textcolor{red}{x^2} + \textcolor{cyan}{4x} - 1 + \textcolor{red}{5x^2} + \textcolor{cyan}{x} \\
-          &= (\textcolor{red}{x^2 + 5x^2}) + (\textcolor{cyan}{4x + x}) - 1 \\
-          &= \mathbf{6x^2 + 5x - 1}
+          &amp;= \textcolor{red}{x^2} + \textcolor{cyan}{4x} - 1 + \textcolor{red}{5x^2} + \textcolor{cyan}{x} \\
+          &amp;= (\textcolor{red}{x^2 + 5x^2}) + (\textcolor{cyan}{4x + x}) - 1 \\
+          &amp;= \mathbf{6x^2 + 5x - 1}
           \end{aligned}\]</p>
       </div>
     </section>
 
-    <!-- Slide 10 -->
     <section class="slide">
-      <h3 id="ضرب-كثيرة-الحدود-بعدد-حقيقي">ضرب كثيرة الحدود بعدد حقيقي</h3>
+      <h3>ضرب كثيرة الحدود بعدد حقيقي</h3>
       <div class="definition">
         <p>عند ضرب عدد حقيقي \(k\) في كثيرة حدود من الدرجة \(n\)، فإننا نضرب العدد الحقيقي في جميع معاملات كثيرة الحدود
           (خاصية التوزيع): \[ k(a_n x^n + \dots + a_1 x + a_0) = k a_n x^n + \dots + k a_1 x + k a_0 \]</p>
@@ -219,22 +261,21 @@
         <p><strong>أولاً (a): \(3(2x^2 + 4x - 1)\)</strong></p>
         <p>نوزع العدد \(\textcolor{red}{3}\) على جميع الحدود داخل القوس:
           \[\begin{aligned}
-          3(2x^2 + 4x - 1) &= (\textcolor{red}{3} \cdot 2)x^2 + (\textcolor{red}{3} \cdot 4)x + (\textcolor{red}{3}
+          3(2x^2 + 4x - 1) &amp;= (\textcolor{red}{3} \cdot 2)x^2 + (\textcolor{red}{3} \cdot 4)x + (\textcolor{red}{3}
           \cdot -1) \\
-          &= 6x^2 + 12x - 3
+          &amp;= 6x^2 + 12x - 3
           \end{aligned}\]</p>
         <p><strong>ثانياً (b): \(-2(5x - 3)\)</strong></p>
         <p>نوزع العدد \(\textcolor{red}{-2}\) (انتبه لإشارة السالب):
           \[\begin{aligned}
-          -2(5x - 3) &= (\textcolor{red}{-2})(5)x + (\textcolor{red}{-2})(-3) \\
-          &= -10x + 6
+          -2(5x - 3) &amp;= (\textcolor{red}{-2})(5)x + (\textcolor{red}{-2})(-3) \\
+          &amp;= -10x + 6
           \end{aligned}\]</p>
       </div>
     </section>
 
-    <!-- Slide 11 -->
     <section class="slide">
-      <h3 id="ضرب-كثيرات-الحدود">ضرب كثيرات الحدود</h3>
+      <h3>ضرب كثيرات الحدود</h3>
       <p>قبل البدء في عمليات الضرب، يجب مراجعة خصائص الأسس لأنها أساسية في ضرب المتغيرات.</p>
       <div class="myrule">
         <p>إذا كان \(x, y\) عددين حقيقيين و \(m, n\) عددين صحيحين، فإن:</p>
@@ -296,7 +337,6 @@
       </div>
     </section>
 
-    <!-- Slide 12 -->
     <section class="slide">
       <h3>قاعدة ضرب كثيرات الحدود</h3>
       <div class="definition">
@@ -312,23 +352,22 @@
         <p><strong>الحل:</strong></p>
         <p><strong>أولاً (a):</strong> نوزع حدود القوس الأول على القوس الثاني:
           \[\begin{aligned}
-          (2x^2 + 3)(4x + 5) &= \textcolor{red}{2x^2}(4x + 5) + \textcolor{blue}{3}(4x + 5) \\
-          &= (\textcolor{red}{2x^2} \cdot 4x) + (\textcolor{red}{2x^2} \cdot 5) + (\textcolor{blue}{3} \cdot 4x) +
+          (2x^2 + 3)(4x + 5) &amp;= \textcolor{red}{2x^2}(4x + 5) + \textcolor{blue}{3}(4x + 5) \\
+          &amp;= (\textcolor{red}{2x^2} \cdot 4x) + (\textcolor{red}{2x^2} \cdot 5) + (\textcolor{blue}{3} \cdot 4x) +
           (\textcolor{blue}{3} \cdot 5) \\
-          &= 8x^3 + 10x^2 + 12x + 15
+          &amp;= 8x^3 + 10x^2 + 12x + 15
           \end{aligned}\]</p>
         <p><strong>ثانياً (b):</strong>
           \[\begin{aligned}
-          (x - 2)(x + 1) &= \textcolor{red}{x}(x + 1) \textcolor{blue}{- 2}(x + 1) \\
-          &= (\textcolor{red}{x} \cdot x) + (\textcolor{red}{x} \cdot 1) + (\textcolor{blue}{-2} \cdot x) +
+          (x - 2)(x + 1) &amp;= \textcolor{red}{x}(x + 1) \textcolor{blue}{- 2}(x + 1) \\
+          &amp;= (\textcolor{red}{x} \cdot x) + (\textcolor{red}{x} \cdot 1) + (\textcolor{blue}{-2} \cdot x) +
           (\textcolor{blue}{-2} \cdot 1) \\
-          &= x^2 + x - 2x - 2 \\
-          &= x^2 - x - 2
+          &amp;= x^2 + x - 2x - 2 \\
+          &amp;= x^2 - x - 2
           \end{aligned}\]</p>
       </div>
     </section>
 
-    <!-- Slide 13 -->
     <section class="slide">
       <h3>بعض المتطابقات الجبرية</h3>
       <div class="myrule">
@@ -349,27 +388,27 @@
               </tr>
               <tr>
                 <td style="text-align: left; padding: 10px; border: 1px solid #ddd;">\(\begin{aligned}[t] \quad (x+y)^2
-                  &= (x+y)(x+y) \\ &= x^2 + 2xy + y^2 \end{aligned}\)</td>
-                <td style="text-align: left; padding: 10px; border: 1px solid #ddd;">\(\begin{aligned}[t] (x+5)^2 &=
-                  (x+5)(x+5) \\ &= x^2 + 10x + 25 \end{aligned}\)</td>
+                  &amp;= (x+y)(x+y) \\ &amp;= x^2 + 2xy + y^2 \end{aligned}\)</td>
+                <td style="text-align: left; padding: 10px; border: 1px solid #ddd;">\(\begin{aligned}[t] (x+5)^2 &amp;=
+                  (x+5)(x+5) \\ &amp;= x^2 + 10x + 25 \end{aligned}\)</td>
               </tr>
               <tr>
                 <td style="text-align: left; padding: 10px; border: 1px solid #ddd;">\(\begin{aligned}[t] \quad (x-y)^2
-                  &= (x-y)(x-y) \\ &= x^2 - 2xy + y^2 \end{aligned}\)</td>
-                <td style="text-align: left; padding: 10px; border: 1px solid #ddd;">\(\begin{aligned}[t] (x-5)^2 &=
-                  (x-5)(x-5) \\ &= x^2 - 10x + 25 \end{aligned}\)</td>
+                  &amp;= (x-y)(x-y) \\ &amp;= x^2 - 2xy + y^2 \end{aligned}\)</td>
+                <td style="text-align: left; padding: 10px; border: 1px solid #ddd;">\(\begin{aligned}[t] (x-5)^2 &amp;=
+                  (x-5)(x-5) \\ &amp;= x^2 - 10x + 25 \end{aligned}\)</td>
               </tr>
               <tr>
                 <td style="text-align: left; padding: 10px; border: 1px solid #ddd;">\(\begin{aligned}[t] \quad (x+y)^3
-                  &= x^3 + 3x^2y + 3xy^2 + y^3 \end{aligned}\)</td>
-                <td style="text-align: left; padding: 10px; border: 1px solid #ddd;">\(\begin{aligned}[t] (x+5)^3 &=
-                  (x+5)(x+5)(x+5) \\ &= x^3 + 15x^2 + 75x + 125 \end{aligned}\)</td>
+                  &amp;= x^3 + 3x^2y + 3xy^2 + y^3 \end{aligned}\)</td>
+                <td style="text-align: left; padding: 10px; border: 1px solid #ddd;">\(\begin{aligned}[t] (x+5)^3 &amp;=
+                  (x+5)(x+5)(x+5) \\ &amp;= x^3 + 15x^2 + 75x + 125 \end{aligned}\)</td>
               </tr>
               <tr>
                 <td style="text-align: left; padding: 10px; border: 1px solid #ddd;">\(\begin{aligned}[t] \quad (x-y)^3
-                  &= x^3 - 3x^2y + 3xy^2 - y^3 \end{aligned}\)</td>
-                <td style="text-align: left; padding: 10px; border: 1px solid #ddd;">\(\begin{aligned}[t] (x-5)^3 &=
-                  (x-5)(x-5)(x-5) \\ &= x^3 - 15x^2 + 75x - 125 \end{aligned}\)</td>
+                  &amp;= x^3 - 3x^2y + 3xy^2 - y^3 \end{aligned}\)</td>
+                <td style="text-align: left; padding: 10px; border: 1px solid #ddd;">\(\begin{aligned}[t] (x-5)^3 &amp;=
+                  (x-5)(x-5)(x-5) \\ &amp;= x^3 - 15x^2 + 75x - 125 \end{aligned}\)</td>
               </tr>
             </tbody>
           </table>
@@ -377,9 +416,8 @@
       </div>
     </section>
 
-    <!-- Slide 14 -->
     <section class="slide">
-      <h3 id="حساب-كثيرة-حدود-عند-قيمة-معينة">حساب كثيرة حدود عند قيمة معينة</h3>
+      <h3>حساب كثيرة حدود عند قيمة معينة</h3>
       <div class="myrule">
         <p>لحساب قيمة كثيرة الحدود عند قيمة معينة للمتغير، نعوض المتغير في كثيرة الحدود بهذه القيمة.</p>
       </div>
@@ -423,29 +461,34 @@
       </div>
     </section>
 
-    <!-- Slide 15 -->
     <section class="slide">
-      <h3 id="قسمة-كثيرات-الحدود">قسمة كثيرات الحدود</h3>
+      <h3>قسمة كثيرات الحدود</h3>
       <div class="myrule">
         <p>قسمة كثيرة حدود على كثيرة حدود أخرى تشبه عملية القسمة المطولة في الأعداد الصحيحة.</p>
       </div>
       <div class="example">
         <div class="center" style="margin: 2rem 0; text-align: center;">
-          <img src="u1-1.png" alt="شرح القسمة المطولة"
-            style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <img src="u1-1.png" alt="شرح القسمة المطولة" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
         </div>
       </div>
     </section>
 
-    <!-- Slide 16 -->
-    <section class="slide">
+    <!-- ===================== Part 5 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">05</span>
       <h2 id="تحليل-كثيرات-الحدود">تحليل كثيرات الحدود</h2>
+    </section>
+
+    <section class="slide">
       <p>يستخدم التحليل لحل المعادلات الجبرية عادة، وهو يعني كتابة كثيرة الحدود على شكل حاصل ضرب كثيرتي حدود أو أكثر تقل
         درجتهما عن درجة كثيرة الحدود الأصلية، ويُطلق على كل كثيرة حدود ناتج من عملية التحليل اسم
         <strong>العامل</strong>، ولا يمكن تحليل أي عامل من هذه العوامل أبداً، كما يساوي حاصل ضرب جميع العوامل كثيرة
         الحدود الأصلية دائماً.
       </p>
-      <h3 id="طريقة-العامل-المشترك-الأكبر">طريقة العامل المشترك الأكبر</h3>
+    </section>
+
+    <section class="slide">
+      <h3>طريقة العامل المشترك الأكبر</h3>
       <div class="myrule">
         <p>يتم التحليل من خلال هذه الطريقة باستخراج الثوابت أو المتغيرات المشتركة بين جميع الحدود لتكوّن هذه الثوابت
           والمتغيرات حداً يُعرف بـ <strong>العامل المشترك الأكبر</strong>.</p>
@@ -465,9 +508,8 @@
       </div>
     </section>
 
-    <!-- Slide 17 -->
     <section class="slide">
-      <h3 id="تحليل-كثيرة-حدود-من-الدرجة-الثانية">تحليل كثيرة حدود من الدرجة الثانية</h3>
+      <h3>تحليل كثيرة حدود من الدرجة الثانية</h3>
       <p><strong>تحليل فرق مربعين:</strong></p>
       <div class="myrule">
         <p>\[ (\textcolor{red}{x}^2 - \textcolor{blue}{y}^2) = (\textcolor{red}{x} -
@@ -481,16 +523,15 @@
         </ul>
         <p><strong>الحل:</strong></p>
         <p>\[\begin{aligned}
-          &a) \quad x^2 - 16 =x^2-(\sqrt{16})^2= (x - 4)(x + 4) \\
-          &b) \quad y^2 - 4 =y^2-(\sqrt{4})^2= (y - 2)(y + 2) \\
-          & c) \quad 9 - x^2 =(\sqrt{9})^2-x^2= (3 - x)(3 + x)
+          &amp;a) \quad x^2 - 16 =x^2-(\sqrt{16})^2= (x - 4)(x + 4) \\
+          &amp;b) \quad y^2 - 4 =y^2-(\sqrt{4})^2= (y - 2)(y + 2) \\
+          &amp; c) \quad 9 - x^2 =(\sqrt{9})^2-x^2= (3 - x)(3 + x)
           \end{aligned}\]</p>
       </div>
     </section>
 
-    <!-- Slide 18 -->
     <section class="slide">
-      <h3 id="تحليل-كثيرة-حدود-على-الصورة-ax2-bx-c">تحليل كثيرة حدود على الصورة \(ax^2 + bx + c\)</h3>
+      <h3>تحليل كثيرة حدود على الصورة \(ax^2 + bx + c\)</h3>
       <h4 class="unnumbered" id="الحالة-الأولى-a-1">الحالة الأولى: \(a = 1\)</h4>
       <div class="myrule">
         <p>لتحليل المقدار \(x^2 + bx + c\)، نبحث عن عددين حقيقيين حاصل ضربهما يساوي الحد الثابت \(c\)، ومجموعهما يساوي
@@ -503,20 +544,19 @@
         </div>
         <p><strong>الحل:</strong></p>
         <ul>
-          <li><strong>\(x^2 + 5x + 6\)</strong><br />
+          <li><strong>\(x^2 + 5x + 6\)</strong><br>
             نبحث عن عددين حاصل ضربهما \(6\) ومجموعهما \(5\). (العددان هما \(2, 3\)). \[ x^2 + 5x + 6 = (x + 2)(x + 3) \]
           </li>
-          <li><strong>\(x^2 - 6x + 8\)</strong><br />
+          <li><strong>\(x^2 - 6x + 8\)</strong><br>
             نبحث عن عددين حاصل ضربهما \(8\) ومجموعهما \(-6\). (العددان هما \(-2, -4\)). \[ x^2 - 6x + 8 = (x - 2)(x - 4)
             \]</li>
-          <li><strong>\(x^2 + x - 12\)</strong><br />
+          <li><strong>\(x^2 + x - 12\)</strong><br>
             نبحث عن عددين حاصل ضربهما \(-12\) ومجموعهما \(+1\). (العددان هما \(4, -3\)). \[ x^2 + x - 12 = (x - 3)(x +
             4) \]</li>
         </ul>
       </div>
     </section>
 
-    <!-- Slide 19 -->
     <section class="slide">
       <h4 class="unnumbered" id="الحالة-الثانية-a-neq-1">الحالة الثانية: \(a \neq 1\)</h4>
       <div class="myrule">
@@ -527,8 +567,8 @@
       <div class="note">
         <p>عند اختيار الأعداد، نراعي إشارة الحد الثابت \(c\):</p>
         <ul>
-          <li>إذا كانت \(c > 0\): فإن \(p, q\) لهما نفس إشارة الحد الأوسط \(b\).</li>
-          <li>إذا كانت \(c < 0\): فإن \(p, q\) مختلفان في الإشارة (أحدهما موجب والآخر سالب).</li>
+          <li>إذا كانت \(c &gt; 0\): فإن \(p, q\) لهما نفس إشارة الحد الأوسط \(b\).</li>
+          <li>إذا كانت \(c &lt; 0\): فإن \(p, q\) مختلفان في الإشارة (أحدهما موجب والآخر سالب).</li>
         </ul>
       </div>
       <div class="example">
@@ -536,27 +576,33 @@
           <p>\(a) \quad 3x^2 + 5x + 2 \hspace{3cm} b) \quad 10x^2 - 27x + 5\)</p>
         </div>
         <p><strong>الحل:</strong></p>
-        <p><strong>أولاً (a):</strong> \(3x^2 + 5x + 2\)<br />
+        <p><strong>أولاً (a):</strong> \(3x^2 + 5x + 2\)<br>
           نبحث عن أعداد تحقق الشروط (\(mn=3\)، \(pq=2\)، \(mq+np=5\)). \[ 3x^2 + 5x + 2 = (3x + 2)(x + 1) \]</p>
-        <p><strong>ثانياً (b):</strong> \(10x^2 - 27x + 5\)<br />
+        <p><strong>ثانياً (b):</strong> \(10x^2 - 27x + 5\)<br>
           نبحث عن أعداد تحقق الشروط (\(mn=10\)، \(pq=5\)، \(mq+np=-27\)). \[ 10x^2 - 27x + 5 = (2x - 5)(5x - 1) \]</p>
       </div>
     </section>
 
-    <!-- Slide 20 -->
-    <section class="slide">
+    <!-- ===================== Part 6 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">06</span>
       <h2 id="الكسور-الجبرية">الكسور الجبرية</h2>
+    </section>
+
+    <section class="slide">
       <div class="definition">
         <p>الكسر الجبري هو عبارة عن قسمة كثيرتي حدود، بسط ومقام.</p>
       </div>
-      <h3 id="اختصار-الكسور-الجبرية">اختصار الكسور الجبرية</h3>
+    </section>
+
+    <section class="slide">
+      <h3>اختصار الكسور الجبرية</h3>
       <div class="myrule">
         <p>عملية اختصار الكسر الجبري هي حذف الحدود المشتركة في البسط والمقام؛ لذا فإن عملية الاختصار تتطلب منا الإدراك
           الجيد لعمليات التحليل التي سبق دراستها في هذه الوحدة.</p>
       </div>
     </section>
 
-    <!-- Slide 21 -->
     <section class="slide">
       <h3>أمثلة على اختصار الكسور الجبرية</h3>
       <div class="example">
@@ -569,11 +615,11 @@
           <li>\[ \frac{x + 4}{x^2 + 2x - 8} = \frac{\textcolor{red}{(x + 4)}}{(x - 2)\textcolor{red}{(x + 4)}} =
             \frac{1}{x - 2} \]</li>
           <li>\[\begin{aligned}
-            \frac{x^2 - 5x + 6}{x^2 + x - 2} \cdot \frac{x - 1}{x - 2} &= \frac{(x^2 - 5x + 6)(x - 1)}{(x^2 + x - 2)(x -
+            \frac{x^2 - 5x + 6}{x^2 + x - 2} \cdot \frac{x - 1}{x - 2} &amp;= \frac{(x^2 - 5x + 6)(x - 1)}{(x^2 + x - 2)(x -
             2)} \\
-            &= \frac{\textcolor{red}{(x - 2)}(x - 3)\textcolor{red}{(x - 1)}}{(x + 2)\textcolor{red}{(x -
+            &amp;= \frac{\textcolor{red}{(x - 2)}(x - 3)\textcolor{red}{(x - 1)}}{(x + 2)\textcolor{red}{(x -
             1)}\textcolor{red}{(x - 2)}} \\
-            &= \frac{x - 3}{x + 2}
+            &amp;= \frac{x - 3}{x + 2}
             \end{aligned}\]</li>
         </ul>
       </div>
@@ -581,7 +627,10 @@
 
   </main>
 
-  <script src="main.js"></script>
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <script src="main.js" defer></script>
 </body>
 
 </html>

@@ -2,7 +2,6 @@
 <html dir="rtl" lang="ar">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>المجموعات</title>
@@ -14,15 +13,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1e1b4b">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="رياض 101">
-  <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64.png">
-  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-
-  <style>
+<style>
     /* Support for tasks layout from user content */
     .tasks {
       display: grid;
@@ -122,23 +113,54 @@
       margin-bottom: 0.5rem;
     }
   </style>
+  <style>
+    .problem-sol { margin: .4rem 0; }
+  </style>
 
   <!-- MathJax -->
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      loader: { load: ['[tex]/cancel', '[tex]/color', '[tex]/boldsymbol', '[tex]/html'] },
+      tex: {
+        packages: { '[+]': ['cancel', 'color', 'boldsymbol', 'html'] },
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        macros: { hla: ['\\class{hl-a}{#1}', 1], hlb: ['\\class{hl-b}{#1}', 1] }
+      },
+      svg: { fontCache: 'global', mtextInheritFont: true },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+    };
+    let mathQueue = Promise.resolve();
+    window.renderMath = function (elements) {
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        mathQueue = mathQueue.then(() => window.MathJax.typesetPromise(elements)).catch(() => { });
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
 </head>
 
-<body data-hero-subtitle="المفاهيم الأساسية للمجموعات والعمليات عليها والمجموعات العددية">
-  <!-- Aurora Background Blobs -->
-  <div class="aurora-blobs">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-  </div>
+<body class="deck-modern">
+
+  <!-- Navigation -->
+  <div id="navbar-container"></div>
 
   <main class="container" style="padding-top: 40px;">
 
+    <!-- ===================== Cover ===================== -->
+    <section class="slide slide-cover">
+      <span class="cover-badge">الوحدة الأولى</span>
+      <h1>المجموعات</h1>
+      <p class="cover-sub">المفاهيم الأساسية للمجموعات والعمليات عليها والمجموعات العددية</p>
+      <div class="cover-meta">
+        <span>رياض 101</span>
+        <span>10 ساعات تدريبية</span>
+      </div>
+    </section>
+    <!-- ===================== Objectives ===================== -->
     <section class="slide">
-      <h2 class="unnumbered" id="المفاهيم-الأساسية-للمجموعات">المفاهيم الأساسية للمجموعات</h2>
+      <h3>أهداف الوحدة</h3>
       <div class="objectives">
         <p><strong>الهدف العام:</strong> الإلمام بمفهوم المجموعات وخصائصها والعمليات عليها.</p>
         <p><strong>الأهداف التفصيلية:</strong></p>
@@ -159,53 +181,70 @@
         <p><strong>الوقت المستغرق للتدريب:</strong> 10 ساعات تدريبية.</p>
       </div>
     </section>
+    <section class="slide">
+      <h3>محتويات الوحدة</h3>
+      <ol class="agenda">
+        <li><span class="num">01</span> تعريف المجموعة</li>
+        <li><span class="num">02</span> العلاقات والمجموعات الجزئية</li>
+        <li><span class="num">03</span> أنواع المجموعات</li>
+        <li><span class="num">04</span> العمليات على المجموعات</li>
+        <li><span class="num">05</span> المجموعات العددية</li>
+      </ol>
+    </section>
+
+    <!-- ===================== Part 1 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">01</span>
+      <h2 id="المجموعات-1">تعريف المجموعة</h2>
+    </section>
 
     <section class="slide">
-      <h2 id="المجموعات-1">تعريف المجموعة</h2>
       <div class="definition">
         <p>المجموعة هي أي تجمع من الأشياء الحسية أو المعنوية المستقلة التي يمكن تمييزها عن غيرها من الأشياء بشكل دقيق
           وقاطع لا يختلف فيه، وكل عنصر منها يعتبر كائن مستقل بذاته في المجموعة.</p>
       </div>
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="ex-badge">مثال 1</div>
-          <div class="ex-problem">هل التجمع التالي يمثل مجموعة: "أحرف اللغة العربية"؟</div>
-          <div class="ex-solution" style="text-align: right; direction: rtl;">نعم، تمثل مجموعة.</div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> لأن عناصرها (الأحرف) معروفة ومحددة بدقة ولا يختلف عليها اثنان.
-          </div>
+    </section>
+
+    <section class="slide">
+      <h3>تعريف المجموعة (تابع)</h3>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> هل التجمع التالي يمثل مجموعة: "أحرف اللغة العربية"؟</p>
+          <div class="problem-sol">نعم، تمثل مجموعة.</div>
+          <p class="solution-label"><strong>الشرح:</strong> لأن عناصرها (الأحرف) معروفة ومحددة بدقة ولا يختلف عليها اثنان.</p>
         </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 2</div>
-          <div class="ex-problem">هل التجمع التالي يمثل مجموعة: "الحدائق الجميلة في المملكة"؟</div>
-          <div class="ex-solution" style="text-align: right; direction: rtl;">لا، لا تمثل مجموعة رياضية.</div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> لأن صفة "الجمال" نسبية وغير محددة بدقة، فقد يختلف الناس في تحديد أي الحدائق جميلة.
-          </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> هل التجمع التالي يمثل مجموعة: "الحدائق الجميلة في المملكة"؟</p>
+          <div class="problem-sol">لا، لا تمثل مجموعة رياضية.</div>
+          <p class="solution-label"><strong>الشرح:</strong> لأن صفة "الجمال" نسبية وغير محددة بدقة، فقد يختلف الناس في تحديد أي الحدائق جميلة.</p>
         </div>
       </div>
     </section>
 
     <section class="slide">
-      <h3 id="رمز-المجموعات-وعناصرها">رمز المجموعات وعناصرها</h3>
+      <h3>رمز المجموعات وعناصرها</h3>
       <p>نرمز للمجموعات (تسميتها) عادة بالأحرف اللاتينية الكبيرة مثل \(A, B, C, \dots, Y, Z\). والأشياء التي تتألف منها
         المجموعات تسمى <strong>عناصر</strong> ويرمز للعناصر بالأحرف الصغيرة مثل \(a, b, c, \dots, y, z\).</p>
+    </section>
 
-      <h3 id="طرق-تعريف-المجموعة">طرق تعريف المجموعة</h3>
-      <p>يتم كتابة المجموعة بين قوسين بهذا الشكل \(\{ \}\) وعناصر المجموعة تكتب داخل القوسين وتوضع فواصل بينها.<br />
+    <section class="slide">
+      <h3>طرق تعريف المجموعة</h3>
+      <p>يتم كتابة المجموعة بين قوسين بهذا الشكل \(\{ \}\) وعناصر المجموعة تكتب داخل القوسين وتوضع فواصل بينها.<br>
         <strong>مثال على ذلك:</strong> \(A=\{2, a, 3, 5, 7, b, s, m\}\).
       </p>
+    </section>
 
-      <h2 id="يعبر-عن-المجموعة-بإحدى-الطرق-التالية">يعبر عن المجموعة بإحدى الطرق التالية:</h2>
+    <section class="slide">
+      <h3>يعبر عن المجموعة بإحدى الطرق التالية:</h3>
       <div class="myrule">
-        <p><strong>1. طريقة السرد (الحصر):</strong> يتم فيها ذكر جميع العناصر وفصلها بفواصل.<br />
-          <strong>مثلاً:</strong> مجموعة الحروف المكونة لكلمة "red" هي: \(A = \{r, e, d\}\).<br />
-          <strong>مثلاً:</strong> مجموعة "الأعداد الزوجية" المحصورة بين 1 و 9 هي:<br />
+        <p><strong>1. طريقة السرد (الحصر):</strong> يتم فيها ذكر جميع العناصر وفصلها بفواصل.<br>
+          <strong>مثلاً:</strong> مجموعة الحروف المكونة لكلمة "red" هي: \(A = \{r, e, d\}\).<br>
+          <strong>مثلاً:</strong> مجموعة "الأعداد الزوجية" المحصورة بين 1 و 9 هي:<br>
           \(A=\{2, 4, 6, 8\}\)
         </p>
       </div>
       <div class="myrule">
-        <p><strong>2. طريقة الوصف:</strong> ويتم فيها ذكر صفة أو خاصية تميز عناصر المجموعة.<br />
+        <p><strong>2. طريقة الوصف:</strong> ويتم فيها ذكر صفة أو خاصية تميز عناصر المجموعة.<br>
         </p>
         <div style="font-size: 24px; direction: ltr; text-align: center;">
           B = { x : <span dir="rtl" lang="ar">الخاصية أو الصفة</span> }
@@ -216,41 +255,47 @@
         </div>
       </div>
       <div class="note">
-        <p><strong>3. طريقة القاعدة:</strong> يكون تسلسل العناصر له نمط ظاهر، بحيث يمكن التعبير عنها بقاعدة معينة.<br />
+        <p><strong>3. طريقة القاعدة:</strong> يكون تسلسل العناصر له نمط ظاهر، بحيث يمكن التعبير عنها بقاعدة معينة.<br>
           المجموعة \(A=\{2, 4, 6, 8\}\) يمكن كتابتها بالقاعدة التالية:</p>
         <div style="font-size: 24px; direction: ltr; text-align: center;">
-          B = { x : x &isin; &Nopf;, <span dir="rtl" lang="ar">عدد زوجي</span>, 2 &le; x &le; 8 }
+          B = { x : x ∈ ℕ, <span dir="rtl" lang="ar">عدد زوجي</span>, 2 ≤ x ≤ 8 }
         </div>
-        <p>حيث \(\mathbb{N}\) هي مجموعة الأعداد الطبيعية.<br />
+        <p>حيث \(\mathbb{N}\) هي مجموعة الأعداد الطبيعية.<br>
         </p>
       </div>
     </section>
 
-    <section class="slide">
+    <!-- ===================== Part 2 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">02</span>
       <h2 id="العلاقات-والمجموعات-الجزئية">العلاقات والمجموعات الجزئية</h2>
+    </section>
+
+    <section class="slide">
       <div class="myrule">
         <p>تكون العلاقة بين العنصر والمجموعة إما "ينتمي" ونرمز لها بالرمز \(\in\)، أو "لا ينتمي" ونرمز لها بالرمز
           \(\notin\).</p>
       </div>
+    </section>
 
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="ex-badge">مثال</div>
-          <div class="ex-problem">لتكن المجموعة \(A=\{2, 4, 7, a, c\}\):</div>
-          <div class="ex-solution">
-            \(2 \in A\)<br>
-            \(8 \notin A\)
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> العنصر 2 موجود داخل المجموعة \(A\)، بينما العنصر 8 غير موجود.
-          </div>
+    <section class="slide">
+      <h3>العلاقات والمجموعات الجزئية (تابع)</h3>
+      <div class="problems cols-1">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> لتكن المجموعة \(A=\{2, 4, 7, a, c\}\):</p>
+          <div class="problem-sol">\(2 \in A\)<br>
+            \(8 \notin A\)</div>
+          <p class="solution-label"><strong>الشرح:</strong> العنصر 2 موجود داخل المجموعة \(A\)، بينما العنصر 8 غير موجود.</p>
         </div>
       </div>
-
       <div class="myrule">
         <p>نقول أن \(A\) مجموعة جزئية من \(B\) (\(A \subseteq B\)) إذا كانت جميع عناصر \(A\) موجودة في \(B\). رياضياً:
           \[A \subseteq B \iff (\forall x \in A \implies x \in B)\]</p>
       </div>
+    </section>
+
+    <section class="slide">
+      <h3>العلاقات والمجموعات الجزئية (تابع)</h3>
       <div class="note">
         <ul>
           <li>
@@ -262,15 +307,14 @@
           </li>
         </ul>
       </div>
+    </section>
 
-      <!-- Interactive Tasks Examples -->
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="ex-badge">مثال 1</div>
-          <div class="ex-problem">إذا كانت \(A=\{1, 2, 3, 4, 5\}\) و \(B=\{1, 2\}\)،فأن:</div>
-          <div class="ex-solution">
-            <div class="tasks"
-              style="margin: 0; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); direction: ltr;">
+    <section class="slide">
+      <h3>العلاقات والمجموعات الجزئية (تابع)</h3>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> إذا كانت \(A=\{1, 2, 3, 4, 5\}\) و \(B=\{1, 2\}\)،فأن:</p>
+          <div class="problem-sol"><div class="tasks" style="margin: 0; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); direction: ltr;">
               <p>\(2 \in A\)</p>
               <p>\(1 \in B\)</p>
               <p>\(6 \notin B\)</p>
@@ -279,16 +323,11 @@
               <p>\(\{1\} \subseteq B\)</p>
               <p>\(\{8, 9\} \nsubseteq B\)</p>
               <p>\(\{6, 7\} \nsubseteq A\)</p>
-            </div>
-          </div>
+            </div></div>
         </div>
-
-        <div class="example-card">
-          <div class="ex-badge">مثال 2</div>
-          <div class="ex-problem">إذا كانت \(A=\{a, b, c, 4, d\}\) و \(B=\{a, b\}\)،فأن:</div>
-          <div class="ex-solution">
-            <div class="tasks"
-              style="margin: 0; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); direction: ltr;">
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> إذا كانت \(A=\{a, b, c, 4, d\}\) و \(B=\{a, b\}\)،فأن:</p>
+          <div class="problem-sol"><div class="tasks" style="margin: 0; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); direction: ltr;">
               <p>\(a \in A\)</p>
               <p>\(b \in B\)</p>
               <p>\(c \notin B\)</p>
@@ -297,49 +336,50 @@
               <p>\(\{b\} \subseteq B\)</p>
               <p>\(\{c, d\} \nsubseteq B\)</p>
               <p>\(\{e, f\} \nsubseteq A\)</p>
-            </div>
-          </div>
+            </div></div>
         </div>
       </div>
-
       <div class="myrule">
         <p>يقال للمجموعتين \(A\) و \(B\) متساويتان (\(A=B\)) إذا كانت كل منهما جزئية من الأخرى (\(A \subseteq B\) و \(B
           \subseteq A\)). أي لهما نفس العناصر تماماً.</p>
       </div>
+    </section>
 
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="ex-badge">مثال</div>
-          <div class="ex-problem">إذا كانت \(A=\{1, 2, 3\}\) و \(B=\{2, 3, 1\}\):</div>
-          <div class="ex-solution">
-            \[A = B\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> لأن \(A \subseteq B\) و \(B \subseteq A\)، فالمجموعات متساوية (الترتيب لا يهم).
-          </div>
+    <section class="slide">
+      <h3>العلاقات والمجموعات الجزئية (تابع)</h3>
+      <div class="problems cols-1">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> إذا كانت \(A=\{1, 2, 3\}\) و \(B=\{2, 3, 1\}\):</p>
+          <div class="problem-sol">\[A = B\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> لأن \(A \subseteq B\) و \(B \subseteq A\)، فالمجموعات متساوية (الترتيب لا يهم).</p>
         </div>
       </div>
     </section>
 
-    <section class="slide">
+    <!-- ===================== Part 3 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">03</span>
       <h2 id="أنواع-المجموعات">أنواع المجموعات</h2>
+    </section>
+
+    <section class="slide">
       <div class="definition">
         <ul>
           <li>
             <p><strong>المجموعة الخالية:</strong> هي المجموعة التي لا تحتوي على أي عنصر ويرمز لها بالرمز \(\phi\) أو
-              \(\{ \}\).<br /><strong>مثال:</strong> مجموعة الأعداد الزوجية بين 2.5 و 3.5.</p>
+              \(\{ \}\).<br><strong>مثال:</strong> مجموعة الأعداد الزوجية بين 2.5 و 3.5.</p>
           </li>
           <li>
-            <p><strong>المجموعة وحيدة العنصر:</strong> هي مجموعة مكونة من عنصر وحيد.<br /><strong>مثال:</strong> مجموعة
+            <p><strong>المجموعة وحيدة العنصر:</strong> هي مجموعة مكونة من عنصر وحيد.<br><strong>مثال:</strong> مجموعة
               الأعداد الزوجية الأكبر من 1 وأقل من 3 (وهي \(\{2\}\)).</p>
           </li>
           <li>
             <p><strong>المجموعة المنتهية:</strong> هي المجموعة التي تحتوي عدد محدود من
-              العناصر.<br /><strong>مثال:</strong> أيام الأسبوع.</p>
+              العناصر.<br><strong>مثال:</strong> أيام الأسبوع.</p>
           </li>
           <li>
             <p><strong>المجموعة اللانهائية (غير المنتهية):</strong> هي المجموعة التي تحتوي عدد غير محدود من
-              العناصر.<br /><strong>مثال:</strong> مجموعة الأعداد الطبيعية الزوجية.</p>
+              العناصر.<br><strong>مثال:</strong> مجموعة الأعداد الطبيعية الزوجية.</p>
           </li>
           <li>
             <p><strong>المجموعة الشاملة (\(U\)):</strong> هي المجموعة التي تحتوي على جميع العناصر تحت الدراسة.</p>
@@ -356,11 +396,14 @@
       </div>
     </section>
 
-    <!-- Operations Section -->
-    <section class="slide">
+    <!-- ===================== Part 4 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">04</span>
       <h2 id="العمليات-على-المجموعات">العمليات على المجموعات</h2>
+    </section>
 
-      <h3 class="unnumbered" id="تقاطع-مجموعتين">1- تقاطع مجموعتين</h3>
+    <section class="slide">
+      <h3>1- تقاطع مجموعتين</h3>
       <div class="definition">
         <p>تقاطع المجموعتين \(A\) و \(B\) هي مجموعة جميع العناصر <strong>المشتركة</strong> بين \(A\) و \(B\) وتكتب
           كالتالي \(A \cap B\)، ونعرفها رياضياً كما يلي: \[A \cap B = \{ x : x \in A \text{ و } x \in B \}\]</p>
@@ -369,17 +412,17 @@
           <svg width="200" height="140" viewBox="0 0 200 140">
             <defs>
               <clipPath id="clip-a">
-                <circle cx="70" cy="70" r="40" />
+                <circle cx="70" cy="70" r="40"></circle>
               </clipPath>
             </defs>
-            <rect x="0" y="0" width="200" height="140" fill="none" stroke="#333" stroke-width="2" />
+            <rect x="0" y="0" width="200" height="140" fill="none" stroke="#333" stroke-width="2"></rect>
             <text x="180" y="20" font-family="Arial">U</text>
-            <circle cx="70" cy="70" r="40" fill="none" stroke="#2196F3" stroke-width="2" />
+            <circle cx="70" cy="70" r="40" fill="none" stroke="#2196F3" stroke-width="2"></circle>
             <text x="40" y="40">A</text>
-            <circle cx="130" cy="70" r="40" fill="none" stroke="#E91E63" stroke-width="2" />
+            <circle cx="130" cy="70" r="40" fill="none" stroke="#E91E63" stroke-width="2"></circle>
             <text x="160" y="40">B</text>
             <!-- Intersection: Circle B clipped by Circle A -->
-            <circle cx="130" cy="70" r="40" fill="#9C27B0" fill-opacity="0.5" stroke="none" clip-path="url(#clip-a)" />
+            <circle cx="130" cy="70" r="40" fill="#9C27B0" fill-opacity="0.5" stroke="none" clip-path="url(#clip-a)"></circle>
           </svg>
         </div>
       </div>
@@ -393,59 +436,51 @@
           <p>\((A \cap B) \subseteq A\)</p>
         </div>
       </div>
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="ex-badge">مثال 1</div>
-          <div class="ex-problem">إذا كانت \(A=\{1, 3, 4, 5\}\) و \(B=\{2, 4, 3\}\)، أوجد \(A \cap B\).</div>
-          <div class="ex-solution">
-            \[A \cap B = \{3, 4\}\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> العناصر المشتركة هي 3 و 4.
-          </div>
+    </section>
+
+    <section class="slide">
+      <h3>1- تقاطع مجموعتين (تابع)</h3>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> إذا كانت \(A=\{1, 3, 4, 5\}\) و \(B=\{2, 4, 3\}\)، أوجد \(A \cap B\).</p>
+          <div class="problem-sol">\[A \cap B = \{3, 4\}\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> العناصر المشتركة هي 3 و 4.</p>
         </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 2</div>
-          <div class="ex-problem">إذا كانت \(C=\{10, 30, m\}\) و \(D=\{50, 100\}\)، أوجد \(C \cap D\).</div>
-          <div class="ex-solution">
-            \[C \cap D = \phi\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> لا توجد عناصر مشتركة.
-          </div>
-        </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 3</div>
-          <div class="ex-problem">إذا كانت \(E=\{1, 2\}\) و \(F=\{1, 2, 3, 4\}\)، أوجد \(E \cap F\).</div>
-          <div class="ex-solution">
-            \[E \cap F = \{1, 2\} = E\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> جميع عناصر E موجودة في F.
-          </div>
-        </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 4</div>
-          <div class="ex-problem">إذا كانت \(A=\{1, 2, 3\}\) و \(B=\phi\)، أوجد \(A \cap B\).</div>
-          <div class="ex-solution">
-            \[A \cap B = \phi\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> تقاطع أي مجموعة مع المجموعة الخالية هو المجموعة الخالية.
-          </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> إذا كانت \(C=\{10, 30, m\}\) و \(D=\{50, 100\}\)، أوجد \(C \cap D\).</p>
+          <div class="problem-sol">\[C \cap D = \phi\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> لا توجد عناصر مشتركة.</p>
         </div>
       </div>
+    </section>
 
-      <h3 class="unnumbered" id="اتحاد-مجموعتين">2- اتحاد مجموعتين</h3>
+    <section class="slide">
+      <h3>1- تقاطع مجموعتين (تابع)</h3>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">3</span> إذا كانت \(E=\{1, 2\}\) و \(F=\{1, 2, 3, 4\}\)، أوجد \(E \cap F\).</p>
+          <div class="problem-sol">\[E \cap F = \{1, 2\} = E\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> جميع عناصر E موجودة في F.</p>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">4</span> إذا كانت \(A=\{1, 2, 3\}\) و \(B=\phi\)، أوجد \(A \cap B\).</p>
+          <div class="problem-sol">\[A \cap B = \phi\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> تقاطع أي مجموعة مع المجموعة الخالية هو المجموعة الخالية.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h3>2- اتحاد مجموعتين</h3>
       <div class="definition">
         <p>اتحاد المجموعتين \(A\) و \(B\) هي مجموعة جميع عناصر المجموعتين \(A\) و \(B\) <strong>بدون تكرار
             العنصر</strong>، ويرمز لهما بالرمز \(A \cup B\) : \[A \cup B = \{ x : x \in A \text{وأ } x \in B \}\]</p>
         <div class="center" style="text-align: center;">
           <!-- SVG Venn Union -->
           <svg width="200" height="140" viewBox="0 0 200 140">
-            <rect x="0" y="0" width="200" height="140" fill="none" stroke="#333" stroke-width="2" />
-            <circle cx="70" cy="70" r="40" fill="#2196F3" fill-opacity="0.3" stroke="#2196F3" stroke-width="2" />
-            <circle cx="130" cy="70" r="40" fill="#E91E63" fill-opacity="0.3" stroke="#E91E63" stroke-width="2" />
+            <rect x="0" y="0" width="200" height="140" fill="none" stroke="#333" stroke-width="2"></rect>
+            <circle cx="70" cy="70" r="40" fill="#2196F3" fill-opacity="0.3" stroke="#2196F3" stroke-width="2"></circle>
+            <circle cx="130" cy="70" r="40" fill="#E91E63" fill-opacity="0.3" stroke="#E91E63" stroke-width="2"></circle>
             <text x="40" y="40">A</text>
             <text x="160" y="40">B</text>
             <text x="180" y="20">U</text>
@@ -461,53 +496,42 @@
           <p>\(A \cup B = B \cup A\)</p>
         </div>
       </div>
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="ex-badge">مثال 1</div>
-          <div class="ex-problem">إذا كانت \(A=\{2, 4, 3\}\) و \(B=\{1, 3, 4, 5\}\)، أوجد \(A \cup B\).</div>
-          <div class="ex-solution">
-            \[A \cup B = \{1, 2, 3, 4, 5\}\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> جميع العناصر بدون تكرار.
-          </div>
+    </section>
+
+    <section class="slide">
+      <h3>2- اتحاد مجموعتين (تابع)</h3>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> إذا كانت \(A=\{2, 4, 3\}\) و \(B=\{1, 3, 4, 5\}\)، أوجد \(A \cup B\).</p>
+          <div class="problem-sol">\[A \cup B = \{1, 2, 3, 4, 5\}\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> جميع العناصر بدون تكرار.</p>
         </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 2</div>
-          <div class="ex-problem">إذا كانت \(X=\{ 7, 9 \}\) و \(Y=\{ 8, 10 \}\)، أوجد \(X \cup Y\).</div>
-          <div class="ex-solution">
-            \[X \cup Y = \{7, 8, 9, 10\}\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> المجموعتان منفصلتان، نضم جميع العناصر.
-          </div>
-        </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 3</div>
-          <div class="ex-problem">إذا كانت \(K=\{ 5 \}\) و \(L=\{ 5, 6, 7 \}\)، أوجد \(K \cup L\).</div>
-          <div class="ex-solution">
-            \[K \cup L = \{5, 6, 7\} = L\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> عناصر \(K\) موجودة في \(L\).
-          </div>
-        </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 4</div>
-          <div class="ex-problem">إذا كانت \(M=\{ a, b \}\) و \(\phi\) هي المجموعة الخالية، أوجد \(M \cup \phi\).</div>
-          <div class="ex-solution">
-            \[M \cup \phi = \{a, b\} = M\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> اتحاد أي مجموعة مع المجموعة الخالية هو المجموعة نفسها.
-          </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> إذا كانت \(X=\{ 7, 9 \}\) و \(Y=\{ 8, 10 \}\)، أوجد \(X \cup Y\).</p>
+          <div class="problem-sol">\[X \cup Y = \{7, 8, 9, 10\}\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> المجموعتان منفصلتان، نضم جميع العناصر.</p>
         </div>
       </div>
     </section>
 
-    <!-- Difference -->
     <section class="slide">
-      <h3 class="unnumbered" id="الفرق-بين-مجموعتين">3- الفرق بين مجموعتين</h3>
+      <h3>2- اتحاد مجموعتين (تابع)</h3>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">3</span> إذا كانت \(K=\{ 5 \}\) و \(L=\{ 5, 6, 7 \}\)، أوجد \(K \cup L\).</p>
+          <div class="problem-sol">\[K \cup L = \{5, 6, 7\} = L\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> عناصر \(K\) موجودة في \(L\).</p>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">4</span> إذا كانت \(M=\{ a, b \}\) و \(\phi\) هي المجموعة الخالية، أوجد \(M \cup \phi\).</p>
+          <div class="problem-sol">\[M \cup \phi = \{a, b\} = M\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> اتحاد أي مجموعة مع المجموعة الخالية هو المجموعة نفسها.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h3>3- الفرق بين مجموعتين</h3>
       <div class="definition">
         <p>نعرف حاصل طرح المجموعة \(B\) من المجموعة \(A\) بأنه مجموعة جميع العناصر الموجودة في \(A\) وليست في \(B\)،
           ويرمز لها بالرمز \(A - B\): \[A - B = \{ x : x \in A \text{ و } x \notin B \}\]</p>
@@ -516,14 +540,13 @@
           <svg width="200" height="140" viewBox="0 0 200 140">
             <defs>
               <mask id="cut-b">
-                <rect x="0" y="0" width="200" height="140" fill="white" />
-                <circle cx="130" cy="70" r="40" fill="black" />
+                <rect x="0" y="0" width="200" height="140" fill="white"></rect>
+                <circle cx="130" cy="70" r="40" fill="black"></circle>
               </mask>
             </defs>
-            <rect x="0" y="0" width="200" height="140" fill="none" stroke="#333" stroke-width="2" />
-            <circle cx="70" cy="70" r="40" fill="#4CAF50" fill-opacity="0.5" stroke="#4CAF50" stroke-width="2"
-              mask="url(#cut-b)" />
-            <circle cx="130" cy="70" r="40" fill="none" stroke="#E91E63" stroke-width="2" />
+            <rect x="0" y="0" width="200" height="140" fill="none" stroke="#333" stroke-width="2"></rect>
+            <circle cx="70" cy="70" r="40" fill="#4CAF50" fill-opacity="0.5" stroke="#4CAF50" stroke-width="2" mask="url(#cut-b)"></circle>
+            <circle cx="130" cy="70" r="40" fill="none" stroke="#E91E63" stroke-width="2"></circle>
             <text x="40" y="40">A</text>
             <text x="160" y="40">B</text>
           </svg>
@@ -538,106 +561,85 @@
           <p>\(A - B \neq B - A\)</p>
         </div>
       </div>
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="ex-badge">مثال 1</div>
-          <div class="ex-problem">إذا كانت \(A=\{2, 4, 3, 5\}\) و \(B=\{1, 3, a, 5, b\}\)، أوجد \(A - B\).</div>
-          <div class="ex-solution">
-            \[A - B = \{2, 4\}\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> العناصر في A وليست في B.
-          </div>
+    </section>
+
+    <section class="slide">
+      <h3>3- الفرق بين مجموعتين (تابع)</h3>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> إذا كانت \(A=\{2, 4, 3, 5\}\) و \(B=\{1, 3, a, 5, b\}\)، أوجد \(A - B\).</p>
+          <div class="problem-sol">\[A - B = \{2, 4\}\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> العناصر في A وليست في B.</p>
         </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 2</div>
-          <div class="ex-problem">إذا كانت \(X=\{ 1, 2 \}\) و \(Y=\{ 3, 4 \}\)، أوجد \(X - Y\).</div>
-          <div class="ex-solution">
-            \[X - Y = \{1, 2\} = X\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> لا توجد عناصر مشتركة، إذاً لا نحذف شيئاً من X.
-          </div>
-        </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 3</div>
-          <div class="ex-problem">إذا كانت \(E=\{ 1, 2, 3 \}\) و \(F=\{ 1, 2 \}\)، أوجد \(F - E\).</div>
-          <div class="ex-solution">
-            \[F - E = \phi\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> جميع عناصر F موجودة في E، إذاً لا يتبقى شيء.
-          </div>
-        </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 4</div>
-          <div class="ex-problem">إذا كانت \(A=\{ 5, 6 \}\) و \(B=\phi\)، أوجد \(A - B\).</div>
-          <div class="ex-solution">
-            \[A - B = \{5, 6\} = A\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> طرح المجموعة الخالية لا ينقص شيئاً من المجموعة الأصلية.
-          </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> إذا كانت \(X=\{ 1, 2 \}\) و \(Y=\{ 3, 4 \}\)، أوجد \(X - Y\).</p>
+          <div class="problem-sol">\[X - Y = \{1, 2\} = X\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> لا توجد عناصر مشتركة، إذاً لا نحذف شيئاً من X.</p>
         </div>
       </div>
     </section>
 
-    <!-- Complement -->
     <section class="slide">
-      <h3 class="unnumbered" id="متممة-المجموعة">4- متممة المجموعة</h3>
+      <h3>3- الفرق بين مجموعتين (تابع)</h3>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">3</span> إذا كانت \(E=\{ 1, 2, 3 \}\) و \(F=\{ 1, 2 \}\)، أوجد \(F - E\).</p>
+          <div class="problem-sol">\[F - E = \phi\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> جميع عناصر F موجودة في E، إذاً لا يتبقى شيء.</p>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">4</span> إذا كانت \(A=\{ 5, 6 \}\) و \(B=\phi\)، أوجد \(A - B\).</p>
+          <div class="problem-sol">\[A - B = \{5, 6\} = A\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> طرح المجموعة الخالية لا ينقص شيئاً من المجموعة الأصلية.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h3>4- متممة المجموعة</h3>
       <div class="definition">
         <p>متممة \(A\) بأنها مجموعة جميع العناصر الموجودة في المجموعة الشاملة \(U\) وليست في \(A\)، ويرمز لها بالرمز
           \(\bar{A}\) أو \(A^c\): \[\bar{A} = U - A\]</p>
         <div class="center" style="text-align: center;">
           <!-- SVG Venn Complement -->
           <svg width="200" height="140" viewBox="0 0 200 140">
-            <rect x="0" y="0" width="200" height="140" fill="#ddd" stroke="#333" stroke-width="2" />
-            <circle cx="100" cy="70" r="40" fill="white" stroke="#333" stroke-width="2" />
+            <rect x="0" y="0" width="200" height="140" fill="#ddd" stroke="#333" stroke-width="2"></rect>
+            <circle cx="100" cy="70" r="40" fill="white" stroke="#333" stroke-width="2"></circle>
             <text x="100" y="75" text-anchor="middle">A</text>
             <text x="180" y="20">U</text>
           </svg>
         </div>
       </div>
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="ex-badge">مثال 1</div>
-          <div class="ex-problem">إذا كانت \(U=\{1, 2, 3, 4, 5, 6, 7\}\) و \(A=\{1, 2, 3\}\)، أوجد \(\bar{A}\).</div>
-          <div class="ex-solution">
-            \[ \bar{A} = \{4, 5, 6, 7\} \]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> العناصر في U وليست في A.
-          </div>
+    </section>
+
+    <section class="slide">
+      <h3>4- متممة المجموعة (تابع)</h3>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> إذا كانت \(U=\{1, 2, 3, 4, 5, 6, 7\}\) و \(A=\{1, 2, 3\}\)، أوجد \(\bar{A}\).</p>
+          <div class="problem-sol">\[ \bar{A} = \{4, 5, 6, 7\} \]</div>
+          <p class="solution-label"><strong>الشرح:</strong> العناصر في U وليست في A.</p>
         </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 2</div>
-          <div class="ex-problem">إذا كانت \(U=\{ a, b, c, d \}\) و \(X=\{ a, b, c, d \}\)، أوجد \(\bar{X}\).</div>
-          <div class="ex-solution">
-            \[ \bar{X} = \phi \]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> لا توجد عناصر متبقية في U.
-          </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> إذا كانت \(U=\{ a, b, c, d \}\) و \(X=\{ a, b, c, d \}\)، أوجد \(\bar{X}\).</p>
+          <div class="problem-sol">\[ \bar{X} = \phi \]</div>
+          <p class="solution-label"><strong>الشرح:</strong> لا توجد عناصر متبقية في U.</p>
         </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 3</div>
-          <div class="ex-problem">إذا كانت \(U=\{ 1, 3, 5 \}\) و \(Y=\phi\)، أوجد \(\bar{Y}\).</div>
-          <div class="ex-solution">
-            \[ \bar{Y} = \{1, 3, 5\} = U \]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> متممة المجموعة الخالية هي المجموعة الشاملة نفسها.
-          </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h3>4- متممة المجموعة (تابع)</h3>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">3</span> إذا كانت \(U=\{ 1, 3, 5 \}\) و \(Y=\phi\)، أوجد \(\bar{Y}\).</p>
+          <div class="problem-sol">\[ \bar{Y} = \{1, 3, 5\} = U \]</div>
+          <p class="solution-label"><strong>الشرح:</strong> متممة المجموعة الخالية هي المجموعة الشاملة نفسها.</p>
         </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 4</div>
-          <div class="ex-problem">إذا كانت \(U=\{1, 2, 3, 4\}\) و \(A=\{2, 4\}\)، أوجد \(\bar{A}\).</div>
-          <div class="ex-solution">
-            \[ \bar{A} = \{1, 3\} \]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> العناصر الموجودة في U ولكنها ليست زوجية (فردية).
-          </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">4</span> إذا كانت \(U=\{1, 2, 3, 4\}\) و \(A=\{2, 4\}\)، أوجد \(\bar{A}\).</p>
+          <div class="problem-sol">\[ \bar{A} = \{1, 3\} \]</div>
+          <p class="solution-label"><strong>الشرح:</strong> العناصر الموجودة في U ولكنها ليست زوجية (فردية).</p>
         </div>
       </div>
       <div class="myrule">
@@ -652,71 +654,61 @@
       </div>
     </section>
 
-    <!-- Symmetric Difference & De Morgan -->
     <section class="slide">
-      <h3 class="unnumbered" id="الفرق-التناظري-بين-مجموعتين">5- الفرق التناظري بين مجموعتين</h3>
+      <h3>5- الفرق التناظري بين مجموعتين</h3>
       <div class="definition">
         <p> مجموعة جميع العناصر الموجودة إما في \(A\) أو في \(B\) ولكن <strong>ليست</strong> موجودة في التقاطع، ويرمز
           لها بالرمز \(A \oplus B\) : \[A \oplus B = \{ x : x \in A \cup B \text{ و } x \notin A \cap B \}\]</p>
         <div class="center" style="text-align: center;">
           <!-- SVG Venn Symmetric Difference -->
           <svg width="200" height="140" viewBox="0 0 200 140">
-            <rect x="0" y="0" width="200" height="140" fill="none" stroke="#333" stroke-width="2" />
+            <rect x="0" y="0" width="200" height="140" fill="none" stroke="#333" stroke-width="2"></rect>
             <text x="180" y="20" font-family="Arial">U</text>
-            <circle cx="70" cy="70" r="40" fill="none" stroke="#2196F3" stroke-width="2" />
+            <circle cx="70" cy="70" r="40" fill="none" stroke="#2196F3" stroke-width="2"></circle>
             <text x="40" y="40">A</text>
-            <circle cx="130" cy="70" r="40" fill="none" stroke="#E91E63" stroke-width="2" />
+            <circle cx="130" cy="70" r="40" fill="none" stroke="#E91E63" stroke-width="2"></circle>
             <text x="160" y="40">B</text>
             <!-- Symmetric Difference: Everything in A or B but NOT in both -->
-            <path d="M 30,70 a 40,40 0 1,0 80,0 a 40,40 0 1,0 -80,0 M 90,70 a 40,40 0 1,0 80,0 a 40,40 0 1,0 -80,0"
-              fill="#9C27B0" fill-opacity="0.5" fill-rule="evenodd" stroke="none" />
+            <path d="M 30,70 a 40,40 0 1,0 80,0 a 40,40 0 1,0 -80,0 M 90,70 a 40,40 0 1,0 80,0 a 40,40 0 1,0 -80,0" fill="#9C27B0" fill-opacity="0.5" fill-rule="evenodd" stroke="none"></path>
           </svg>
         </div>
       </div>
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="ex-badge">مثال 1</div>
-          <div class="ex-problem">إذا كانت \(A=\{1, 2, 3, 4, 5\}\) و \(B=\{1, 2, 7\}\)، أوجد \(A \oplus B\).</div>
-          <div class="ex-solution">
-            \[A \oplus B = \{3, 4, 5, 7\}\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> نستبعد المشترك (1، 2) ونأخذ الباقي.
-          </div>
+    </section>
+
+    <section class="slide">
+      <h3>5- الفرق التناظري بين مجموعتين (تابع)</h3>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> إذا كانت \(A=\{1, 2, 3, 4, 5\}\) و \(B=\{1, 2, 7\}\)، أوجد \(A \oplus B\).</p>
+          <div class="problem-sol">\[A \oplus B = \{3, 4, 5, 7\}\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> نستبعد المشترك (1، 2) ونأخذ الباقي.</p>
         </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 2</div>
-          <div class="ex-problem">إذا كانت \(X=\{ 10, 20 \}\) و \(Y=\{ 30, 40 \}\)، أوجد \(X \oplus Y\).</div>
-          <div class="ex-solution">
-            \[X \oplus Y = \{10, 20, 30, 40\}\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> لا يوجد مشترك، نأخذ جميع العناصر (مثل الاتحاد).
-          </div>
-        </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 3</div>
-          <div class="ex-problem">إذا كانت \(E=\{ 1, 2 \}\) و \(F=\{ 1, 2, 3 \}\)، أوجد \(E \oplus F\).</div>
-          <div class="ex-solution">
-            \[E \oplus F = \{3\}\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> المشترك (1، 2) يُحذف، الباقي هو 3 فقط.
-          </div>
-        </div>
-        <div class="example-card">
-          <div class="ex-badge">مثال 4</div>
-          <div class="ex-problem">إذا كانت \(A=\{1, 2\}\) و \(B=\{1, 2\}\)، أوجد \(A \oplus B\).</div>
-          <div class="ex-solution">
-            \[A \oplus B = \phi\]
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> المجموعتان متساويتان، جميع العناصر مشتركة، فلا يتبقى شيء في الفرق التناظري.
-          </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> إذا كانت \(X=\{ 10, 20 \}\) و \(Y=\{ 30, 40 \}\)، أوجد \(X \oplus Y\).</p>
+          <div class="problem-sol">\[X \oplus Y = \{10, 20, 30, 40\}\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> لا يوجد مشترك، نأخذ جميع العناصر (مثل الاتحاد).</p>
         </div>
       </div>
+    </section>
 
-      <h2 id="قوانين-ديمورغان">قوانين ديمورغان</h2>
+    <section class="slide">
+      <h3>5- الفرق التناظري بين مجموعتين (تابع)</h3>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">3</span> إذا كانت \(E=\{ 1, 2 \}\) و \(F=\{ 1, 2, 3 \}\)، أوجد \(E \oplus F\).</p>
+          <div class="problem-sol">\[E \oplus F = \{3\}\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> المشترك (1، 2) يُحذف، الباقي هو 3 فقط.</p>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">4</span> إذا كانت \(A=\{1, 2\}\) و \(B=\{1, 2\}\)، أوجد \(A \oplus B\).</p>
+          <div class="problem-sol">\[A \oplus B = \phi\]</div>
+          <p class="solution-label"><strong>الشرح:</strong> المجموعتان متساويتان، جميع العناصر مشتركة، فلا يتبقى شيء في الفرق التناظري.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h3>قوانين ديمورغان</h3>
       <div class="myrule">
         <ol>
           <li>
@@ -727,64 +719,53 @@
           </li>
         </ol>
       </div>
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="ex-badge">القانون الأول</div>
-          <div class="ex-problem">
-            تحقق من: \(\overline{(A \cap B)} = \bar{A} \cup \bar{B}\)<br>
-            المعطيات:<br>
-            \(U=\{1, 2, 3, 4, 5, 6\}\)<br>
-            \(A=\{2, 3\}\), \(B=\{3, 4, 5\}\)
-          </div>
-          <div class="ex-solution">
-            <p style="text-align: right; direction: rtl;"><strong>1. الطرف الأيمن:</strong></p>
-            <p>\(A \cap B = \{3\}\)</p>
-            <p style="text-align: right; direction: rtl;">متممتها: <span
-                style="direction: ltr; display: inline-block;">\(\overline{A \cap B} = \{1, 2, 4, 5, 6\}\)</span></p>
-            <hr style="border-top: 1px dashed #ccc; margin: 8px 0;">
-            <p style="text-align: right; direction: rtl;"><strong>2. الطرف الأيسر:</strong></p>
-            <p>\(\bar{A} = \{1, 4, 5, 6\}\)</p>
-            <p>\(\bar{B} = \{1, 2, 6\}\)</p>
-            <p style="text-align: right; direction: rtl;">الاتحاد: <span
-                style="direction: ltr; display: inline-block;">\(\bar{A} \cup \bar{B} = \{1, 2, 4, 5, 6\}\)</span></p>
-            <p style="text-align: center; font-weight: bold; color: green; margin-top: 10px;">الطرفان متساويان</p>
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> نلاحظ أن متممة التقاطع أعطت نفس عناصر اتحاد المتممات.
-          </div>
-        </div>
+    </section>
 
-        <div class="example-card">
-          <div class="ex-badge">القانون الثاني</div>
-          <div class="ex-problem">
-            تحقق من: \(\overline{(A \cup B)} = \bar{A} \cap \bar{B}\)<br>
+    <section class="slide">
+      <h3>قوانين ديمورغان (تابع)</h3>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> تحقق من: \(\overline{(A \cap B)} = \bar{A} \cup \bar{B}\)<br>
             المعطيات:<br>
             \(U=\{1, 2, 3, 4, 5, 6\}\)<br>
-            \(A=\{2, 3\}\), \(B=\{3, 4, 5\}\)
-          </div>
-          <div class="ex-solution">
-            <p style="text-align: right; direction: rtl;"><strong>1. الطرف الأيمن:</strong></p>
-            <p>\(A \cup B = \{2, 3, 4, 5\}\)</p>
-            <p style="text-align: right; direction: rtl;">متممتها: <span
-                style="direction: ltr; display: inline-block;">\(\overline{A \cup B} = \{1, 6\}\)</span></p>
+            \(A=\{2, 3\}\), \(B=\{3, 4, 5\}\)</p>
+          <div class="problem-sol"><p style="text-align: right; direction: rtl;"><strong>1. الطرف الأيمن:</strong></p>
+            <p>\(A \cap B = \{3\}\)</p>
+            <p style="text-align: right; direction: rtl;">متممتها: <span style="direction: ltr; display: inline-block;">\(\overline{A \cap B} = \{1, 2, 4, 5, 6\}\)</span></p>
             <hr style="border-top: 1px dashed #ccc; margin: 8px 0;">
             <p style="text-align: right; direction: rtl;"><strong>2. الطرف الأيسر:</strong></p>
             <p>\(\bar{A} = \{1, 4, 5, 6\}\)</p>
             <p>\(\bar{B} = \{1, 2, 6\}\)</p>
-            <p style="text-align: right; direction: rtl;">التقاطع: <span
-                style="direction: ltr; display: inline-block;">\(\bar{A} \cap \bar{B} = \{1, 6\}\)</span></p>
-            <p style="text-align: center; font-weight: bold; color: green; margin-top: 10px;">الطرفان متساويان</p>
-          </div>
-          <div class="ex-explanation">
-            <strong>الشرح:</strong> نلاحظ أن متممة الاتحاد أعطت نفس عناصر تقاطع المتممات.
-          </div>
+            <p style="text-align: right; direction: rtl;">الاتحاد: <span style="direction: ltr; display: inline-block;">\(\bar{A} \cup \bar{B} = \{1, 2, 4, 5, 6\}\)</span></p>
+            <p style="text-align: center; font-weight: bold; color: green; margin-top: 10px;">الطرفان متساويان</p></div>
+          <p class="solution-label"><strong>الشرح:</strong> نلاحظ أن متممة التقاطع أعطت نفس عناصر اتحاد المتممات.</p>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> تحقق من: \(\overline{(A \cup B)} = \bar{A} \cap \bar{B}\)<br>
+            المعطيات:<br>
+            \(U=\{1, 2, 3, 4, 5, 6\}\)<br>
+            \(A=\{2, 3\}\), \(B=\{3, 4, 5\}\)</p>
+          <div class="problem-sol"><p style="text-align: right; direction: rtl;"><strong>1. الطرف الأيمن:</strong></p>
+            <p>\(A \cup B = \{2, 3, 4, 5\}\)</p>
+            <p style="text-align: right; direction: rtl;">متممتها: <span style="direction: ltr; display: inline-block;">\(\overline{A \cup B} = \{1, 6\}\)</span></p>
+            <hr style="border-top: 1px dashed #ccc; margin: 8px 0;">
+            <p style="text-align: right; direction: rtl;"><strong>2. الطرف الأيسر:</strong></p>
+            <p>\(\bar{A} = \{1, 4, 5, 6\}\)</p>
+            <p>\(\bar{B} = \{1, 2, 6\}\)</p>
+            <p style="text-align: right; direction: rtl;">التقاطع: <span style="direction: ltr; display: inline-block;">\(\bar{A} \cap \bar{B} = \{1, 6\}\)</span></p>
+            <p style="text-align: center; font-weight: bold; color: green; margin-top: 10px;">الطرفان متساويان</p></div>
+          <p class="solution-label"><strong>الشرح:</strong> نلاحظ أن متممة الاتحاد أعطت نفس عناصر تقاطع المتممات.</p>
         </div>
       </div>
     </section>
 
-    <!-- Number Systems -->
-    <section class="slide">
+    <!-- ===================== Part 5 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">05</span>
       <h2 id="المجموعات-العددية">المجموعات العددية</h2>
+    </section>
+
+    <section class="slide">
       <div class="definition">
         <p><span>تعاريف المجموعات العددية الأساسية</span></p>
         <ol>
@@ -817,20 +798,19 @@
       <div class="center" style="text-align: center; margin-top: 20px;">
         <!-- Hierarchy SVG -->
         <svg width="400" height="250" viewBox="0 0 400 250">
-          <rect x="0" y="0" width="400" height="250" fill="#f9f9f9" stroke="#333" />
+          <rect x="0" y="0" width="400" height="250" fill="#f9f9f9" stroke="#333"></rect>
           <text x="380" y="20">R</text>
-          <ellipse cx="140" cy="125" rx="130" ry="100" fill="#e3f2fd" stroke="#2196F3" />
+          <ellipse cx="140" cy="125" rx="130" ry="100" fill="#e3f2fd" stroke="#2196F3"></ellipse>
           <text x="50" y="125" font-size="14">Q</text>
-          <ellipse cx="160" cy="125" rx="90" ry="70" fill="#bbdefb" stroke="#1976D2" />
+          <ellipse cx="160" cy="125" rx="90" ry="70" fill="#bbdefb" stroke="#1976D2"></ellipse>
           <text x="100" y="125" font-size="14">Z</text>
-          <ellipse cx="180" cy="125" rx="60" ry="45" fill="#90caf9" stroke="#1565C0" />
+          <ellipse cx="180" cy="125" rx="60" ry="45" fill="#90caf9" stroke="#1565C0"></ellipse>
           <text x="140" y="125" font-size="14">W</text>
-          <ellipse cx="195" cy="125" rx="30" ry="20" fill="#64b5f6" stroke="#0D47A1" />
+          <ellipse cx="195" cy="125" rx="30" ry="20" fill="#64b5f6" stroke="#0D47A1"></ellipse>
           <text x="195" y="125" font-size="14" fill="white">N</text>
-          <circle cx="330" cy="125" r="40" fill="#fff9c4" stroke="#FBC02D" />
+          <circle cx="330" cy="125" r="40" fill="#fff9c4" stroke="#FBC02D"></circle>
           <foreignObject x="310" y="115" width="40" height="40">
-            <div xmlns="http://www.w3.org/1999/xhtml"
-              style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(\bar{Q}\)</div>
+            <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(\bar{Q}\)</div>
           </foreignObject>
         </svg>
       </div>
@@ -839,16 +819,13 @@
         <!-- Real Number Line SVG -->
         <svg width="600" height="120" viewBox="0 0 600 120" style="max-width: 100%;">
           <!-- Main Line -->
-          <line x1="20" y1="60" x2="580" y2="60" stroke="#333" stroke-width="2" marker-end="url(#arrow)"
-            marker-start="url(#arrow-rev)" />
+          <line x1="20" y1="60" x2="580" y2="60" stroke="#333" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow-rev)"></line>
           <defs>
-            <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"
-              markerUnits="strokeWidth">
-              <path d="M0,0 L0,6 L9,3 z" fill="#333" />
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#333"></path>
             </marker>
-            <marker id="arrow-rev" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto"
-              markerUnits="strokeWidth">
-              <path d="M9,0 L9,6 L0,3 z" fill="#333" />
+            <marker id="arrow-rev" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M9,0 L9,6 L0,3 z" fill="#333"></path>
             </marker>
           </defs>
 
@@ -856,60 +833,53 @@
           <!-- Ticks and Integer Labels -->
           <g>
             <!-- -3 -->
-            <line x1="50" y1="55" x2="50" y2="65" stroke="#333" stroke-width="2" />
+            <line x1="50" y1="55" x2="50" y2="65" stroke="#333" stroke-width="2"></line>
             <foreignObject x="30" y="70" width="40" height="40">
-              <div xmlns="http://www.w3.org/1999/xhtml"
-                style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(-3\)</div>
+              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(-3\)</div>
             </foreignObject>
             <!-- -2 -->
-            <line x1="133" y1="55" x2="133" y2="65" stroke="#333" stroke-width="2" />
+            <line x1="133" y1="55" x2="133" y2="65" stroke="#333" stroke-width="2"></line>
             <foreignObject x="113" y="70" width="40" height="40">
-              <div xmlns="http://www.w3.org/1999/xhtml"
-                style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(-2\)</div>
+              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(-2\)</div>
             </foreignObject>
             <!-- -1 -->
-            <line x1="216" y1="55" x2="216" y2="65" stroke="#333" stroke-width="2" />
+            <line x1="216" y1="55" x2="216" y2="65" stroke="#333" stroke-width="2"></line>
             <foreignObject x="196" y="70" width="40" height="40">
-              <div xmlns="http://www.w3.org/1999/xhtml"
-                style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(-1\)</div>
+              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(-1\)</div>
             </foreignObject>
             <!-- 0 -->
-            <line x1="300" y1="50" x2="300" y2="70" stroke="#333" stroke-width="3" />
+            <line x1="300" y1="50" x2="300" y2="70" stroke="#333" stroke-width="3"></line>
             <foreignObject x="280" y="75" width="40" height="40">
-              <div xmlns="http://www.w3.org/1999/xhtml"
-                style="text-align: center; color: black; font-family: Arial; font-size: 14px; font-weight: bold;">\(0\)
+              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px; font-weight: bold;">\(0\)
               </div>
             </foreignObject>
             <!-- 1 -->
-            <line x1="383" y1="55" x2="383" y2="65" stroke="#333" stroke-width="2" />
+            <line x1="383" y1="55" x2="383" y2="65" stroke="#333" stroke-width="2"></line>
             <foreignObject x="363" y="70" width="40" height="40">
-              <div xmlns="http://www.w3.org/1999/xhtml"
-                style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(1\)</div>
+              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(1\)</div>
             </foreignObject>
             <!-- 2 -->
-            <line x1="466" y1="55" x2="466" y2="65" stroke="#333" stroke-width="2" />
+            <line x1="466" y1="55" x2="466" y2="65" stroke="#333" stroke-width="2"></line>
             <foreignObject x="446" y="70" width="40" height="40">
-              <div xmlns="http://www.w3.org/1999/xhtml"
-                style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(2\)</div>
+              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(2\)</div>
             </foreignObject>
             <!-- 3 -->
-            <line x1="550" y1="55" x2="550" y2="65" stroke="#333" stroke-width="2" />
+            <line x1="550" y1="55" x2="550" y2="65" stroke="#333" stroke-width="2"></line>
             <foreignObject x="530" y="70" width="40" height="40">
-              <div xmlns="http://www.w3.org/1999/xhtml"
-                style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(3\)</div>
+              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(3\)</div>
             </foreignObject>
           </g>
 
           <!-- Specific Points -->
           <!-- 1/2 (0.5) -->
-          <circle cx="341.5" cy="60" r="4" fill="#2196F3" />
+          <circle cx="341.5" cy="60" r="4" fill="#2196F3"></circle>
           <foreignObject x="321.5" y="10" width="40" height="40">
             <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: #2196F3; font-size: 14px;">
               \(\frac{1}{2}\)</div>
           </foreignObject>
 
           <!-- -2.5 -->
-          <circle cx="91.5" cy="60" r="4" fill="#2196F3" />
+          <circle cx="91.5" cy="60" r="4" fill="#2196F3"></circle>
           <foreignObject x="71.5" y="10" width="40" height="40">
             <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: #2196F3; font-size: 14px;">
               \(-2.5\)</div>
@@ -917,7 +887,7 @@
 
           <!-- Sqrt(2) ~ 1.41 -->
           <!-- 1 is at 383, 2 is at 466. Diff = 83. 0.41 * 83 = 34. 383+34 = 417 -->
-          <circle cx="417" cy="60" r="4" fill="#E91E63" />
+          <circle cx="417" cy="60" r="4" fill="#E91E63"></circle>
           <foreignObject x="397" y="10" width="40" height="40">
             <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: #E91E63; font-size: 14px;">
               \(\sqrt{2}\)</div>
@@ -930,7 +900,7 @@
           <!-- Let's add -sqrt(3) ~ -1.73 -->
           <!-- -1 is 216, -2 is 133. -1.73 is closer to -2. -->
           <!-- 0.73 * 83 = 60.5. 216 - 60.5 = 155.5 -->
-          <circle cx="155.5" cy="60" r="4" fill="#E91E63" />
+          <circle cx="155.5" cy="60" r="4" fill="#E91E63"></circle>
           <foreignObject x="135.5" y="10" width="40" height="40">
             <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: #E91E63; font-size: 14px;">
               \(-\sqrt{3}\)</div>
@@ -938,6 +908,10 @@
 
         </svg>
       </div>
+    </section>
+
+    <section class="slide">
+      <h3>المجموعات العددية (تابع)</h3>
       <div class="myrule">
         <p><span>العلاقة بين المجموعات العددية</span></p>
         <ul>
@@ -951,7 +925,10 @@
 
   </main>
 
-  <script src="main.js"></script>
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <script src="main.js" defer></script>
 </body>
 
 </html>
