@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الخطة التدريبية | رياضيات 101</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <div id="navbar-container"></div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h1>الخطة التدريبية</h1>
+            <p>توزيع مفردات المقرر وأساليب التقييم على أسابيع الفصل التدريبي</p>
+        </div>
+    </header>
+
+    <main class="container video-library plan-page">
+
+        <!-- Key figures -->
+        <section class="plan-stats" aria-label="أرقام المقرر">
+            <div class="plan-stat"><b>18</b><span>أسبوعًا تدريبيًا</span></div>
+            <div class="plan-stat"><b>6</b><span>وحدات تدريبية</span></div>
+            <div class="plan-stat"><b>4</b><span>ساعات أسبوعيًا</span></div>
+            <div class="plan-stat"><b>100</b><span>درجة التقييم</span></div>
+        </section>
+
+        <!-- Grade distribution -->
+        <section class="plan-card" aria-labelledby="grades-title">
+            <h2 id="grades-title">توزيع الدرجات</h2>
+            <div class="grade-bar" role="img" aria-label="الواجبات 20، الاختبار الفصلي الأول 20، الاختبار الفصلي الثاني 20، الاختبار النهائي 40">
+                <span class="g-hw" style="flex: 20">20</span>
+                <span class="g-m1" style="flex: 20">20</span>
+                <span class="g-m2" style="flex: 20">20</span>
+                <span class="g-fin" style="flex: 40">40</span>
+            </div>
+            <ul class="grade-legend">
+                <li><i class="g-hw"></i>الواجبات <small>(6 واجبات)</small><b>20</b></li>
+                <li><i class="g-m1"></i>الاختبار الفصلي الأول <small>(الأسبوع 7)</small><b>20</b></li>
+                <li><i class="g-m2"></i>الاختبار الفصلي الثاني <small>(الأسبوع 13)</small><b>20</b></li>
+                <li><i class="g-fin"></i>الاختبار النهائي <small>(الأسبوع 18)</small><b>40</b></li>
+            </ul>
+        </section>
+
+        <!-- Weekly timeline -->
+        <section aria-labelledby="weeks-title">
+            <div class="plan-head">
+                <h2 id="weeks-title">الخطة الأسبوعية</h2>
+                <div class="plan-filter" role="group" aria-label="تصفية حسب الوحدة">
+                    <button type="button" class="active" data-unit="all">الكل</button>
+                    <button type="button" data-unit="1">الوحدة 1</button>
+                    <button type="button" data-unit="2">الوحدة 2</button>
+                    <button type="button" data-unit="3">الوحدة 3</button>
+                    <button type="button" data-unit="4">الوحدة 4</button>
+                    <button type="button" data-unit="5">الوحدة 5</button>
+                    <button type="button" data-unit="6">الوحدة 6</button>
+                    <button type="button" data-unit="exam">الاختبارات</button>
+                </div>
+            </div>
+            <ol class="plan-timeline" id="plan-timeline"></ol>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script>
+        (function () {
+            const units = {
+                1: 'المجموعات', 2: 'العمليات على الأعداد', 3: 'كثيرات الحدود',
+                4: 'المصفوفات والمحددات', 5: 'المعادلات', 6: 'الهندسة المستوية والفراغية'
+            };
+            // week, units[], topics[], strategy, assessment, grade, exam?
+            const weeks = [
+                [1, [1], ['تعريف المجموعات وطرق كتابتها', 'العلاقات والمجموعات الجزئية'], 'المحاضرة والحوار'],
+                [2, [1], ['أنواع المجموعات', 'العمليات على المجموعات وقوانين ديمورغان'], 'حل المشكلات'],
+                [3, [1, 2], ['المجموعات العددية', 'العمليات على الأعداد الكسرية'], 'التدريب بالمحاكاة', 'واجب', 4],
+                [4, [2], ['العمليات على الأعداد العشرية وتقريبها', 'خصائص الأعداد الحقيقية وترتيب العمليات'], 'المحاضرة والشرح النظري'],
+                [5, [3], ['الحد الجبري ودرجته', 'جمع وطرح وضرب كثيرات الحدود'], 'التدريب بالمحاكاة', 'واجب', 4],
+                [6, [3], ['المتطابقات الجبرية وقسمة كثيرات الحدود', 'التحليل والكسور الجبرية'], 'حل المشكلات'],
+                [7, [], ['مراجعة الوحدات 1–3', 'الاختبار الفصلي الأول'], 'التقييم الكتابي', 'اختبار', 20, 'الاختبار الفصلي الأول'],
+                [8, [4], ['مفهوم المصفوفة ورتبتها وأنواعها'], 'الاكتشاف الموجه'],
+                [9, [4], ['جمع وطرح وضرب المصفوفات'], 'التدريب بالمحاكاة', 'واجب', 4],
+                [10, [4], ['المحددات (2×2 و 3×3)', 'مقلوب المصفوفة'], 'المحاضرة والحوار'],
+                [11, [5], ['مفهوم المعادلة', 'معادلات الدرجة الأولى'], 'العصف الذهني'],
+                [12, [5], ['معادلات الدرجة الثانية والمميز'], 'حل المشكلات', 'واجب', 4],
+                [13, [], ['مراجعة', 'الاختبار الفصلي الثاني'], 'التقييم الكتابي', 'اختبار', 20, 'الاختبار الفصلي الثاني'],
+                [14, [5], ['حل الأنظمة الخطية بالمصفوفات', 'قاعدة كرايمر (مجهولان وثلاثة مجاهيل)'], 'التدريب بالمحاكاة', 'واجب', 2],
+                [15, [6], ['الأشكال المستوية', 'المساحة والمحيط'], 'المحاضرة والشرح النظري'],
+                [16, [6], ['المجسمات الفراغية', 'الحجم والمساحة الكلية'], 'حل المشكلات', 'واجب', 2],
+                [17, [6], ['تطبيقات هندسية', 'مراجعة عامة'], 'المناقشة'],
+                [18, [], ['الاختبارات النهائية'], 'التقييم النهائي', 'اختبار', 40, 'الاختبار النهائي']
+            ];
+            const ordinals = ['', 'الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس', 'السابع', 'الثامن', 'التاسع', 'العاشر',
+                'الحادي عشر', 'الثاني عشر', 'الثالث عشر', 'الرابع عشر', 'الخامس عشر', 'السادس عشر', 'السابع عشر', 'الثامن عشر'];
+
+            const list = document.getElementById('plan-timeline');
+            list.innerHTML = weeks.map(([w, us, topics, strategy, assess, grade, exam]) => {
+                const tags = exam
+                    ? `<span class="plan-tag tag-exam">${exam}</span>`
+                    : us.map(u => `<a class="plan-tag tag-u${u}" href="u${u}.html">الوحدة ${u}: ${units[u]}</a>`).join('');
+                const grading = grade
+                    ? `<span class="plan-chip chip-grade">${assess} · ${grade} درجة</span>`
+                    : `<span class="plan-chip chip-none">بدون تقييم</span>`;
+                const hours = w === 18 ? '' : `<span class="plan-chip">⏱ 4 ساعات</span>`;
+                return `<li class="plan-week${exam ? ' is-exam' : ''} ${us.length ? 'u' + us[0] : ''}" data-units="${exam ? 'exam' : us.join(' ')}">
+                    <div class="plan-week-num"><small>الأسبوع</small><b>${w}</b></div>
+                    <div class="plan-week-card">
+                        <div class="plan-week-top"><span class="plan-week-name">الأسبوع ${ordinals[w]}</span>${tags}</div>
+                        <ul class="plan-topics">${topics.map(t => `<li>${t}</li>`).join('')}</ul>
+                        <div class="plan-meta">
+                            <span class="plan-chip">🎯 ${strategy}</span>${hours}${grading}
+                        </div>
+                    </div>
+                </li>`;
+            }).join('');
+
+            document.querySelectorAll('.plan-filter button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.plan-filter button').forEach(b => b.classList.toggle('active', b === btn));
+                    const u = btn.dataset.unit;
+                    list.querySelectorAll('.plan-week').forEach(li => {
+                        li.hidden = u !== 'all' && !li.dataset.units.split(' ').includes(u);
+                    });
+                });
+            });
+        })();
+    </script>
+    <script src="main.js" defer></script>
+</body>
+
+</html>
