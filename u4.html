@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
-
-<head>
+<html dir="rtl" lang="ar"><head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>المصفوفات والمحددات</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
@@ -39,7 +37,7 @@
       }
     };
   </script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
+  <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
 </head>
 
 <body class="deck-modern">
@@ -116,6 +114,9 @@
         <p>رتبة المصفوفة هي حاصل ضرب عدد الصفوف في عدد الأعمدة:</p> <br>
         <p><strong>رتبة المصفوفة</strong> \[A = \textcolor{red}{m} \times \textcolor{blue}{n}\]</p>
       </div>
+    </section>
+
+    <section class="slide">
       <div class="note">
         <p>لتكن لدينا المصفوفة \(A\) التالية:</p>
         <p>\[A = \begin{bmatrix} 2 &amp; 1 \\ -3 &amp; 6 \\ 5 &amp; 0 \end{bmatrix}\]</p>
@@ -153,6 +154,10 @@
         <p><strong>2. مصفوفة العمود:</strong> هي المصفوفة التي تتكون من عمود واحد فقط.</p>
         <p>\[\quad \begin{bmatrix} 2 \\ 9 \end{bmatrix}_{2 \times 1}\]</p>
       </div>
+    </section>
+
+    <section class="slide">
+      <h3>أنواع المصفوفات (تابع)</h3>
       <div class="definition">
         <p><strong>3. المصفوفة المربعة:</strong> هي مصفوفة عدد صفوفها يساوي عدد أعمدتها.</p>
         <p>\[\quad \begin{bmatrix} 1 &amp; -3 \\ 0 &amp; 2 \end{bmatrix}_{2 \times 2} \quad ، \quad \begin{bmatrix} 7 &amp; 5 &amp; 1 \\
@@ -171,6 +176,9 @@
           \[\begin{bmatrix} 2 &amp; 0 &amp; 0 \\ 0 &amp; 5 &amp; 0 \\ 0 &amp;
           0 &amp; 4 \end{bmatrix}_{3 \times 3}\]</p>
       </div>
+    </section>
+
+    <section class="slide">
       <div class="definition">
         <p><strong>6. مصفوفة الوحدة:</strong> هي مصفوفة مربعة جميع عناصرها تساوي صفر ما عدا القطر الرئيسي يساوي واحد.
           ويرمز لها بالرمز \(I_n = I_{n \times
@@ -218,6 +226,9 @@
         <p><strong>الحل:</strong> لا، لأن المصفوفتان \(A\) و \(B\) غير متساويين لأن أحد عناصرها المتناظرة غير متساوية
           (\(1 \neq 0\))، مع العلم أن لهما نفس الرتبة.</p>
       </div>
+    </section>
+
+    <section class="slide">
       <div class="example">
         <p>\[A = \begin{bmatrix} 1 &amp; 2 &amp; 5 \\ 3 &amp; 4 &amp; 7 \end{bmatrix} , \qquad B = \begin{bmatrix} x &amp; 2 &amp; 5 \\ 3 &amp; 4 &amp;
           7 \end{bmatrix}\]</p>
@@ -256,7 +267,11 @@
           \textcolor{red}{-2} \\ \textcolor{red}{5} &amp; \textcolor{red}{4} \end{bmatrix} = \begin{bmatrix}
           \textcolor{blue}{7}+\textcolor{red}{0} &amp; \textcolor{blue}{5}+(\textcolor{red}{-2}) \\
           \textcolor{blue}{-2}+\textcolor{red}{5} &amp; \textcolor{blue}{1}+\textcolor{red}{4} \end{bmatrix} =
-          \begin{bmatrix} 7 &amp; 3 \\ 3 &amp; 5 \end{bmatrix}\]</p>
+          \begin{bmatrix} 7 &amp; 3 \\ 3 &amp; 5 \end{bmatrix}\]</p></div>
+    </section>
+
+    <section class="slide">
+      <div class="example">
         <p><strong>b)</strong> \(A - B\): \[= \begin{bmatrix} \textcolor{blue}{7} &amp; \textcolor{blue}{5} \\
           \textcolor{blue}{-2} &amp; \textcolor{blue}{1} \end{bmatrix} - \begin{bmatrix} \textcolor{red}{0} &amp;
           \textcolor{red}{-2} \\ \textcolor{red}{5} &amp; \textcolor{red}{4} \end{bmatrix} = \begin{bmatrix}
@@ -264,8 +279,7 @@
           \textcolor{blue}{-2}-\textcolor{red}{5} &amp; \textcolor{blue}{1}-\textcolor{red}{4} \end{bmatrix} =
           \begin{bmatrix} 7 &amp; 7 \\ -7 &amp; -3 \end{bmatrix}\]</p>
         <p><strong>c)</strong> \(B + C\):</p>
-        <p><strong>لا يمكن إجراء عملية الجمع لأن المصفوفتين ليس لهما نفس الرتبة.</strong></p>
-      </div>
+        <p><strong>لا يمكن إجراء عملية الجمع لأن المصفوفتين ليس لهما نفس الرتبة.</strong></p></div>
     </section>
 
     <section class="slide">
@@ -287,7 +301,11 @@
         <p>إذا كانت: \[A = \begin{bmatrix} 2 &amp; 8 \\ 1 &amp; 3 \end{bmatrix}, \quad B = \begin{bmatrix} 6 &amp; -4 \\ 2 &amp; 8
           \end{bmatrix}\]</p>
         <p>أوجد كلاً مما يأتي: \[a) \ 2A \qquad b) \ 2A + B \qquad c) \ \frac{B}{2}\]</p>
-        <p><strong>الحل:</strong></p>
+        <p><strong>الحل:</strong></p></div>
+    </section>
+
+    <section class="slide">
+      <div class="example">
         <p>\[\begin{aligned}
           a) \ 2A &amp;= \textcolor{red}{2} \begin{bmatrix} 2 &amp; 8 \\ 1 &amp; 3 \end{bmatrix} = \begin{bmatrix}
           \textcolor{red}{2} \times 2 &amp; \textcolor{red}{2} \times 8 \\ \textcolor{red}{2} \times 1 &amp; \textcolor{red}{2}
@@ -297,8 +315,7 @@
           \begin{bmatrix} 10 &amp; 12 \\ 4 &amp; 14 \end{bmatrix} \\[1em]
           c) \ \frac{B}{2} &amp;= \frac{\begin{bmatrix} 6 &amp; -4 \\ 2 &amp; 8 \end{bmatrix}}{2} = \begin{bmatrix} 6/2 &amp; {-4}/{2}
           \\{2}/{2} &amp; {8}/{2} \end{bmatrix} = \begin{bmatrix} 3 &amp; -2 \\ 1 &amp; 4 \end{bmatrix}
-          \end{aligned}\]</p>
-      </div>
+          \end{aligned}\]</p></div>
     </section>
 
     <section class="slide">
@@ -310,6 +327,10 @@
           \textcolor{red}{c}\\ \textcolor{blue}{d} \end{bmatrix} = \begin{bmatrix}
           \textcolor{red}{a}\times\textcolor{red}{c} + \textcolor{blue}{b}\times\textcolor{blue}{d} \end{bmatrix}\]</p>
       </div>
+    </section>
+
+    <section class="slide">
+      <h3>أولاً: ضرب صف في عمود (تابع)</h3>
       <div class="example">
         <p>\[\begin{bmatrix} \textcolor{red}{2} &amp; \textcolor{blue}{4} \end{bmatrix} \begin{bmatrix} \textcolor{red}{1}\\
           \textcolor{blue}{3} \end{bmatrix} = \begin{bmatrix} \textcolor{red}{2}\times\textcolor{red}{1} +
@@ -348,6 +369,9 @@
         <p>\[\text{(a)}\quad A_{3\times4}\cdot B_{4\times2} \;\Rightarrow\; \textcolor{red}{3\times2}\]</p>
         <p>\[\text{(b)}\quad A_{5\times3}\cdot B_{3\times4} \;\Rightarrow\; \textcolor{red}{5\times4}\]</p>
       </div>
+    </section>
+
+    <section class="slide">
       <div class="example">
         <p>\[\begin{bmatrix} \textcolor{red}{2} &amp; \textcolor{red}{3}\\ \textcolor{blue}{1} &amp; \textcolor{blue}{4}
           \end{bmatrix} \cdot \begin{bmatrix} 5 &amp; 6\\ 7 &amp; 8 \end{bmatrix}\]</p>
@@ -371,14 +395,17 @@
         <p>\[\text{(a)}\quad A\cdot B = \begin{bmatrix} 2 &amp; 8\\ 1 &amp; 3 \end{bmatrix} \begin{bmatrix} 2 &amp; 8\\ 1 &amp; -3
           \end{bmatrix} = \begin{bmatrix} 12 &amp; -8\\ 5 &amp; -1 \end{bmatrix}\]</p>
         <p>\[\text{(b)}\quad B\cdot A = \begin{bmatrix} 2 &amp; 8\\ 1 &amp; -3 \end{bmatrix} \begin{bmatrix} 2 &amp; 8\\ 1 &amp; 3
-          \end{bmatrix} = \begin{bmatrix} 12 &amp; 40\\ -1 &amp; -1 \end{bmatrix}\]</p>
+          \end{bmatrix} = \begin{bmatrix} 12 &amp; 40\\ -1 &amp; -1 \end{bmatrix}\]</p></div>
+    </section>
+
+    <section class="slide">
+      <div class="example">
         <p>\[\text{(c)}\quad A\cdot C = \begin{bmatrix} 2 &amp; 8\\ 1 &amp; 3 \end{bmatrix} \begin{bmatrix} 2 &amp; 0 &amp; 4\\ 6 &amp; 1 &amp;
           -2 \end{bmatrix} = \begin{bmatrix} 52 &amp; 8 &amp; -8\\ 20 &amp; 3 &amp; -2 \end{bmatrix}\]</p>
         <p>\[\text{(d)}\quad C\cdot B\]</p>
         <div class="note">
           <p>لا يمكن إيجاد \(C\cdot B\) لأن عدد أعمدة المصفوفة \(C\) لا يساوي عدد صفوف المصفوفة \(B\).</p>
-        </div>
-      </div>
+        </div></div>
     </section>
 
     <section class="slide">
@@ -398,6 +425,10 @@
         <p>إذا كانت: \[A= \begin{bmatrix} a &amp; b\\ c &amp; d \end{bmatrix}\] فإن: \[|A| = \begin{vmatrix} a &amp; b\\ c &amp; d
           \end{vmatrix} = ad - bc\]</p>
       </div>
+    </section>
+
+    <section class="slide">
+      <h3>حساب المحدد \(2\times 2\) (تابع)</h3>
       <div class="example">
         <p>إذا كانت: \[A= \begin{bmatrix} 4 &amp; 5\\ 3 &amp; 6 \end{bmatrix}\] فإن: \[|A| = \begin{vmatrix} 4 &amp; 5\\ 3 &amp; 6
           \end{vmatrix} = (4\times6)-(5\times3) = 24-15 = 9\]</p>
@@ -520,6 +551,9 @@
         <p>إذا كانت \(A\) مصفوفة مربعة وكانت محددتها لا تساوي الصفر وبالتالي يوجد مقلوب للمصفوفة \(A\) ويرمز لها بالرمز
           \(A^{-1}\) أي أن: \[AA^{-1} = A^{-1}A = I\]</p>
       </div>
+    </section>
+
+    <section class="slide">
       <div class="myrule">
         <p>إذا كانت \(A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\) أعداد حقيقية بحيث أن: \[|A| = \begin{vmatrix} a
           &amp; b \\ c &amp; d \end{vmatrix} = ad - bc \neq 0\] فإن:
@@ -545,7 +579,9 @@
   <!-- Footer -->
   <div id="footer-container"></div>
 
-  <script src="main.js" defer></script>
-</body>
+  <script src="main.js" defer=""></script>
 
-</html>
+
+
+
+</body></html>
