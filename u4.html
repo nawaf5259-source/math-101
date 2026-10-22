@@ -64,7 +64,7 @@
         <p><strong>الهدف العام:</strong> تهدف هذه الوحدة إلى معرفة المصفوفات والمحددات والقدرة على أداء العمليات على المصفوفات وحساب المحددات.</p>
         <p><strong>الوقت المستغرق للتدريب:</strong> 10 ساعات تدريبية.</p>
       </div>
-      <p class="lead">من المتوقع في نهاية هذه الوحدة التدريبية أن يكون المتدرب قادراً وبكفاءة على أن:</p>
+      <p class="lead">الأهداف التفصيلية: يتوقع من المتدرب بعد دراسة هذه الوحدة أن يكون قادراً على أن:</p>
       <div class="cards cols-3">
         <div class="card-item">
           <span class="num">1</span>
@@ -97,7 +97,8 @@
       <ol class="agenda">
         <li><span class="num">01</span> مفهوم المصفوفة وأنواعها</li>
         <li><span class="num">02</span> العمليات الحسابية على المصفوفات</li>
-        <li><span class="num">03</span> مقلوب (معكوس) مصفوفة</li>
+        <li><span class="num">03</span> المحددات</li>
+        <li><span class="num">04</span> مقلوب (معكوس) مصفوفة</li>
       </ol>
     </section>
 
@@ -127,8 +128,9 @@
 
     <section class="slide">
       <div class="myrule">
-        <p>رتبة المصفوفة هي حاصل ضرب عدد الصفوف في عدد الأعمدة:</p> <br>
-        <p><strong>رتبة المصفوفة</strong> \[A = \textcolor{red}{m} \times \textcolor{blue}{n}\]</p>
+        <p>رتبة المصفوفة تُكتب على الصورة (عدد الصفوف \(\times\) عدد الأعمدة)، فالمصفوفة التي لها \(\textcolor{red}{m}\) صفاً و
+          \(\textcolor{blue}{n}\) عموداً رتبتها \(\textcolor{red}{m} \times \textcolor{blue}{n}\)، ونكتب:</p>
+        <p>\[A_{\textcolor{red}{m} \times \textcolor{blue}{n}}\]</p>
       </div>
     </section>
 
@@ -136,27 +138,36 @@
       <div class="note">
         <p>لتكن لدينا المصفوفة \(A\) التالية:</p>
         <p>\[A = \begin{bmatrix} 2 &amp; 1 \\ -3 &amp; 6 \\ 5 &amp; 0 \end{bmatrix}\]</p>
-        <p>بما أن عدد الصفوف هو \(\textcolor{red}{3}\) وعدد الأعمدة هو \(\textcolor{blue}{2}\)، فإن رتبة المصفوفة هي:
-          \[A = \textcolor{red}{3} \times \textcolor{blue}{2}\] <strong>ملاحظة:</strong> قيمة العنصر \(a_{31}\) يساوي
-          \(5\).</p>
+        <p>بما أن عدد الصفوف هو \(\textcolor{red}{3}\) وعدد الأعمدة هو \(\textcolor{blue}{2}\)، فإن رتبة المصفوفة \(A\) هي
+          \(\textcolor{red}{3} \times \textcolor{blue}{2}\)، ونكتب: \[A_{\textcolor{red}{3} \times \textcolor{blue}{2}}\]
+          <strong>ملاحظة:</strong> قيمة العنصر \(a_{31}\) تساوي \(5\).</p>
       </div>
     </section>
 
     <section class="slide">
-      <div class="example">
-        <div class="center">
-          <p>\(A = \begin{bmatrix} 3 &amp; 1 &amp; 0 \\ -1 &amp; -1 &amp; 2 \end{bmatrix} \quad , \quad B = \begin{bmatrix} 2 &amp; 8 \\ 1 &amp;
-            3 \end{bmatrix}\)</p>
-          <p>\(C = \begin{bmatrix} 2 &amp; 3 \\ -1 &amp; 5 \\ 8 &amp; -5 \end{bmatrix} \quad , \quad D = \begin{bmatrix} 2 &amp; 5 &amp; -3
-            \end{bmatrix}\)</p>
+      <h3>أمثلة على رتبة المصفوفة</h3>
+      <p class="lead">أوجد رتبة كل مصفوفة مما يأتي، بعدّ الصفوف (بالأحمر) والأعمدة (بالأزرق):</p>
+      <div class="problems cols-4">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> <span class="pt-text">المصفوفة \(A\)</span></p>
+          <div class="problem-sol">\[A = \begin{bmatrix} 3 &amp; 1 &amp; 0 \\ -1 &amp; -1 &amp; 2 \end{bmatrix}\]</div>
+          <p class="solution-label">الرتبة: \(\textcolor{red}{2} \times \textcolor{blue}{3}\)</p>
         </div>
-        <p><strong>الحل:</strong> نقوم بحساب عدد الصفوف (بالأحمر) وعدد الأعمدة (بالأزرق) لكل مصفوفة:</p>
-        <ul>
-          <li>رتبة المصفوفة \(A = \textcolor{red}{2} \times \textcolor{blue}{3}\)</li>
-          <li>رتبة المصفوفة \(B = \textcolor{red}{2} \times \textcolor{blue}{2}\)</li>
-          <li>رتبة المصفوفة \(C = \textcolor{red}{3} \times \textcolor{blue}{2}\)</li>
-          <li>رتبة المصفوفة \(D = \textcolor{red}{1} \times \textcolor{blue}{3}\)</li>
-        </ul>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> <span class="pt-text">المصفوفة \(B\)</span></p>
+          <div class="problem-sol">\[B = \begin{bmatrix} 2 &amp; 8 \\ 1 &amp; 3 \end{bmatrix}\]</div>
+          <p class="solution-label">الرتبة: \(\textcolor{red}{2} \times \textcolor{blue}{2}\)</p>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">3</span> <span class="pt-text">المصفوفة \(C\)</span></p>
+          <div class="problem-sol">\[C = \begin{bmatrix} 2 &amp; 3 \\ -1 &amp; 5 \\ 8 &amp; -5 \end{bmatrix}\]</div>
+          <p class="solution-label">الرتبة: \(\textcolor{red}{3} \times \textcolor{blue}{2}\)</p>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">4</span> <span class="pt-text">المصفوفة \(D\)</span></p>
+          <div class="problem-sol">\[D = \begin{bmatrix} 2 &amp; 5 &amp; -3 \end{bmatrix}\]</div>
+          <p class="solution-label">الرتبة: \(\textcolor{red}{1} \times \textcolor{blue}{3}\)</p>
+        </div>
       </div>
     </section>
 
@@ -205,20 +216,29 @@
     </section>
 
     <section class="slide">
-      <div class="example">
-        <p>\[A = \begin{bmatrix} 2 \\ 7 \\ 1 \end{bmatrix} , \qquad B = \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0
-          &amp; 1 \end{bmatrix} , \qquad C = \begin{bmatrix} 3 &amp; 0 \\ 0 &amp; 4 \end{bmatrix}\]</p>
-        <p><strong>الحل:</strong></p>
-        <ul>
-          <li>نوع المصفوفة \(A\): مصفوفة عمودية.</li>
-          <li>نوع المصفوفة \(B\): مصفوفة الوحدة \(I_3\).</li>
-          <li>نوع المصفوفة \(C\): مصفوفة قطرية.</li>
-        </ul>
+      <h3>أمثلة على أنواع المصفوفات</h3>
+      <p class="lead">حدد نوع كل مصفوفة مما يأتي:</p>
+      <div class="problems cols-3">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> <span class="pt-text">المصفوفة \(A\)</span></p>
+          <div class="problem-sol">\[A = \begin{bmatrix} 2 \\ 7 \\ 1 \end{bmatrix}\]</div>
+          <p class="solution-label">مصفوفة عمود، لأنها تتكون من عمود واحد.</p>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> <span class="pt-text">المصفوفة \(B\)</span></p>
+          <div class="problem-sol">\[B = \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\]</div>
+          <p class="solution-label">مصفوفة الوحدة \(I_3\).</p>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">3</span> <span class="pt-text">المصفوفة \(C\)</span></p>
+          <div class="problem-sol">\[C = \begin{bmatrix} 3 &amp; 0 \\ 0 &amp; 4 \end{bmatrix}\]</div>
+          <p class="solution-label">مصفوفة قطرية، لأن العناصر خارج القطر الرئيسي أصفار.</p>
+        </div>
       </div>
     </section>
 
     <section class="slide">
-      <h3>تساوي مصفوفتين:</h3>
+      <h3>تساوي مصفوفتين</h3>
       <div class="myrule">
         <p>نقول عن المصفوفة \(A\) تساوي المصفوفة \(B\) إذا تحقق الشرطان:</p>
         <ol>
@@ -230,26 +250,29 @@
     </section>
 
     <section class="slide">
-      <div class="example">
-        <p>\[A = \begin{bmatrix} 3 &amp; 9 \\ 1 &amp; 5 \end{bmatrix} , \qquad B = \begin{bmatrix} 3 &amp; 9 \\ 1 &amp; 5
-          \end{bmatrix}\]</p>
-        <p><strong>الحل:</strong> نعم، المصفوفة \(A\) تساوي المصفوفة \(B\) لأن لهما نفس الرتبة \(2 \times 2\) وعناصرهما
-          المتناظرة متساوية.</p>
+      <h3>أمثلة على تساوي مصفوفتين</h3>
+      <p class="lead">هل المصفوفتان \(A\) و \(B\) متساويتان؟</p>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> <span class="pt-text">مصفوفتان من الرتبة \(2 \times 2\)</span></p>
+          <div class="problem-sol">\[A = \begin{bmatrix} 3 &amp; 9 \\ 1 &amp; 5 \end{bmatrix} , \qquad B = \begin{bmatrix} 3 &amp; 9 \\ 1 &amp; 5
+            \end{bmatrix}\]</div>
+          <p class="solution-label">نعم، \(A = B\) لأن لهما نفس الرتبة وعناصرهما المتناظرة متساوية.</p>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> <span class="pt-text">مصفوفتان من الرتبة \(2 \times 2\)</span></p>
+          <div class="problem-sol">\[A = \begin{bmatrix} 3 &amp; 9 \\ 0 &amp; 5 \end{bmatrix} , \qquad B = \begin{bmatrix} 3 &amp; 9 \\ 1 &amp; 5
+            \end{bmatrix}\]</div>
+          <p class="solution-label">لا، \(A \neq B\) لأن أحد عناصرهما المتناظرة غير متساوٍ (\(0 \neq 1\))، مع أن لهما نفس الرتبة.</p>
+        </div>
       </div>
-      <div class="example">
-        <p>\[A = \begin{bmatrix} 3 &amp; 9 \\ 0 &amp; 5 \end{bmatrix} , \qquad B = \begin{bmatrix} 3 &amp; 9 \\ 1 &amp; 5
-          \end{bmatrix}\]</p>
-        <p><strong>الحل:</strong> لا، لأن المصفوفتان \(A\) و \(B\) غير متساويين لأن أحد عناصرها المتناظرة غير متساوية
-          (\(1 \neq 0\))، مع العلم أن لهما نفس الرتبة.</p>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="example">
-        <p>\[A = \begin{bmatrix} 1 &amp; 2 &amp; 5 \\ 3 &amp; 4 &amp; 7 \end{bmatrix} , \qquad B = \begin{bmatrix} x &amp; 2 &amp; 5 \\ 3 &amp; 4 &amp;
-          7 \end{bmatrix}\]</p>
-        <p><strong>الحل:</strong> نلاحظ أن المصفوفتين \(A\) و \(B\) لهما نفس الرتبة \(2 \times 3\) وأن جميع عناصرهما
-          المتناظرة متساوية، وبالتالي فإن قيمة \(x = 1\).</p>
+      <div class="problems cols-1">
+        <div class="problem">
+          <p class="problem-title"><span class="num">3</span> <span class="pt-text">أوجد قيمة \(x\) إذا كانت \(A = B\):</span></p>
+          <div class="problem-sol">\[A = \begin{bmatrix} 1 &amp; 2 &amp; 5 \\ 3 &amp; 4 &amp; 7 \end{bmatrix} , \qquad B = \begin{bmatrix} x &amp; 2 &amp; 5 \\ 3 &amp; 4 &amp;
+            7 \end{bmatrix} \quad \Rightarrow \quad x = 1\]</div>
+          <p class="solution-label">المصفوفتان متساويتان، إذن العناصر المتناظرة متساوية: \(x = a_{11} = 1\).</p>
+        </div>
       </div>
     </section>
 
@@ -314,14 +337,9 @@
 
     <section class="slide">
       <div class="example">
-        <p>إذا كانت: \[A = \begin{bmatrix} 2 &amp; 8 \\ 1 &amp; 3 \end{bmatrix}, \quad B = \begin{bmatrix} 6 &amp; -4 \\ 2 &amp; 8
-          \end{bmatrix}\]</p>
-        <p>أوجد كلاً مما يأتي: \[a) \ 2A \qquad b) \ 2A + B \qquad c) \ \frac{B}{2}\]</p>
-        <p><strong>الحل:</strong></p></div>
-    </section>
-
-    <section class="slide">
-      <div class="example">
+        <p>إذا كانت \(A = \begin{bmatrix} 2 &amp; 8 \\ 1 &amp; 3 \end{bmatrix}\) و \(B = \begin{bmatrix} 6 &amp; -4 \\ 2 &amp; 8
+          \end{bmatrix}\)، أوجد: \(\;a)\ 2A \quad b)\ 2A + B \quad c)\ \frac{B}{2}\)</p>
+        <p><strong>الحل:</strong></p>
         <p>\[\begin{aligned}
           a) \ 2A &amp;= \textcolor{red}{2} \begin{bmatrix} 2 &amp; 8 \\ 1 &amp; 3 \end{bmatrix} = \begin{bmatrix}
           \textcolor{red}{2} \times 2 &amp; \textcolor{red}{2} \times 8 \\ \textcolor{red}{2} \times 1 &amp; \textcolor{red}{2}
@@ -348,6 +366,7 @@
     <section class="slide">
       <h3>أولاً: ضرب صف في عمود (تابع)</h3>
       <div class="example">
+        <p>أوجد ناتج الضرب:</p>
         <p>\[\begin{bmatrix} \textcolor{red}{2} &amp; \textcolor{blue}{4} \end{bmatrix} \begin{bmatrix} \textcolor{red}{1}\\
           \textcolor{blue}{3} \end{bmatrix} = \begin{bmatrix} \textcolor{red}{2}\times\textcolor{red}{1} +
           \textcolor{blue}{4}\times\textcolor{blue}{3} \end{bmatrix} = \begin{bmatrix} \textcolor{red}{2} +
@@ -378,17 +397,25 @@
     </section>
 
     <section class="slide">
-      <div class="example">
-        <p>\[\text{(a)}\quad A_{3\times4}\cdot B_{4\times2} \qquad\qquad \text{(b)}\quad A_{5\times3}\cdot
-          B_{3\times4}\]</p>
-        <p><strong>الحل:</strong></p>
-        <p>\[\text{(a)}\quad A_{3\times4}\cdot B_{4\times2} \;\Rightarrow\; \textcolor{red}{3\times2}\]</p>
-        <p>\[\text{(b)}\quad A_{5\times3}\cdot B_{3\times4} \;\Rightarrow\; \textcolor{red}{5\times4}\]</p>
+      <h3>أمثلة على رتبة حاصل الضرب</h3>
+      <p class="lead">أوجد رتبة حاصل الضرب في كل مما يأتي:</p>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> <span class="pt-text">\(A_{3\times4}\cdot B_{4\times2}\)</span></p>
+          <div class="problem-sol">\[A_{\textcolor{red}{3}\times4}\cdot B_{4\times\textcolor{red}{2}} = C_{\textcolor{red}{3\times2}}\]</div>
+          <p class="solution-label">عدد أعمدة \(A\) يساوي عدد صفوف \(B\) (4)، فالضرب ممكن.</p>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> <span class="pt-text">\(A_{5\times3}\cdot B_{3\times4}\)</span></p>
+          <div class="problem-sol">\[A_{\textcolor{red}{5}\times3}\cdot B_{3\times\textcolor{red}{4}} = C_{\textcolor{red}{5\times4}}\]</div>
+          <p class="solution-label">عدد أعمدة \(A\) يساوي عدد صفوف \(B\) (3)، فالضرب ممكن.</p>
+        </div>
       </div>
     </section>
 
     <section class="slide">
       <div class="example">
+        <p>أوجد ناتج الضرب:</p>
         <p>\[\begin{bmatrix} \textcolor{red}{2} &amp; \textcolor{red}{3}\\ \textcolor{blue}{1} &amp; \textcolor{blue}{4}
           \end{bmatrix} \cdot \begin{bmatrix} 5 &amp; 6\\ 7 &amp; 8 \end{bmatrix}\]</p>
         <p><strong>الحل:</strong></p>
@@ -422,45 +449,45 @@
         <div class="note">
           <p>لا يمكن إيجاد \(C\cdot B\) لأن عدد أعمدة المصفوفة \(C\) لا يساوي عدد صفوف المصفوفة \(B\).</p>
         </div></div>
+      <div class="myrule">
+        <p>من الفقرتين (a) و (b) نلاحظ أن \(A\cdot B \neq B\cdot A\)، أي أن عملية ضرب المصفوفات غير تبديليّة.</p>
+      </div>
     </section>
 
-    <section class="slide">
-      <div class="myrule">
-        <p>\[A\cdot B \neq B\cdot A\] أي أن عملية ضرب المصفوفات غير تبديليّة.</p>
-      </div>
-      <div class="definition">
-        <h2 id="المحددات">المحددات</h2>
-        <p>إذا كانت \(A\) مصفوفة مربعة فإن عددًا يُعبّر عنه بعدد حقيقي ويُرمز له بمحدد المصفوفة \(A\) بالرمز \(|A|\).
-        </p>
-      </div>
+    <!-- ===================== Part 3 ===================== -->
+    <section class="slide slide-section">
+      <span class="section-num">03</span>
+      <h2 id="المحددات">المحددات</h2>
     </section>
 
     <section class="slide">
       <h3>حساب المحدد \(2\times 2\)</h3>
+      <div class="definition">
+        <p>لكل مصفوفة مربعة \(A\) عدد حقيقي يُسمى <strong>محدد المصفوفة</strong> ويُرمز له بالرمز \(|A|\).</p>
+      </div>
       <div class="myrule">
-        <p>إذا كانت: \[A= \begin{bmatrix} a &amp; b\\ c &amp; d \end{bmatrix}\] فإن: \[|A| = \begin{vmatrix} a &amp; b\\ c &amp; d
+        <p>إذا كانت \(A= \begin{bmatrix} a &amp; b\\ c &amp; d \end{bmatrix}\) فإن: \[|A| = \begin{vmatrix} a &amp; b\\ c &amp; d
           \end{vmatrix} = ad - bc\]</p>
       </div>
-    </section>
-
-    <section class="slide">
-      <h3>حساب المحدد \(2\times 2\) (تابع)</h3>
       <div class="example">
-        <p>إذا كانت: \[A= \begin{bmatrix} 4 &amp; 5\\ 3 &amp; 6 \end{bmatrix}\] فإن: \[|A| = \begin{vmatrix} 4 &amp; 5\\ 3 &amp; 6
+        <p>إذا كانت \(A= \begin{bmatrix} 4 &amp; 5\\ 3 &amp; 6 \end{bmatrix}\) فإن: \[|A| = \begin{vmatrix} 4 &amp; 5\\ 3 &amp; 6
           \end{vmatrix} = (4\times6)-(5\times3) = 24-15 = 9\]</p>
       </div>
     </section>
 
     <section class="slide">
-      <div class="example">
-        <p>\[\text{(a)}\quad A= \begin{bmatrix} 2 &amp; 1\\ -4 &amp; 3 \end{bmatrix} \qquad\qquad \text{(b)}\quad B=
-          \begin{bmatrix} 1 &amp; -2 &amp; 7\\ 3 &amp; 1 &amp; 9 \end{bmatrix}\]</p>
-        <p><strong>الحل:</strong></p>
-        <p>\[\text{(a)}\quad |A| = \begin{vmatrix} 2 &amp; 1\\ -4 &amp; 3 \end{vmatrix} = (2\times3)-(1\times(-4)) = 6-(-4) =
-          10\]</p>
-        <p>\[\text{(b)}\quad B= \begin{bmatrix} 1 &amp; -2 &amp; 7\\ 3 &amp; 1 &amp; 9 \end{bmatrix}\]</p>
-        <div class="note">
-          <p>لا يمكن حساب المحدد لأن المصفوفة ليست مربعة.</p>
+      <h3>أمثلة على المحدد \(2\times 2\)</h3>
+      <p class="lead">أوجد محدد كل مصفوفة مما يأتي إن أمكن:</p>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> <span class="pt-text">\(A= \begin{bmatrix} 2 &amp; 1\\ -4 &amp; 3 \end{bmatrix}\)</span></p>
+          <div class="problem-sol">\[|A| = (2\times3)-(1\times(-4)) = 6+4 = 10\]</div>
+          <p class="solution-label">المصفوفة مربعة، نطبق القانون \(ad - bc\).</p>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> <span class="pt-text">\(B= \begin{bmatrix} 1 &amp; -2 &amp; 7\\ 3 &amp; 1 &amp; 9 \end{bmatrix}\)</span></p>
+          <div class="problem-sol">لا يمكن حساب المحدد.</div>
+          <p class="solution-label">المصفوفة من الرتبة \(2 \times 3\) وليست مربعة.</p>
         </div>
       </div>
     </section>
@@ -468,7 +495,7 @@
     <section class="slide">
       <h3>حساب المحددات \(3\times 3\)</h3>
       <div class="myrule">
-        <p>المحدد \(3 \times 3\) للمصفوفة المربعة \(A\): نكرر الصفين الأول والثاني أسفل المحدد، ثم نضرب عناصر الأقطار:</p>
+        <p>المحدد \(3 \times 3\) للمصفوفة المربعة \(A\): نكرر العمودين الأول والثاني على يمين المحدد، ثم نضرب عناصر الأقطار:</p>
 
         <div style="width:100%; overflow-x:auto; text-align:center;">
           <svg width="350" height="200" viewBox="0 0 350 200" style="fill: var(--venn-stroke); margin:auto; display:block; font-family:'Times New Roman', serif; font-size:18px; font-style:italic;">
@@ -514,7 +541,7 @@
 
     <section class="slide">
       <div class="example">
-        <p>نطبق طريقة الأسهم (قاعدة ساروس):</p>
+        <p>أوجد محدد المصفوفة \(\begin{bmatrix} 4 &amp; -1 &amp; 3 \\ -3 &amp; 2 &amp; 6 \\ -2 &amp; 5 &amp; 1 \end{bmatrix}\) بطريقة الأسهم (قاعدة ساروس):</p>
         <div style="width:100%; overflow-x:auto; text-align:center;">
           <svg width="350" height="200" viewBox="0 0 350 200" style="fill: var(--venn-stroke); margin:auto; display:block; font-family:'Times New Roman', serif; font-size:18px; direction: ltr;">
             <!-- Matrix brackets -->
@@ -556,20 +583,17 @@
       </div>
     </section>
 
-    <!-- ===================== Part 3 ===================== -->
+    <!-- ===================== Part 4 ===================== -->
     <section class="slide slide-section">
-      <span class="section-num">03</span>
+      <span class="section-num">04</span>
       <h2 id="مقلوب-معكوس-مصفوفة">مقلوب (معكوس) مصفوفة</h2>
     </section>
 
     <section class="slide">
       <div class="definition">
-        <p>إذا كانت \(A\) مصفوفة مربعة وكانت محددتها لا تساوي الصفر وبالتالي يوجد مقلوب للمصفوفة \(A\) ويرمز لها بالرمز
-          \(A^{-1}\) أي أن: \[AA^{-1} = A^{-1}A = I\]</p>
+        <p>إذا كانت \(A\) مصفوفة مربعة ومحددها لا يساوي الصفر، فإنه يوجد مقلوب للمصفوفة \(A\) يُرمز له بالرمز
+          \(A^{-1}\) بحيث: \[AA^{-1} = A^{-1}A = I\]</p>
       </div>
-    </section>
-
-    <section class="slide">
       <div class="myrule">
         <p>إذا كانت \(A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\) أعداد حقيقية بحيث أن: \[|A| = \begin{vmatrix} a
           &amp; b \\ c &amp; d \end{vmatrix} = ad - bc \neq 0\] فإن:
@@ -578,15 +602,21 @@
     </section>
 
     <section class="slide">
-      <div class="example">
-        <p>\[a) \ A = \begin{bmatrix} 2 &amp; 1 \\ 6 &amp; 3 \end{bmatrix} \qquad b) \ B = \begin{bmatrix} 2 &amp; 2 \\ 3 &amp; 4
-          \end{bmatrix}\]</p>
-        <p><strong>الحل:</strong></p>
-        <p>\[a) \qquad |A| = \begin{vmatrix} 2 &amp; 1 \\ 6 &amp; 3 \end{vmatrix} = (2 \times 3) - (1 \times 6) = 0\] <strong>لا
-            يمكن إيجاد \(A^{-1}\).</strong></p>
-        <p>\[b)\qquad |B| = \begin{vmatrix} 2 &amp; 2 \\ 3 &amp; 4 \end{vmatrix} = (2 \times 4) - (2 \times 3) = 2\]</p>
-        <p>\[ B^{-1} = \frac{1}{2} \begin{bmatrix} 4 &amp; -2 \\ -3 &amp; 2 \end{bmatrix} = \begin{bmatrix} 2 &amp; -1 \\ -1.5 &amp; 1
-          \end{bmatrix} \]</p>
+      <h3>أمثلة على مقلوب المصفوفة</h3>
+      <p class="lead">أوجد مقلوب كل مصفوفة مما يأتي إن وُجد:</p>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> <span class="pt-text">\(A = \begin{bmatrix} 2 &amp; 1 \\ 6 &amp; 3 \end{bmatrix}\)</span></p>
+          <div class="problem-sol">\[|A| = (2 \times 3) - (1 \times 6) = 0\]</div>
+          <p class="solution-label">المحدد يساوي صفراً، إذن لا يوجد \(A^{-1}\).</p>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> <span class="pt-text">\(B = \begin{bmatrix} 2 &amp; 2 \\ 3 &amp; 4 \end{bmatrix}\)</span></p>
+          <div class="problem-sol">\[|B| = (2 \times 4) - (2 \times 3) = 2\]
+            \[B^{-1} = \frac{1}{2} \begin{bmatrix} 4 &amp; -2 \\ -3 &amp; 2 \end{bmatrix} = \begin{bmatrix} 2 &amp; -1 \\ -1.5 &amp; 1
+            \end{bmatrix}\]</div>
+          <p class="solution-label">المحدد لا يساوي صفراً، نبدّل عنصري القطر الرئيسي ونعكس إشارة الآخرَين ثم نقسم على المحدد.</p>
+        </div>
       </div>
     </section>
 
