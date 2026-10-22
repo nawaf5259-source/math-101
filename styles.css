@@ -6500,3 +6500,16 @@ body.phone-cards .unit-nav.is-hidden {
 .app-mode body.deck-modern .slide.slide-section {
     padding-top: 64px !important;
 }
+
+/* Unit figures (Venn, geometry, matrices) and symbol/formula summaries */
+:root { --venn-bg: #ffffff; --venn-stroke: #1e1b4b; --fig-fill: rgba(14, 165, 233, 0.14); --fig-dim: #475569; --fig-faint: #94a3b8; }
+body.dark-mode { --venn-bg: rgba(15, 23, 42, 0.6); --venn-stroke: #e2e8f0; --fig-fill: rgba(56, 189, 248, 0.18); --fig-dim: #cbd5e1; --fig-faint: #64748b; }
+.venn-fig { margin: 0.75rem auto 0; text-align: center; }
+.venn-fig svg { max-width: 100%; height: auto; filter: drop-shadow(0 4px 10px rgba(30, 27, 75, 0.12)); }
+.venn-fig figcaption { margin-top: 0.35rem; font-size: 0.9rem; color: var(--text-muted); font-weight: 700; }
+.sym-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 0.5rem; }
+.sym { display: flex; flex-direction: column; align-items: stretch; gap: 0.3rem; padding: 0.6rem 0.9rem; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--border); text-align: center; }
+.sym > span:last-child { line-height: 1.5; font-size: 0.9rem; color: var(--text-muted); }
+.sym-k { min-width: 0; max-width: 100%; overflow-x: auto; overflow-y: hidden; text-align: center; font-size: 1.1rem; color: var(--accent); font-weight: 800; direction: ltr; scrollbar-width: none; }
+@media (max-width: 640px) { .sym-grid { grid-template-columns: 1fr; } }
+.sym-k mjx-container { margin: 0 !important; }
