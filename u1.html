@@ -114,6 +114,19 @@
   <style>
     .problem-sol { margin: .4rem 0; }
   </style>
+  <style>
+    :root { --venn-bg: #ffffff; --venn-stroke: #1e1b4b; }
+    body.dark-mode { --venn-bg: rgba(15, 23, 42, 0.6); --venn-stroke: #e2e8f0; }
+    .venn-fig { margin: 0.75rem auto 0; text-align: center; }
+    .venn-fig svg { max-width: 100%; height: auto; filter: drop-shadow(0 4px 10px rgba(30, 27, 75, 0.12)); }
+    .venn-fig figcaption { margin-top: 0.35rem; font-size: 0.9rem; color: var(--text-muted); font-weight: 700; }
+    .sym-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 0.5rem; }
+    .sym { display: flex; align-items: center; gap: 0.8rem; padding: 0.7rem 0.9rem; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--border); }
+    .sym > span:last-child { flex: 1; line-height: 1.5; font-size: 0.95rem; }
+    .sym-k { min-width: 5rem; text-align: center; font-size: 1.1rem; color: var(--accent); font-weight: 800; direction: ltr; flex: 0 0 auto; }
+    @media (max-width: 640px) { .sym-grid { grid-template-columns: 1fr; } }
+  </style>
+
 
   <!-- MathJax -->
   <script>
@@ -422,21 +435,7 @@
           كالتالي \(A \cap B\)، ونعرفها رياضياً كما يلي: \[A \cap B = \{ x : x \in A \text{ و } x \in B \}\]</p>
         <div class="center" style="text-align: center;">
           <!-- SVG Venn Intersection -->
-          <svg width="200" height="140" viewBox="0 0 200 140">
-            <defs>
-              <clipPath id="clip-a">
-                <circle cx="70" cy="70" r="40"></circle>
-              </clipPath>
-            </defs>
-            <rect x="0" y="0" width="200" height="140" fill="none" stroke="#333" stroke-width="2"></rect>
-            <text x="180" y="20" font-family="Arial">U</text>
-            <circle cx="70" cy="70" r="40" fill="none" stroke="#2196F3" stroke-width="2"></circle>
-            <text x="40" y="40">A</text>
-            <circle cx="130" cy="70" r="40" fill="none" stroke="#E91E63" stroke-width="2"></circle>
-            <text x="160" y="40">B</text>
-            <!-- Intersection: Circle B clipped by Circle A -->
-            <circle cx="130" cy="70" r="40" fill="#9C27B0" fill-opacity="0.5" stroke="none" clip-path="url(#clip-a)"></circle>
-          </svg>
+          <figure class="venn-fig"><svg class="venn" viewBox="0 0 220 150" width="250" role="img"><rect x="2" y="2" width="216" height="146" rx="10" fill="var(--venn-bg)" stroke="var(--venn-stroke)" stroke-width="2" /><defs><clipPath id="clip-a"><circle cx="80" cy="80" r="46" /></clipPath></defs><circle cx="140" cy="80" r="46" fill="#1e1b4b" fill-opacity="0.55" clip-path="url(#clip-a)" /><circle cx="80" cy="80" r="46" fill="none" stroke="#0ea5e9" stroke-width="3" /><circle cx="140" cy="80" r="46" fill="none" stroke="#8b5cf6" stroke-width="3" /><text x="60" y="34" font-size="16" font-weight="700" fill="#0ea5e9">A</text><text x="150" y="34" font-size="16" font-weight="700" fill="#8b5cf6">B</text><text x="196" y="22" font-size="14" font-weight="700" fill="var(--venn-stroke)">U</text></svg><figcaption>المنطقة الملونة: \(A \cap B\)</figcaption></figure>
         </div>
       </div>
     </section>
@@ -494,14 +493,7 @@
             العنصر</strong>، ويرمز لهما بالرمز \(A \cup B\) : \[A \cup B = \{ x : x \in A \text{ أو } x \in B \}\]</p>
         <div class="center" style="text-align: center;">
           <!-- SVG Venn Union -->
-          <svg width="200" height="140" viewBox="0 0 200 140">
-            <rect x="0" y="0" width="200" height="140" fill="none" stroke="#333" stroke-width="2"></rect>
-            <circle cx="70" cy="70" r="40" fill="#2196F3" fill-opacity="0.3" stroke="#2196F3" stroke-width="2"></circle>
-            <circle cx="130" cy="70" r="40" fill="#E91E63" fill-opacity="0.3" stroke="#E91E63" stroke-width="2"></circle>
-            <text x="40" y="40">A</text>
-            <text x="160" y="40">B</text>
-            <text x="180" y="20">U</text>
-          </svg>
+          <figure class="venn-fig"><svg class="venn" viewBox="0 0 220 150" width="250" role="img"><rect x="2" y="2" width="216" height="146" rx="10" fill="var(--venn-bg)" stroke="var(--venn-stroke)" stroke-width="2" /><circle cx="80" cy="80" r="46" fill="#0ea5e9" fill-opacity="0.35" /><circle cx="140" cy="80" r="46" fill="#8b5cf6" fill-opacity="0.35" /><circle cx="80" cy="80" r="46" fill="none" stroke="#0ea5e9" stroke-width="3" /><circle cx="140" cy="80" r="46" fill="none" stroke="#8b5cf6" stroke-width="3" /><text x="60" y="34" font-size="16" font-weight="700" fill="#0ea5e9">A</text><text x="150" y="34" font-size="16" font-weight="700" fill="#8b5cf6">B</text><text x="196" y="22" font-size="14" font-weight="700" fill="var(--venn-stroke)">U</text></svg><figcaption>المنطقة الملونة: \(A \cup B\)</figcaption></figure>
         </div>
       </div>
     </section>
@@ -558,19 +550,7 @@
           ويرمز لها بالرمز \(A - B\): \[A - B = \{ x : x \in A \text{ و } x \notin B \}\]</p>
         <div class="center" style="text-align: center;">
           <!-- SVG Venn Difference -->
-          <svg width="200" height="140" viewBox="0 0 200 140">
-            <defs>
-              <mask id="cut-b">
-                <rect x="0" y="0" width="200" height="140" fill="white"></rect>
-                <circle cx="130" cy="70" r="40" fill="black"></circle>
-              </mask>
-            </defs>
-            <rect x="0" y="0" width="200" height="140" fill="none" stroke="#333" stroke-width="2"></rect>
-            <circle cx="70" cy="70" r="40" fill="#4CAF50" fill-opacity="0.5" stroke="#4CAF50" stroke-width="2" mask="url(#cut-b)"></circle>
-            <circle cx="130" cy="70" r="40" fill="none" stroke="#E91E63" stroke-width="2"></circle>
-            <text x="40" y="40">A</text>
-            <text x="160" y="40">B</text>
-          </svg>
+          <figure class="venn-fig"><svg class="venn" viewBox="0 0 220 150" width="250" role="img"><rect x="2" y="2" width="216" height="146" rx="10" fill="var(--venn-bg)" stroke="var(--venn-stroke)" stroke-width="2" /><defs><mask id="cut-b"><rect x="0" y="0" width="220" height="150" fill="white" /><circle cx="140" cy="80" r="46" fill="black" /></mask></defs><circle cx="80" cy="80" r="46" fill="#0ea5e9" fill-opacity="0.55" mask="url(#cut-b)" /><circle cx="80" cy="80" r="46" fill="none" stroke="#0ea5e9" stroke-width="3" /><circle cx="140" cy="80" r="46" fill="none" stroke="#8b5cf6" stroke-width="3" /><text x="60" y="34" font-size="16" font-weight="700" fill="#0ea5e9">A</text><text x="150" y="34" font-size="16" font-weight="700" fill="#8b5cf6">B</text><text x="196" y="22" font-size="14" font-weight="700" fill="var(--venn-stroke)">U</text></svg><figcaption>المنطقة الملونة: \(A - B\)</figcaption></figure>
         </div>
       </div>
     </section>
@@ -627,12 +607,7 @@
           \(\bar{A}\) أو \(A^c\): \[\bar{A} = U - A\]</p>
         <div class="center" style="text-align: center;">
           <!-- SVG Venn Complement -->
-          <svg width="200" height="140" viewBox="0 0 200 140">
-            <rect x="0" y="0" width="200" height="140" fill="#ddd" stroke="#333" stroke-width="2"></rect>
-            <circle cx="100" cy="70" r="40" fill="white" stroke="#333" stroke-width="2"></circle>
-            <text x="100" y="75" text-anchor="middle">A</text>
-            <text x="180" y="20">U</text>
-          </svg>
+          <figure class="venn-fig"><svg class="venn" viewBox="0 0 220 150" width="250" role="img"><rect x="2" y="2" width="216" height="146" rx="10" fill="#0ea5e9" fill-opacity="0.45" stroke="var(--venn-stroke)" stroke-width="2" /><circle cx="110" cy="80" r="46" fill="var(--venn-bg)" stroke="#0ea5e9" stroke-width="3" /><text x="110" y="86" text-anchor="middle" font-size="16" font-weight="700" fill="#0ea5e9">A</text><text x="196" y="22" font-size="14" font-weight="700" fill="var(--venn-stroke)">U</text></svg><figcaption>المنطقة الملونة: \(\bar{A}\)</figcaption></figure>
         </div>
       </div>
     </section>
@@ -690,16 +665,7 @@
           لها بالرمز \(A \oplus B\) : \[A \oplus B = \{ x : x \in A \cup B \text{ و } x \notin A \cap B \}\]</p>
         <div class="center" style="text-align: center;">
           <!-- SVG Venn Symmetric Difference -->
-          <svg width="200" height="140" viewBox="0 0 200 140">
-            <rect x="0" y="0" width="200" height="140" fill="none" stroke="#333" stroke-width="2"></rect>
-            <text x="180" y="20" font-family="Arial">U</text>
-            <circle cx="70" cy="70" r="40" fill="none" stroke="#2196F3" stroke-width="2"></circle>
-            <text x="40" y="40">A</text>
-            <circle cx="130" cy="70" r="40" fill="none" stroke="#E91E63" stroke-width="2"></circle>
-            <text x="160" y="40">B</text>
-            <!-- Symmetric Difference: Everything in A or B but NOT in both -->
-            <path d="M 30,70 a 40,40 0 1,0 80,0 a 40,40 0 1,0 -80,0 M 90,70 a 40,40 0 1,0 80,0 a 40,40 0 1,0 -80,0" fill="#9C27B0" fill-opacity="0.5" fill-rule="evenodd" stroke="none"></path>
-          </svg>
+          <figure class="venn-fig"><svg class="venn" viewBox="0 0 220 150" width="250" role="img"><rect x="2" y="2" width="216" height="146" rx="10" fill="var(--venn-bg)" stroke="var(--venn-stroke)" stroke-width="2" /><path d="M 34,80 a 46,46 0 1,0 92,0 a 46,46 0 1,0 -92,0 M 94,80 a 46,46 0 1,0 92,0 a 46,46 0 1,0 -92,0" fill="#1e1b4b" fill-opacity="0.5" fill-rule="evenodd" /><circle cx="80" cy="80" r="46" fill="none" stroke="#0ea5e9" stroke-width="3" /><circle cx="140" cy="80" r="46" fill="none" stroke="#8b5cf6" stroke-width="3" /><text x="60" y="34" font-size="16" font-weight="700" fill="#0ea5e9">A</text><text x="150" y="34" font-size="16" font-weight="700" fill="#8b5cf6">B</text><text x="196" y="22" font-size="14" font-weight="700" fill="var(--venn-stroke)">U</text></svg><figcaption>المنطقة الملونة: \(A \oplus B\)</figcaption></figure>
         </div>
       </div>
     </section>
@@ -837,19 +803,19 @@
       <div class="center" style="text-align: center; margin-top: 20px;">
         <!-- Hierarchy SVG -->
         <svg width="400" height="250" viewBox="0 0 400 250">
-          <rect x="0" y="0" width="400" height="250" fill="#f9f9f9" stroke="#333"></rect>
-          <text x="380" y="20">R</text>
-          <ellipse cx="140" cy="125" rx="130" ry="100" fill="#e3f2fd" stroke="#2196F3"></ellipse>
-          <text x="50" y="125" font-size="14">Q</text>
-          <ellipse cx="160" cy="125" rx="90" ry="70" fill="#bbdefb" stroke="#1976D2"></ellipse>
-          <text x="100" y="125" font-size="14">Z</text>
-          <ellipse cx="180" cy="125" rx="60" ry="45" fill="#90caf9" stroke="#1565C0"></ellipse>
-          <text x="140" y="125" font-size="14">W</text>
-          <ellipse cx="195" cy="125" rx="30" ry="20" fill="#64b5f6" stroke="#0D47A1"></ellipse>
+          <rect x="0" y="0" width="400" height="250" rx="12" fill="var(--venn-bg)" stroke="var(--venn-stroke)"></rect>
+          <text x="378" y="22" font-weight="700" fill="var(--venn-stroke)">R</text>
+          <ellipse cx="140" cy="125" rx="130" ry="100" fill="#0ea5e9" fill-opacity="0.12" stroke="#0ea5e9"></ellipse>
+          <text x="50" y="125" font-size="14" font-weight="700" fill="var(--venn-stroke)">Q</text>
+          <ellipse cx="160" cy="125" rx="90" ry="70" fill="#0ea5e9" fill-opacity="0.18" stroke="#0ea5e9"></ellipse>
+          <text x="100" y="125" font-size="14" font-weight="700" fill="var(--venn-stroke)">Z</text>
+          <ellipse cx="180" cy="125" rx="60" ry="45" fill="#0ea5e9" fill-opacity="0.28" stroke="#0284c7"></ellipse>
+          <text x="140" y="125" font-size="14" font-weight="700" fill="var(--venn-stroke)">W</text>
+          <ellipse cx="195" cy="125" rx="30" ry="20" fill="#0284c7" stroke="#1e1b4b"></ellipse>
           <text x="195" y="125" font-size="14" fill="white">N</text>
-          <circle cx="330" cy="125" r="40" fill="#fff9c4" stroke="#FBC02D"></circle>
+          <circle cx="330" cy="125" r="40" fill="#8b5cf6" fill-opacity="0.25" stroke="#8b5cf6"></circle>
           <foreignObject x="310" y="115" width="40" height="40">
-            <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(\bar{Q}\)</div>
+            <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: #8b5cf6; font-weight: 700; font-family: Arial; font-size: 14px;">\(\bar{Q}\)</div>
           </foreignObject>
         </svg>
       </div>
@@ -858,13 +824,13 @@
         <!-- Real Number Line SVG -->
         <svg width="600" height="120" viewBox="0 0 600 120" style="max-width: 100%;">
           <!-- Main Line -->
-          <line x1="20" y1="60" x2="580" y2="60" stroke="#333" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow-rev)"></line>
+          <line x1="20" y1="60" x2="580" y2="60" stroke="var(--venn-stroke)" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow-rev)"></line>
           <defs>
             <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-              <path d="M0,0 L0,6 L9,3 z" fill="#333"></path>
+              <path d="M0,0 L0,6 L9,3 z" fill="var(--venn-stroke)"></path>
             </marker>
             <marker id="arrow-rev" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto" markerUnits="strokeWidth">
-              <path d="M9,0 L9,6 L0,3 z" fill="#333"></path>
+              <path d="M9,0 L9,6 L0,3 z" fill="var(--venn-stroke)"></path>
             </marker>
           </defs>
 
@@ -872,63 +838,63 @@
           <!-- Ticks and Integer Labels -->
           <g>
             <!-- -3 -->
-            <line x1="50" y1="55" x2="50" y2="65" stroke="#333" stroke-width="2"></line>
+            <line x1="50" y1="55" x2="50" y2="65" stroke="var(--venn-stroke)" stroke-width="2"></line>
             <foreignObject x="30" y="70" width="40" height="40">
-              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(-3\)</div>
+              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: var(--venn-stroke); font-family: Arial; font-size: 14px;">\(-3\)</div>
             </foreignObject>
             <!-- -2 -->
-            <line x1="133" y1="55" x2="133" y2="65" stroke="#333" stroke-width="2"></line>
+            <line x1="133" y1="55" x2="133" y2="65" stroke="var(--venn-stroke)" stroke-width="2"></line>
             <foreignObject x="113" y="70" width="40" height="40">
-              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(-2\)</div>
+              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: var(--venn-stroke); font-family: Arial; font-size: 14px;">\(-2\)</div>
             </foreignObject>
             <!-- -1 -->
-            <line x1="216" y1="55" x2="216" y2="65" stroke="#333" stroke-width="2"></line>
+            <line x1="216" y1="55" x2="216" y2="65" stroke="var(--venn-stroke)" stroke-width="2"></line>
             <foreignObject x="196" y="70" width="40" height="40">
-              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(-1\)</div>
+              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: var(--venn-stroke); font-family: Arial; font-size: 14px;">\(-1\)</div>
             </foreignObject>
             <!-- 0 -->
-            <line x1="300" y1="50" x2="300" y2="70" stroke="#333" stroke-width="3"></line>
+            <line x1="300" y1="50" x2="300" y2="70" stroke="var(--venn-stroke)" stroke-width="3"></line>
             <foreignObject x="280" y="75" width="40" height="40">
-              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px; font-weight: bold;">\(0\)
+              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: var(--venn-stroke); font-family: Arial; font-size: 14px; font-weight: bold;">\(0\)
               </div>
             </foreignObject>
             <!-- 1 -->
-            <line x1="383" y1="55" x2="383" y2="65" stroke="#333" stroke-width="2"></line>
+            <line x1="383" y1="55" x2="383" y2="65" stroke="var(--venn-stroke)" stroke-width="2"></line>
             <foreignObject x="363" y="70" width="40" height="40">
-              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(1\)</div>
+              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: var(--venn-stroke); font-family: Arial; font-size: 14px;">\(1\)</div>
             </foreignObject>
             <!-- 2 -->
-            <line x1="466" y1="55" x2="466" y2="65" stroke="#333" stroke-width="2"></line>
+            <line x1="466" y1="55" x2="466" y2="65" stroke="var(--venn-stroke)" stroke-width="2"></line>
             <foreignObject x="446" y="70" width="40" height="40">
-              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(2\)</div>
+              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: var(--venn-stroke); font-family: Arial; font-size: 14px;">\(2\)</div>
             </foreignObject>
             <!-- 3 -->
-            <line x1="550" y1="55" x2="550" y2="65" stroke="#333" stroke-width="2"></line>
+            <line x1="550" y1="55" x2="550" y2="65" stroke="var(--venn-stroke)" stroke-width="2"></line>
             <foreignObject x="530" y="70" width="40" height="40">
-              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: black; font-family: Arial; font-size: 14px;">\(3\)</div>
+              <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: var(--venn-stroke); font-family: Arial; font-size: 14px;">\(3\)</div>
             </foreignObject>
           </g>
 
           <!-- Specific Points -->
           <!-- 1/2 (0.5) -->
-          <circle cx="341.5" cy="60" r="4" fill="#2196F3"></circle>
+          <circle cx="341.5" cy="60" r="4" fill="#0ea5e9"></circle>
           <foreignObject x="321.5" y="10" width="40" height="40">
-            <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: #2196F3; font-size: 14px;">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: #0ea5e9; font-size: 14px;">
               \(\frac{1}{2}\)</div>
           </foreignObject>
 
           <!-- -2.5 -->
-          <circle cx="91.5" cy="60" r="4" fill="#2196F3"></circle>
+          <circle cx="91.5" cy="60" r="4" fill="#0ea5e9"></circle>
           <foreignObject x="71.5" y="10" width="40" height="40">
-            <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: #2196F3; font-size: 14px;">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: #0ea5e9; font-size: 14px;">
               \(-2.5\)</div>
           </foreignObject>
 
           <!-- Sqrt(2) ~ 1.41 -->
           <!-- 1 is at 383, 2 is at 466. Diff = 83. 0.41 * 83 = 34. 383+34 = 417 -->
-          <circle cx="417" cy="60" r="4" fill="#E91E63"></circle>
+          <circle cx="417" cy="60" r="4" fill="#8b5cf6"></circle>
           <foreignObject x="397" y="10" width="40" height="40">
-            <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: #E91E63; font-size: 14px;">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: #8b5cf6; font-size: 14px;">
               \(\sqrt{2}\)</div>
           </foreignObject>
 
@@ -939,9 +905,9 @@
           <!-- Let's add -sqrt(3) ~ -1.73 -->
           <!-- -1 is 216, -2 is 133. -1.73 is closer to -2. -->
           <!-- 0.73 * 83 = 60.5. 216 - 60.5 = 155.5 -->
-          <circle cx="155.5" cy="60" r="4" fill="#E91E63"></circle>
+          <circle cx="155.5" cy="60" r="4" fill="#8b5cf6"></circle>
           <foreignObject x="135.5" y="10" width="40" height="40">
-            <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: #E91E63; font-size: 14px;">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; color: #8b5cf6; font-size: 14px;">
               \(-\sqrt{3}\)</div>
           </foreignObject>
 
@@ -960,6 +926,17 @@
           <li>\(Q \cap \bar{Q} = \phi\)</li>
         </ul>
       </div>
+    </section>
+
+    <!-- ===================== Summary ===================== -->
+    <section class="slide">
+      <h3>ملخص رموز الوحدة</h3>
+      <div class="sym-grid"><div class="sym"><span class="sym-k">\(x \in A\)</span><span>العنصر \(x\) ينتمي إلى \(A\)</span></div><div class="sym"><span class="sym-k">\(x \notin A\)</span><span>العنصر \(x\) لا ينتمي إلى \(A\)</span></div><div class="sym"><span class="sym-k">\(A \subseteq B\)</span><span>\(A\) مجموعة جزئية من \(B\)</span></div><div class="sym"><span class="sym-k">\(A \subset B\)</span><span>\(A\) مجموعة جزئية فعلية من \(B\)</span></div><div class="sym"><span class="sym-k">\(\phi\)</span><span>المجموعة الخالية</span></div><div class="sym"><span class="sym-k">\(U\)</span><span>المجموعة الشاملة</span></div></div>
+    </section>
+
+    <section class="slide">
+      <h3>ملخص رموز الوحدة (تابع)</h3>
+      <div class="sym-grid"><div class="sym"><span class="sym-k">\(A \cap B\)</span><span>التقاطع: العناصر المشتركة</span></div><div class="sym"><span class="sym-k">\(A \cup B\)</span><span>الاتحاد: كل العناصر بلا تكرار</span></div><div class="sym"><span class="sym-k">\(A - B\)</span><span>الفرق: في \(A\) وليس في \(B\)</span></div><div class="sym"><span class="sym-k">\(\bar{A}\)</span><span>المتممة: في \(U\) وليس في \(A\)</span></div><div class="sym"><span class="sym-k">\(A \oplus B\)</span><span>الفرق التناظري: في أحدهما فقط</span></div><div class="sym"><span class="sym-k">\(N, W, Z, Q, R\)</span><span>الطبيعية، الكلية، الصحيحة، النسبية، الحقيقية</span></div></div>
     </section>
 
   </main>
