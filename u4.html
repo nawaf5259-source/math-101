@@ -455,44 +455,44 @@
         <p>المحدد \(3 \times 3\) للمصفوفة المربعة \(A\): نكرر الصفين الأول والثاني أسفل المحدد، ثم نضرب عناصر الأقطار:</p>
 
         <div style="width:100%; overflow-x:auto; text-align:center;">
-          <svg width="350" height="200" viewBox="0 0 350 200" style="margin:auto; display:block; font-family:'Times New Roman', serif; font-size:18px; font-style:italic;">
+          <svg width="350" height="200" viewBox="0 0 350 200" style="fill: var(--venn-stroke); margin:auto; display:block; font-family:'Times New Roman', serif; font-size:18px; font-style:italic;">
             <!-- Matrix brackets -->
-            <path d="M 20 20 L 10 20 L 10 180 L 20 180" fill="none" stroke="#000" stroke-width="2"></path>
-            <path d="M 170 20 L 180 20 L 180 180 L 170 180" fill="none" stroke="#000" stroke-width="2"></path>
+            <path d="M 20 20 L 10 20 L 10 180 L 20 180" fill="none" stroke="var(--venn-stroke)" stroke-width="2"></path>
+            <path d="M 170 20 L 180 20 L 180 180 L 170 180" fill="none" stroke="var(--venn-stroke)" stroke-width="2"></path>
             <!-- Columns -->
             <text x="40" y="50">a₁</text> <text x="40" y="100">a₂</text> <text x="40" y="150">a₃</text>
             <text x="90" y="50">b₁</text> <text x="90" y="100">b₂</text> <text x="90" y="150">b₃</text>
             <text x="140" y="50">c₁</text> <text x="140" y="100">c₂</text> <text x="140" y="150">c₃</text>
             <!-- Repeated Columns -->
-            <line x1="195" y1="30" x2="195" y2="170" stroke="#999" stroke-dasharray="4"></line>
-            <text x="210" y="50" fill="#666">a₁</text> <text x="210" y="100" fill="#666">a₂</text> <text x="210" y="150" fill="#666">a₃</text>
-            <text x="260" y="50" fill="#666">b₁</text> <text x="260" y="100" fill="#666">b₂</text> <text x="260" y="150" fill="#666">b₃</text>
+            <line x1="195" y1="30" x2="195" y2="170" stroke="var(--fig-faint)" stroke-dasharray="4"></line>
+            <text x="210" y="50" fill="var(--fig-dim)">a₁</text> <text x="210" y="100" fill="var(--fig-dim)">a₂</text> <text x="210" y="150" fill="var(--fig-dim)">a₃</text>
+            <text x="260" y="50" fill="var(--fig-dim)">b₁</text> <text x="260" y="100" fill="var(--fig-dim)">b₂</text> <text x="260" y="150" fill="var(--fig-dim)">b₃</text>
             <!-- Arrows (Down-Right) RED -->
-            <line x1="50" y1="55" x2="150" y2="155" stroke="red" stroke-width="2" opacity="0.4" marker-end="url(#arrowRed)"></line>
-            <line x1="100" y1="55" x2="200" y2="155" stroke="red" stroke-width="2" opacity="0.4" marker-end="url(#arrowRed)"></line>
-            <line x1="150" y1="55" x2="250" y2="155" stroke="red" stroke-width="2" opacity="0.4" marker-end="url(#arrowRed)"></line>
+            <line x1="50" y1="55" x2="150" y2="155" stroke="#8b5cf6" stroke-width="2" opacity="0.4" marker-end="url(#arrowRed)"></line>
+            <line x1="100" y1="55" x2="200" y2="155" stroke="#8b5cf6" stroke-width="2" opacity="0.4" marker-end="url(#arrowRed)"></line>
+            <line x1="150" y1="55" x2="250" y2="155" stroke="#8b5cf6" stroke-width="2" opacity="0.4" marker-end="url(#arrowRed)"></line>
             <!-- Arrows (Up-Right) BLUE -->
-            <line x1="60" y1="145" x2="160" y2="45" stroke="blue" stroke-width="2" opacity="0.4" marker-end="url(#arrowBlue)"></line>
-            <line x1="110" y1="145" x2="210" y2="45" stroke="blue" stroke-width="2" opacity="0.4" marker-end="url(#arrowBlue)"></line>
-            <line x1="160" y1="145" x2="260" y2="45" stroke="blue" stroke-width="2" opacity="0.4" marker-end="url(#arrowBlue)"></line>
+            <line x1="60" y1="145" x2="160" y2="45" stroke="#0ea5e9" stroke-width="2" opacity="0.4" marker-end="url(#arrowBlue)"></line>
+            <line x1="110" y1="145" x2="210" y2="45" stroke="#0ea5e9" stroke-width="2" opacity="0.4" marker-end="url(#arrowBlue)"></line>
+            <line x1="160" y1="145" x2="260" y2="45" stroke="#0ea5e9" stroke-width="2" opacity="0.4" marker-end="url(#arrowBlue)"></line>
             <defs>
               <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L9,3 z" fill="red" opacity="0.4"></path>
+                <path d="M0,0 L0,6 L9,3 z" fill="#8b5cf6" opacity="0.4"></path>
               </marker>
               <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L9,3 z" fill="blue" opacity="0.4"></path>
+                <path d="M0,0 L0,6 L9,3 z" fill="#0ea5e9" opacity="0.4"></path>
               </marker>
             </defs>
           </svg>
         </div>
 
         <p style="text-align: center;">
-          <span style="color:red; font-size:1.2em;">(+) الأقطار الرئيسية</span> &nbsp;&nbsp;&nbsp;
-          <span style="color:blue; font-size:1.2em;">(-) الأقطار العكسية</span>
+          <span style="color:#8b5cf6; font-weight:700; font-size:1.2em;">(+) الأقطار الرئيسية</span> &nbsp;&nbsp;&nbsp;
+          <span style="color:#0ea5e9; font-weight:700; font-size:1.2em;">(-) الأقطار العكسية</span>
         </p>
-        <p><strong>القاعدة:</strong> \[|A| = (\textcolor{red}{a_1 b_2 c_3} + \textcolor{red}{b_1 c_2 a_3} +
-          \textcolor{red}{c_1 a_2 b_3}) - (\textcolor{blue}{a_3 b_2 c_1} + \textcolor{blue}{b_3 c_2 a_1} +
-          \textcolor{blue}{c_3 a_2 b_1})\]</p>
+        <p><strong>القاعدة:</strong> \[|A| = (\textcolor[RGB]{139,92,246}{a_1 b_2 c_3} + \textcolor[RGB]{139,92,246}{b_1 c_2 a_3} +
+          \textcolor[RGB]{139,92,246}{c_1 a_2 b_3}) - (\textcolor[RGB]{14,165,233}{a_3 b_2 c_1} + \textcolor[RGB]{14,165,233}{b_3 c_2 a_1} +
+          \textcolor[RGB]{14,165,233}{c_3 a_2 b_1})\]</p>
       </div>
     </section>
 
@@ -500,41 +500,41 @@
       <div class="example">
         <p>نطبق طريقة الأسهم (قاعدة ساروس):</p>
         <div style="width:100%; overflow-x:auto; text-align:center;">
-          <svg width="350" height="200" viewBox="0 0 350 200" style="margin:auto; display:block; font-family:'Times New Roman', serif; font-size:18px; direction: ltr;">
+          <svg width="350" height="200" viewBox="0 0 350 200" style="fill: var(--venn-stroke); margin:auto; display:block; font-family:'Times New Roman', serif; font-size:18px; direction: ltr;">
             <!-- Matrix brackets -->
-            <path d="M 20 20 L 10 20 L 10 180 L 20 180" fill="none" stroke="#000" stroke-width="2"></path>
-            <path d="M 170 20 L 180 20 L 180 180 L 170 180" fill="none" stroke="#000" stroke-width="2"></path>
+            <path d="M 20 20 L 10 20 L 10 180 L 20 180" fill="none" stroke="var(--venn-stroke)" stroke-width="2"></path>
+            <path d="M 170 20 L 180 20 L 180 180 L 170 180" fill="none" stroke="var(--venn-stroke)" stroke-width="2"></path>
             <!-- Columns -->
             <text x="40" y="50">4</text> <text x="40" y="100">-3</text> <text x="40" y="150">-2</text>
             <text x="90" y="50">-1</text> <text x="90" y="100">2</text> <text x="90" y="150">5</text>
             <text x="140" y="50">3</text> <text x="140" y="100">6</text> <text x="140" y="150">1</text>
             <!-- Repeated Columns -->
-            <line x1="195" y1="30" x2="195" y2="170" stroke="#999" stroke-dasharray="4"></line>
-            <text x="210" y="50" fill="#666">4</text> <text x="210" y="100" fill="#666">-3</text> <text x="210" y="150" fill="#666">-2</text>
-            <text x="260" y="50" fill="#666">-1</text> <text x="260" y="100" fill="#666">2</text> <text x="260" y="150" fill="#666">5</text>
+            <line x1="195" y1="30" x2="195" y2="170" stroke="var(--fig-faint)" stroke-dasharray="4"></line>
+            <text x="210" y="50" fill="var(--fig-dim)">4</text> <text x="210" y="100" fill="var(--fig-dim)">-3</text> <text x="210" y="150" fill="var(--fig-dim)">-2</text>
+            <text x="260" y="50" fill="var(--fig-dim)">-1</text> <text x="260" y="100" fill="var(--fig-dim)">2</text> <text x="260" y="150" fill="var(--fig-dim)">5</text>
             <!-- Arrows -->
-            <line x1="50" y1="55" x2="150" y2="155" stroke="red" stroke-width="2" opacity="0.4" marker-end="url(#arrowRedEx)"></line>
-            <line x1="100" y1="55" x2="200" y2="155" stroke="red" stroke-width="2" opacity="0.4" marker-end="url(#arrowRedEx)"></line>
-            <line x1="150" y1="55" x2="250" y2="155" stroke="red" stroke-width="2" opacity="0.4" marker-end="url(#arrowRedEx)"></line>
-            <line x1="60" y1="145" x2="160" y2="45" stroke="blue" stroke-width="2" opacity="0.4" marker-end="url(#arrowBlueEx)"></line>
-            <line x1="110" y1="145" x2="210" y2="45" stroke="blue" stroke-width="2" opacity="0.4" marker-end="url(#arrowBlueEx)"></line>
-            <line x1="160" y1="145" x2="260" y2="45" stroke="blue" stroke-width="2" opacity="0.4" marker-end="url(#arrowBlueEx)"></line>
+            <line x1="50" y1="55" x2="150" y2="155" stroke="#8b5cf6" stroke-width="2" opacity="0.4" marker-end="url(#arrowRedEx)"></line>
+            <line x1="100" y1="55" x2="200" y2="155" stroke="#8b5cf6" stroke-width="2" opacity="0.4" marker-end="url(#arrowRedEx)"></line>
+            <line x1="150" y1="55" x2="250" y2="155" stroke="#8b5cf6" stroke-width="2" opacity="0.4" marker-end="url(#arrowRedEx)"></line>
+            <line x1="60" y1="145" x2="160" y2="45" stroke="#0ea5e9" stroke-width="2" opacity="0.4" marker-end="url(#arrowBlueEx)"></line>
+            <line x1="110" y1="145" x2="210" y2="45" stroke="#0ea5e9" stroke-width="2" opacity="0.4" marker-end="url(#arrowBlueEx)"></line>
+            <line x1="160" y1="145" x2="260" y2="45" stroke="#0ea5e9" stroke-width="2" opacity="0.4" marker-end="url(#arrowBlueEx)"></line>
             <defs>
               <marker id="arrowRedEx" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L9,3 z" fill="red" opacity="0.4"></path>
+                <path d="M0,0 L0,6 L9,3 z" fill="#8b5cf6" opacity="0.4"></path>
               </marker>
               <marker id="arrowBlueEx" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L9,3 z" fill="blue" opacity="0.4"></path>
+                <path d="M0,0 L0,6 L9,3 z" fill="#0ea5e9" opacity="0.4"></path>
               </marker>
             </defs>
           </svg>
         </div>
         <p><strong>الحل:</strong></p>
         <p>\[\begin{aligned}
-          &amp;= \textcolor{red}{((4 \times 2 \times 1) + (-1 \times 6 \times (-2)) + (3 \times (-3) \times 5))} \\
-          &amp;\quad - \textcolor{blue}{((3 \times 2 \times (-2)) + (4 \times 6 \times 5) + (-1 \times (-3) \times 1))} \\
-          &amp;= \textcolor{red}{(8 + 12 + (-45))} - \textcolor{blue}{((-12) + 120 + 3)} \\
-          &amp;= \textcolor{red}{-25} - \textcolor{blue}{111} \\
+          &amp;= \textcolor[RGB]{139,92,246}{((4 \times 2 \times 1) + (-1 \times 6 \times (-2)) + (3 \times (-3) \times 5))} \\
+          &amp;\quad - \textcolor[RGB]{14,165,233}{((3 \times 2 \times (-2)) + (4 \times 6 \times 5) + (-1 \times (-3) \times 1))} \\
+          &amp;= \textcolor[RGB]{139,92,246}{(8 + 12 + (-45))} - \textcolor[RGB]{14,165,233}{((-12) + 120 + 3)} \\
+          &amp;= \textcolor[RGB]{139,92,246}{-25} - \textcolor[RGB]{14,165,233}{111} \\
           &amp;= -136
           \end{aligned}\]</p>
       </div>
@@ -572,6 +572,18 @@
         <p>\[ B^{-1} = \frac{1}{2} \begin{bmatrix} 4 &amp; -2 \\ -3 &amp; 2 \end{bmatrix} = \begin{bmatrix} 2 &amp; -1 \\ -1.5 &amp; 1
           \end{bmatrix} \]</p>
       </div>
+    </section>
+
+
+    <!-- ===================== Summary ===================== -->
+    <section class="slide">
+      <h3>ملخص قوانين الوحدة</h3>
+      <div class="sym-grid"><div class="sym"><span class="sym-k">\(A_{m \times n}\)</span><span>رتبة المصفوفة: \(m\) صفوف و \(n\) أعمدة</span></div><div class="sym"><span class="sym-k">\(A \pm B\)</span><span>نجمع أو نطرح العناصر المتناظرة، بشرط تساوي الرتبة</span></div><div class="sym"><span class="sym-k">\(kA\)</span><span>نضرب كل عنصر في العدد \(k\)</span></div><div class="sym"><span class="sym-k">\(A_{m \times n} \cdot B_{n \times p} = C_{m \times p}\)</span><span>الضرب ممكن إذا كان عدد أعمدة الأولى يساوي عدد صفوف الثانية</span></div><div class="sym"><span class="sym-k">\(AB \neq BA\)</span><span>ضرب المصفوفات ليس إبداليًا بشكل عام</span></div><div class="sym"><span class="sym-k">\(AI = IA = A\)</span><span>مصفوفة الوحدة \(I\) محايدة في الضرب</span></div></div>
+    </section>
+
+    <section class="slide">
+      <h3>ملخص قوانين الوحدة (تابع)</h3>
+      <div class="sym-grid"><div class="sym"><span class="sym-k">\(\begin{vmatrix} a & b \\ c & d \end{vmatrix} = ad - bc\)</span><span>محدد المصفوفة \(2 \times 2\)</span></div><div class="sym"><span class="sym-k">\(|A_{3 \times 3}|\)</span><span>بطريقة ساروس: مجموع الأقطار الرئيسية ناقص مجموع الأقطار العكسية</span></div><div class="sym"><span class="sym-k">\(A^{-1} = \frac{1}{|A|} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}\)</span><span>مقلوب المصفوفة \(2 \times 2\)</span></div><div class="sym"><span class="sym-k">\(|A| \neq 0\)</span><span>شرط وجود المقلوب</span></div><div class="sym"><span class="sym-k">\(AA^{-1} = A^{-1}A = I\)</span><span>تعريف المقلوب</span></div></div>
     </section>
 
   </main>
