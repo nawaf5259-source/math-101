@@ -16,11 +16,13 @@ const APP_MODE = (() => {
 })();
 if (APP_MODE) {
     document.documentElement.classList.add('app-mode');
-    // Pages the app already shows natively (its sections: home, units, exercises, more)
-    const page = window.location.pathname.split('/').pop();
+    // Pages the app already shows natively (its sections: home, content, enrich, quizzes, more)
+    const page = decodeURIComponent(window.location.pathname.split('/').pop());
     const go = (r) => window.location.replace(SITE_ROOT + 'app.html#' + r);
-    if (page === 'units.html') go('units');
-    else if (page === 'exercises.html') go('exercises');
+    if (new URL('.', window.location.href).href !== SITE_ROOT) go('page/' + encodeURIComponent(page)); // an enrichment topic page
+    else if (page === 'ex+.html') go('enrich');
+    else if (page === 'units.html') go('content');
+    else if (page === 'exercises.html') go('quizzes');
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -56,19 +58,17 @@ document.addEventListener("DOMContentLoaded", () => {
 // App look for site pages on phones: top bar with a back arrow + the app's bottom tabs
 function initAppChrome() {
     const page = window.location.pathname.split('/').pop() || 'index.html';
-    const inSubfolder = new URL('.', window.location.href).href !== SITE_ROOT;
     // Same tabs as app.html
     const tabs = [
-        ['home', '🏠', 'الرئيسية', 'app.html#home'],
-        ['units', '📚', 'الوحدات', 'app.html#units'],
-        ['exercises', '📝', 'التمارين', 'app.html#exercises'],
-        ['enrich', '✨', 'الإثرائية', 'ex+.html'],
-        ['more', '⋯', 'المزيد', 'app.html#more']
+        ['home', '🏠', 'الرئيسية'],
+        ['content', '📘', 'المحتوى'],
+        ['enrich', '✨', 'الإثرائية'],
+        ['quizzes', '📝', 'التمارين'],
+        ['more', '☰', 'المزيد']
     ];
-    const [, tab, back] = inSubfolder ? [null, 'enrich', 'ex+.html'] : [
-        [/^u\d\.html$/, 'units', 'app.html#units'],
-        [/^ex\d\.html$/, 'exercises', 'app.html#exercises'],
-        [/^ex\+\.html$/, 'enrich', 'app.html#exercises'],
+    const [, tab, back] = [
+        [/^u\d\.html$/, 'content', 'app.html#content'],
+        [/^ex\d\.html$/, 'quizzes', 'app.html#quizzes'],
         [/./, 'more', 'app.html#more']
     ].find(([re]) => re.test(page));
     const hero = document.querySelector('.hero h1');
@@ -83,8 +83,8 @@ function initAppChrome() {
     const nav = document.createElement('nav');
     nav.className = 'm-tabbar';
     nav.setAttribute('aria-label', 'أقسام التطبيق');
-    nav.innerHTML = tabs.map(([id, icon, label, href]) =>
-        `<a href="${SITE_ROOT}${href}"${id === tab ? ' class="active"' : ''}><span aria-hidden="true">${icon}</span>${label}</a>`).join('');
+    nav.innerHTML = tabs.map(([id, icon, label]) =>
+        `<a href="${SITE_ROOT}app.html#${id}"${id === tab ? ' class="active"' : ''}><span aria-hidden="true">${icon}</span>${label}</a>`).join('');
     document.body.appendChild(nav);
 }
 
