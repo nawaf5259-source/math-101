@@ -2,7 +2,7 @@
    once it has been visited. Pages and assets are served from the cache
    first and refreshed in the background. */
 
-const VERSION = 'm101-v1';
+const VERSION = 'm101-v2';
 const CACHE = `${VERSION}-site`;
 const RUNTIME = `${VERSION}-runtime`;
 

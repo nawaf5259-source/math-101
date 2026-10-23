@@ -3,6 +3,9 @@
  * Contains shared logic for Navigation, Dark Mode, Feedback, and Utils
  */
 
+// Site root (the folder of main.js), so app links also work from the enrichment subfolder pages
+const SITE_ROOT = new URL('.', document.currentScript.src).href;
+
 // Phones get the app look on every page: no site navbar/footer, the app's top bar and tab bar.
 // "عرض الموقع الكامل" in the app (m101-view=site) turns this off.
 const APP_MODE = (() => {
@@ -13,14 +16,11 @@ const APP_MODE = (() => {
 })();
 if (APP_MODE) {
     document.documentElement.classList.add('app-mode');
-    // Pages the app already shows natively
+    // Pages the app already shows natively (its sections: home, units, exercises, more)
     const page = window.location.pathname.split('/').pop();
-    const h = decodeURIComponent(window.location.hash.slice(1));
-    const go = (r) => window.location.replace('app.html#' + r);
-    if (page === 'videos.html') go(/^u\d-(\d+|intro)$/.test(h) ? 'v/' + h : /^u\d$/.test(h) ? 'videos/' + h : 'videos');
-    else if (page === 'ex+.html') go(/^u\d-\d+$/.test(h) ? 'e/' + h : /^u\d$/.test(h) ? 'enrich/' + h : 'enrich');
-    else if (page === 'units.html') go('content');
-    else if (page === 'exercises.html') go('quizzes');
+    const go = (r) => window.location.replace(SITE_ROOT + 'app.html#' + r);
+    if (page === 'units.html') go('units');
+    else if (page === 'exercises.html') go('exercises');
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -56,26 +56,35 @@ document.addEventListener("DOMContentLoaded", () => {
 // App look for site pages on phones: top bar with a back arrow + the app's bottom tabs
 function initAppChrome() {
     const page = window.location.pathname.split('/').pop() || 'index.html';
-    const [, tab, back] = [
-        [/^u\d\.html$/, 'content', '#content'],
-        [/^ex\d\.html$/, 'practice', '#quizzes'],
-        [/./, 'more', '#more']
+    const inSubfolder = new URL('.', window.location.href).href !== SITE_ROOT;
+    // Same tabs as app.html
+    const tabs = [
+        ['home', '🏠', 'الرئيسية', 'app.html#home'],
+        ['units', '📚', 'الوحدات', 'app.html#units'],
+        ['exercises', '📝', 'التمارين', 'app.html#exercises'],
+        ['enrich', '✨', 'الإثرائية', 'ex+.html'],
+        ['more', '⋯', 'المزيد', 'app.html#more']
+    ];
+    const [, tab, back] = inSubfolder ? [null, 'enrich', 'ex+.html'] : [
+        [/^u\d\.html$/, 'units', 'app.html#units'],
+        [/^ex\d\.html$/, 'exercises', 'app.html#exercises'],
+        [/^ex\+\.html$/, 'enrich', 'app.html#exercises'],
+        [/./, 'more', 'app.html#more']
     ].find(([re]) => re.test(page));
     const hero = document.querySelector('.hero h1');
     const title = (hero ? hero.textContent : document.title.split(/[|]/)[0]).trim();
 
     const bar = document.createElement('header');
     bar.className = 'm-appbar';
-    bar.innerHTML = `<a href="app.html${back}" class="m-back" aria-label="رجوع">→</a><b></b>`;
+    bar.innerHTML = `<a href="${SITE_ROOT}${back}" class="m-back" aria-label="رجوع">→</a><b></b>`;
     bar.querySelector('b').textContent = title;
     document.body.prepend(bar);
 
-    const tabs = [['home', '🏠', 'الرئيسية'], ['content', '📘', 'المحتوى'], ['videos', '▶️', 'الفيديوهات'], ['practice', '✏️', 'التمارين'], ['more', '☰', 'المزيد']];
     const nav = document.createElement('nav');
     nav.className = 'm-tabbar';
     nav.setAttribute('aria-label', 'أقسام التطبيق');
-    nav.innerHTML = tabs.map(([id, icon, label]) =>
-        `<a href="app.html#${id}"${id === tab ? ' class="active"' : ''}><span aria-hidden="true">${icon}</span>${label}</a>`).join('');
+    nav.innerHTML = tabs.map(([id, icon, label, href]) =>
+        `<a href="${SITE_ROOT}${href}"${id === tab ? ' class="active"' : ''}><span aria-hidden="true">${icon}</span>${label}</a>`).join('');
     document.body.appendChild(nav);
 }
 

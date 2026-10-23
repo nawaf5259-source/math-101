@@ -28,6 +28,7 @@
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, var(--primary) 0%, #15123a 100%);
     --gradient-gold: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+    --gradient-accent: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
     --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
 
     /* Shadows - Elevated & Premium */
@@ -35,6 +36,8 @@
     --shadow-md: 0 4px 12px rgba(30, 27, 75, 0.1);
     --shadow-lg: 0 12px 24px -4px rgba(30, 27, 75, 0.14);
     --shadow-xl: 0 20px 40px -8px rgba(30, 27, 75, 0.18);
+    --glass-blur: blur(12px);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.2);
 
     /* Animation Timing */
     --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -6326,6 +6329,13 @@ body.dark-mode.deck-modern .warn {
     body.deck-modern:not(.presentation-mode) :is(.problems, .cards, .compare, .duo),
     body.deck-modern:not(.presentation-mode) .example.split {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    /* Identity cards: formula above its example instead of side by side */
+    body.deck-modern:not(.presentation-mode) .identity-cards .card-item {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
     }
 }
 /* Phones: the per-heading dots are too small and crowded to tap; keep the thin progress bar */
