@@ -25,7 +25,7 @@
         inlineMath: [['$', '$'], ['\\(', '\\)']],
         displayMath: [['$$', '$$'], ['\\[', '\\]']],
         processEscapes: true,
-        macros: { hla: ['\\class{hl-a}{#1}', 1], hlb: ['\\class{hl-b}{#1}', 1] }
+        macros: { hla: ['\\class{hl-a}{#1}', 1], hlb: ['\\class{hl-b}{#1}', 1], hlc: ['\\class{hl-c}{#1}', 1] }
       },
       svg: { fontCache: 'global', mtextInheritFont: true },
       options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
@@ -286,39 +286,47 @@
       <h3>جمع وطرح المصفوفات</h3>
       <div class="myrule">
         <p>لجمع أو طرح مصفوفتين لهما الرتبة نفسها فإننا نجمع أو نطرح العناصر المتناظرة للمصفوفتين.
-          \[\begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix} \;\pm\; \begin{bmatrix} \textcolor{blue}{e} &amp;
-          \textcolor{blue}{f} \\ \textcolor{blue}{g} &amp; \textcolor{blue}{h} \end{bmatrix} = \begin{bmatrix} a \pm
-          \textcolor{blue}{e} &amp; b \pm \textcolor{blue}{f} \\ c \pm \textcolor{blue}{g} &amp; d \pm \textcolor{blue}{h}
-          \end{bmatrix}\]</p>
+          \[\begin{bmatrix} \hla{a} &amp; \hla{b} \\ \hla{c} &amp; \hla{d} \end{bmatrix} \;\pm\; \begin{bmatrix} \hlb{e} &amp;
+          \hlb{f} \\ \hlb{g} &amp; \hlb{h} \end{bmatrix} = \begin{bmatrix} \hla{a} \pm \hlb{e} &amp; \hla{b} \pm \hlb{f} \\
+          \hla{c} \pm \hlb{g} &amp; \hla{d} \pm \hlb{h} \end{bmatrix}\]</p>
       </div>
     </section>
 
     <section class="slide">
-      <div class="example">
-        <p>إذا كانت: \[A = \begin{bmatrix} \textcolor{blue}{7} &amp; \textcolor{blue}{5} \\ \textcolor{blue}{-2} &amp;
-          \textcolor{blue}{1} \end{bmatrix}, \quad B = \begin{bmatrix} \textcolor{red}{0} &amp; \textcolor{red}{-2} \\
-          \textcolor{red}{5} &amp; \textcolor{red}{4} \end{bmatrix}, \quad C = \begin{bmatrix} \textcolor{green}{8} \\
-          \textcolor{green}{6} \end{bmatrix}\]</p>
-        <p>أوجد كلاً مما يأتي إذا أمكن: \[\text{a)}\ A + B \qquad \text{b)}\ A - B \qquad \text{c)}\ B + C\]</p>
-        <p><strong>الحل:</strong></p>
-        <p><strong>a)</strong> \(A + B\): \[= \begin{bmatrix} \textcolor{blue}{7} &amp; \textcolor{blue}{5} \\
-          \textcolor{blue}{-2} &amp; \textcolor{blue}{1} \end{bmatrix} + \begin{bmatrix} \textcolor{red}{0} &amp;
-          \textcolor{red}{-2} \\ \textcolor{red}{5} &amp; \textcolor{red}{4} \end{bmatrix} = \begin{bmatrix}
-          \textcolor{blue}{7}+\textcolor{red}{0} &amp; \textcolor{blue}{5}+(\textcolor{red}{-2}) \\
-          \textcolor{blue}{-2}+\textcolor{red}{5} &amp; \textcolor{blue}{1}+\textcolor{red}{4} \end{bmatrix} =
-          \begin{bmatrix} 7 &amp; 3 \\ 3 &amp; 5 \end{bmatrix}\]</p></div>
+      <h3>أمثلة على جمع وطرح المصفوفات</h3>
+      <p class="lead">إذا كانت \(A = \begin{bmatrix} \hla{7} &amp; \hla{5} \\ \hla{-2} &amp; \hla{1} \end{bmatrix}\) و
+        \(B = \begin{bmatrix} \hlb{0} &amp; \hlb{-2} \\ \hlb{5} &amp; \hlb{4} \end{bmatrix}\) و
+        \(C = \begin{bmatrix} 8 \\ 6 \end{bmatrix}\)، أوجد كلاً مما يأتي إن أمكن:</p>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> <span class="pt-text">\(A + B\)</span></p>
+          <p class="solution-label">الرتبة متساوية \((2 \times 2)\)، نجمع العناصر المتناظرة:</p>
+          <div class="problem-sol">\[\begin{aligned}
+            A + B &amp;= \begin{bmatrix} \hla{7}+\hlb{0} &amp; \hla{5}+(\hlb{-2}) \\ \hla{-2}+\hlb{5} &amp; \hla{1}+\hlb{4} \end{bmatrix} \\[4pt]
+            &amp;= \mathbf{\begin{bmatrix} 7 &amp; 3 \\ 3 &amp; 5 \end{bmatrix}}
+            \end{aligned}\]</div>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> <span class="pt-text">\(A - B\)</span> <span class="warn">(انتبه لطرح العدد السالب)</span></p>
+          <p class="solution-label">الرتبة متساوية \((2 \times 2)\)، نطرح العناصر المتناظرة:</p>
+          <div class="problem-sol">\[\begin{aligned}
+            A - B &amp;= \begin{bmatrix} \hla{7}-\hlb{0} &amp; \hla{5}-(\hlb{-2}) \\ \hla{-2}-\hlb{5} &amp; \hla{1}-\hlb{4} \end{bmatrix} \\[4pt]
+            &amp;= \mathbf{\begin{bmatrix} 7 &amp; 7 \\ -7 &amp; -3 \end{bmatrix}}
+            \end{aligned}\]</div>
+        </div>
+      </div>
     </section>
 
     <section class="slide">
-      <div class="example">
-        <p><strong>b)</strong> \(A - B\): \[= \begin{bmatrix} \textcolor{blue}{7} &amp; \textcolor{blue}{5} \\
-          \textcolor{blue}{-2} &amp; \textcolor{blue}{1} \end{bmatrix} - \begin{bmatrix} \textcolor{red}{0} &amp;
-          \textcolor{red}{-2} \\ \textcolor{red}{5} &amp; \textcolor{red}{4} \end{bmatrix} = \begin{bmatrix}
-          \textcolor{blue}{7}-\textcolor{red}{0} &amp; \textcolor{blue}{5}-(\textcolor{red}{-2}) \\
-          \textcolor{blue}{-2}-\textcolor{red}{5} &amp; \textcolor{blue}{1}-\textcolor{red}{4} \end{bmatrix} =
-          \begin{bmatrix} 7 &amp; 7 \\ -7 &amp; -3 \end{bmatrix}\]</p>
-        <p><strong>c)</strong> \(B + C\):</p>
-        <p><strong>لا يمكن إجراء عملية الجمع لأن المصفوفتين ليس لهما نفس الرتبة.</strong></p></div>
+      <h3>أمثلة على جمع وطرح المصفوفات (تابع)</h3>
+      <div class="problems cols-1">
+        <div class="problem">
+          <p class="problem-title"><span class="num">3</span> <span class="pt-text">\(B + C\)</span> <span class="warn">(تحقق من الرتبة أولاً)</span></p>
+          <div class="problem-sol">\[B = \begin{bmatrix} 0 &amp; -2 \\ 5 &amp; 4 \end{bmatrix}_{\hla{2 \times 2}} , \qquad
+            C = \begin{bmatrix} 8 \\ 6 \end{bmatrix}_{\hlb{2 \times 1}}\]</div>
+          <p class="solution-label">الحل: لا يمكن إيجاد \(B + C\)، لأن المصفوفتين ليس لهما الرتبة نفسها \((\hla{2 \times 2} \neq \hlb{2 \times 1})\).</p>
+        </div>
+      </div>
     </section>
 
     <section class="slide">
@@ -327,29 +335,44 @@
         <p>عند ضرب مصفوفة في عدد حقيقي أو القسمة عليه فإننا نضرب العدد في جميع عناصر المصفوفة أو نقسم جميع عناصر
           المصفوفة على العدد.
         </p><p><strong>مثلاً:</strong></p>
-        \[A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix} \Rightarrow kA = \begin{bmatrix} \textcolor{cyan}{k}a &amp;
-        \textcolor{cyan}{k}b \\ \textcolor{cyan}{k}c &amp; \textcolor{cyan}{k}d \end{bmatrix}\]
-        \[A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix} \Rightarrow \frac{A}{\textcolor{cyan}{k}} = \begin{bmatrix}
-        \frac{a}{\textcolor{cyan}{k}} &amp; \frac{b}{\textcolor{cyan}{k}} \\ \frac{c}{\textcolor{cyan}{k}} &amp;
-        \frac{d}{\textcolor{cyan}{k}} \end{bmatrix}\]<p></p>
+        \[A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix} \Rightarrow \hla{k}A = \begin{bmatrix} \hla{k}a &amp;
+        \hla{k}b \\ \hla{k}c &amp; \hla{k}d \end{bmatrix}\]
+        \[A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix} \Rightarrow \frac{A}{\hla{k}} = \begin{bmatrix}
+        \frac{a}{\hla{k}} &amp; \frac{b}{\hla{k}} \\ \frac{c}{\hla{k}} &amp;
+        \frac{d}{\hla{k}} \end{bmatrix}\]<p></p>
       </div>
     </section>
 
     <section class="slide">
-      <div class="example">
-        <p>إذا كانت \(A = \begin{bmatrix} 2 &amp; 8 \\ 1 &amp; 3 \end{bmatrix}\) و \(B = \begin{bmatrix} 6 &amp; -4 \\ 2 &amp; 8
-          \end{bmatrix}\)، أوجد: \(\;a)\ 2A \quad b)\ 2A + B \quad c)\ \frac{B}{2}\)</p>
-        <p><strong>الحل:</strong></p>
-        <p>\[\begin{aligned}
-          a) \ 2A &amp;= \textcolor{red}{2} \begin{bmatrix} 2 &amp; 8 \\ 1 &amp; 3 \end{bmatrix} = \begin{bmatrix}
-          \textcolor{red}{2} \times 2 &amp; \textcolor{red}{2} \times 8 \\ \textcolor{red}{2} \times 1 &amp; \textcolor{red}{2}
-          \times 3 \end{bmatrix} = \begin{bmatrix} 4 &amp; 16 \\ 2 &amp; 6 \end{bmatrix} \\[1em]
-          b) \ 2A + B &amp;= 2 \begin{bmatrix} 2 &amp; 8 \\ 1 &amp; 3 \end{bmatrix} + \begin{bmatrix} 6 &amp; -4 \\ 2 &amp; 8 \end{bmatrix}
-          = \begin{bmatrix} 4 &amp; 16 \\ 2 &amp; 6 \end{bmatrix} + \begin{bmatrix} 6 &amp; -4 \\ 2 &amp; 8 \end{bmatrix} =
-          \begin{bmatrix} 10 &amp; 12 \\ 4 &amp; 14 \end{bmatrix} \\[1em]
-          c) \ \frac{B}{2} &amp;= \frac{\begin{bmatrix} 6 &amp; -4 \\ 2 &amp; 8 \end{bmatrix}}{2} = \begin{bmatrix} 6/2 &amp; {-4}/{2}
-          \\{2}/{2} &amp; {8}/{2} \end{bmatrix} = \begin{bmatrix} 3 &amp; -2 \\ 1 &amp; 4 \end{bmatrix}
-          \end{aligned}\]</p></div>
+      <h3>أمثلة على ضرب المصفوفة في عدد والقسمة عليه</h3>
+      <p class="lead">إذا كانت \(A = \begin{bmatrix} 2 &amp; 8 \\ 1 &amp; 3 \end{bmatrix}\) و \(B = \begin{bmatrix} 6 &amp; -4 \\ 2 &amp; 8
+        \end{bmatrix}\)، أوجد:</p>
+      <div class="problems cols-3">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> <span class="pt-text">\(2A\)</span></p>
+          <p class="solution-label">نضرب \(\hla{2}\) في كل عنصر:</p>
+          <div class="problem-sol">\[\begin{aligned}
+            2A &amp;= \begin{bmatrix} \hla{2} \times 2 &amp; \hla{2} \times 8 \\ \hla{2} \times 1 &amp; \hla{2} \times 3 \end{bmatrix} \\[4pt]
+            &amp;= \mathbf{\begin{bmatrix} 4 &amp; 16 \\ 2 &amp; 6 \end{bmatrix}}
+            \end{aligned}\]</div>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> <span class="pt-text">\(2A + B\)</span></p>
+          <p class="solution-label">نستخدم ناتج \(2A\) ثم نجمع \(B\):</p>
+          <div class="problem-sol">\[\begin{aligned}
+            &amp;= \begin{bmatrix} \hla{4} &amp; \hla{16} \\ \hla{2} &amp; \hla{6} \end{bmatrix} + \begin{bmatrix} \hlb{6} &amp; \hlb{-4} \\ \hlb{2} &amp; \hlb{8} \end{bmatrix} \\[4pt]
+            &amp;= \mathbf{\begin{bmatrix} 10 &amp; 12 \\ 4 &amp; 14 \end{bmatrix}}
+            \end{aligned}\]</div>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">3</span> <span class="pt-text">\(\dfrac{B}{2}\)</span></p>
+          <p class="solution-label">نقسم كل عنصر على \(\hla{2}\):</p>
+          <div class="problem-sol">\[\begin{aligned}
+            \frac{B}{2} &amp;= \begin{bmatrix} \frac{6}{\hla{2}} &amp; \frac{-4}{\hla{2}} \\[2pt] \frac{2}{\hla{2}} &amp; \frac{8}{\hla{2}} \end{bmatrix} \\[4pt]
+            &amp;= \mathbf{\begin{bmatrix} 3 &amp; -2 \\ 1 &amp; 4 \end{bmatrix}}
+            \end{aligned}\]</div>
+        </div>
+      </div>
     </section>
 
     <section class="slide">
@@ -357,23 +380,28 @@
       <div class="myrule">
         <p>حاصل ضرب صف في عمود له عدد العناصر نفسه هو مجموع حاصل ضرب كل عنصر من الصف في العنصر الموافق له من العمود،
           وهذا الضرب ليس تبديليًا.</p>
-        <p>مثلا: \[\begin{bmatrix} \textcolor{red}{a} &amp; \textcolor{blue}{b} \end{bmatrix} \begin{bmatrix}
-          \textcolor{red}{c}\\ \textcolor{blue}{d} \end{bmatrix} = \begin{bmatrix}
-          \textcolor{red}{a}\times\textcolor{red}{c} + \textcolor{blue}{b}\times\textcolor{blue}{d} \end{bmatrix}\]</p>
+        <p>مثلا: \[\begin{bmatrix} \hla{a} &amp; \hlb{b} \end{bmatrix} \begin{bmatrix}
+          \hla{c}\\ \hlb{d} \end{bmatrix} = \begin{bmatrix}
+          \hla{a}\times\hla{c} + \hlb{b}\times\hlb{d} \end{bmatrix}\]</p>
       </div>
     </section>
 
     <section class="slide">
-      <h3>أولاً: ضرب صف في عمود (تابع)</h3>
-      <div class="example">
-        <p>أوجد ناتج الضرب:</p>
-        <p>\[\begin{bmatrix} \textcolor{red}{2} &amp; \textcolor{blue}{4} \end{bmatrix} \begin{bmatrix} \textcolor{red}{1}\\
-          \textcolor{blue}{3} \end{bmatrix} = \begin{bmatrix} \textcolor{red}{2}\times\textcolor{red}{1} +
-          \textcolor{blue}{4}\times\textcolor{blue}{3} \end{bmatrix} = \begin{bmatrix} \textcolor{red}{2} +
-          \textcolor{blue}{12} \end{bmatrix} = \begin{bmatrix} 14 \end{bmatrix}\]</p>
-        <div class="note">
-          <p>\[\begin{bmatrix} 1 &amp; {4} &amp; 6 \end{bmatrix} \begin{bmatrix} 5\\ 3 \end{bmatrix}\] لا يمكن حساب هذا الضرب
-            لأن عدد عناصر الصف لا يساوي عدد عناصر العمود.</p>
+      <h3>أمثلة على ضرب صف في عمود</h3>
+      <p class="lead">أوجد ناتج الضرب إن أمكن:</p>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> <span class="pt-text">صف وعمود بعدد العناصر نفسه</span></p>
+          <div class="problem-sol">\[\begin{aligned}
+            &amp;\begin{bmatrix} \hla{2} &amp; \hlb{4} \end{bmatrix} \begin{bmatrix} \hla{1}\\ \hlb{3} \end{bmatrix} \\[4pt]
+            &amp;= \begin{bmatrix} \hla{2}\times\hla{1} + \hlb{4}\times\hlb{3} \end{bmatrix} \\[4pt]
+            &amp;= \begin{bmatrix} 2 + 12 \end{bmatrix} = \mathbf{\begin{bmatrix} 14 \end{bmatrix}}
+            \end{aligned}\]</div>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> <span class="pt-text">عدد العناصر مختلف</span> <span class="warn">(تحقق أولاً)</span></p>
+          <div class="problem-sol">\[\begin{bmatrix} 1 &amp; 4 &amp; 6 \end{bmatrix} \begin{bmatrix} 5\\ 3 \end{bmatrix}\]</div>
+          <p class="solution-label">الحل: لا يمكن حساب هذا الضرب، لأن عدد عناصر الصف \((\hla{3})\) لا يساوي عدد عناصر العمود \((\hlb{2})\).</p>
         </div>
       </div>
     </section>
@@ -385,13 +413,13 @@
           \(A\) مع عدد صفوف \(B\).
           الناتج هو مصفوفة \(C\) ذات رتبة \(m \times p\).</p>
         <p>حيث يتم حساب العنصر العام \(\textcolor{blue}{c_{ij}}\) بضرب الصف \(i\) من \(A\) في العمود \(j\) من \(B\).</p>
-        <p>مثلا: \[\begin{bmatrix} \textcolor{red}{a} &amp; \textcolor{blue}{b}\\ \textcolor{blue}{c} &amp; \textcolor{red}{d}
-          \end{bmatrix} \cdot \begin{bmatrix} \textcolor{ForestGreen}{e} &amp; \textcolor{ForestGreen}{f}\\
-          \textcolor{ForestGreen}{g} &amp; \textcolor{ForestGreen}{h} \end{bmatrix} = \begin{bmatrix}
-          \textcolor{red}{a}\textcolor{ForestGreen}{e} + \textcolor{blue}{b}\textcolor{ForestGreen}{g} &amp;
-          \textcolor{red}{a}\textcolor{ForestGreen}{f} + \textcolor{blue}{b}\textcolor{ForestGreen}{h} \\[6pt]
-          \textcolor{blue}{c}\textcolor{ForestGreen}{e} + \textcolor{red}{d}\textcolor{ForestGreen}{g} &amp;
-          \textcolor{blue}{c}\textcolor{ForestGreen}{f} + \textcolor{red}{d}\textcolor{ForestGreen}{h} \end{bmatrix}\]
+        <p>مثلا (الصف الأول بالأحمر والصف الثاني بالأزرق): \[\begin{bmatrix} \hla{a} &amp; \hla{b}\\ \hlb{c} &amp; \hlb{d}
+          \end{bmatrix} \cdot \begin{bmatrix} \hlc{e} &amp; \hlc{f}\\
+          \hlc{g} &amp; \hlc{h} \end{bmatrix} = \begin{bmatrix}
+          \hla{a}\hlc{e} + \hla{b}\hlc{g} &amp;
+          \hla{a}\hlc{f} + \hla{b}\hlc{h} \\[6pt]
+          \hlb{c}\hlc{e} + \hlb{d}\hlc{g} &amp;
+          \hlb{c}\hlc{f} + \hlb{d}\hlc{h} \end{bmatrix}\]
         </p>
       </div>
     </section>
@@ -402,55 +430,75 @@
       <div class="problems cols-2">
         <div class="problem">
           <p class="problem-title"><span class="num">1</span> <span class="pt-text">\(A_{3\times4}\cdot B_{4\times2}\)</span></p>
-          <div class="problem-sol">\[A_{\textcolor{red}{3}\times4}\cdot B_{4\times\textcolor{red}{2}} = C_{\textcolor{red}{3\times2}}\]</div>
+          <div class="problem-sol">\[A_{\hla{3}\times\hlb{4}}\cdot B_{\hlb{4}\times\hla{2}} = C_{\hla{3\times2}}\]</div>
           <p class="solution-label">عدد أعمدة \(A\) يساوي عدد صفوف \(B\) (4)، فالضرب ممكن.</p>
         </div>
         <div class="problem">
           <p class="problem-title"><span class="num">2</span> <span class="pt-text">\(A_{5\times3}\cdot B_{3\times4}\)</span></p>
-          <div class="problem-sol">\[A_{\textcolor{red}{5}\times3}\cdot B_{3\times\textcolor{red}{4}} = C_{\textcolor{red}{5\times4}}\]</div>
+          <div class="problem-sol">\[A_{\hla{5}\times\hlb{3}}\cdot B_{\hlb{3}\times\hla{4}} = C_{\hla{5\times4}}\]</div>
           <p class="solution-label">عدد أعمدة \(A\) يساوي عدد صفوف \(B\) (3)، فالضرب ممكن.</p>
         </div>
       </div>
     </section>
 
     <section class="slide">
-      <div class="example">
-        <p>أوجد ناتج الضرب:</p>
-        <p>\[\begin{bmatrix} \textcolor{red}{2} &amp; \textcolor{red}{3}\\ \textcolor{blue}{1} &amp; \textcolor{blue}{4}
-          \end{bmatrix} \cdot \begin{bmatrix} 5 &amp; 6\\ 7 &amp; 8 \end{bmatrix}\]</p>
-        <p><strong>الحل:</strong></p>
-        <p>\[\begin{aligned}
-          &amp;= \begin{bmatrix} 2\times5 + 3\times7 &amp; 2\times6 + 3\times8 \\ 1\times5 + 4\times7 &amp; 1\times6 + 4\times8
-          \end{bmatrix} \\[1em]
-          &amp;= \begin{bmatrix} 10 + 21 &amp; 12 + 24\\ 5 + 28 &amp; 6 + 32 \end{bmatrix} \\[1em]
-          &amp;= \begin{bmatrix} 31 &amp; 36\\ 33 &amp; 38 \end{bmatrix}
-          \end{aligned}\]</p>
+      <h3>مثال على ضرب مصفوفتين</h3>
+      <div class="problems cols-1">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> <span class="pt-text">أوجد ناتج الضرب:
+            \(\begin{bmatrix} 2 &amp; 3\\ 1 &amp; 4 \end{bmatrix} \cdot \begin{bmatrix} 5 &amp; 6\\ 7 &amp; 8 \end{bmatrix}\)</span></p>
+          <p class="solution-label">الحل: نضرب <span class="hl-a">الصف الأول</span> ثم <span class="hl-b">الصف الثاني</span> في كل عمود من المصفوفة الثانية:</p>
+          <div class="problem-sol">\[\begin{aligned}
+            &amp;= \begin{bmatrix} \hla{2}\times\hlc{5} + \hla{3}\times\hlc{7} &amp; \hla{2}\times\hlc{6} + \hla{3}\times\hlc{8} \\[4pt]
+            \hlb{1}\times\hlc{5} + \hlb{4}\times\hlc{7} &amp; \hlb{1}\times\hlc{6} + \hlb{4}\times\hlc{8} \end{bmatrix} \\[6pt]
+            &amp;= \begin{bmatrix} 10 + 21 &amp; 12 + 24\\ 5 + 28 &amp; 6 + 32 \end{bmatrix}
+            = \mathbf{\begin{bmatrix} 31 &amp; 36\\ 33 &amp; 38 \end{bmatrix}}
+            \end{aligned}\]</div>
+        </div>
       </div>
     </section>
 
     <section class="slide">
-      <div class="example">
-        <p>\[A= \begin{bmatrix} 2 &amp; 8\\ 1 &amp; 3 \end{bmatrix}, \qquad B= \begin{bmatrix} 2 &amp; 8\\ 1 &amp; -3 \end{bmatrix},
-          \qquad C= \begin{bmatrix} 2 &amp; 0 &amp; 4\\ 6 &amp; 1 &amp; -2 \end{bmatrix}\]</p>
-        <p>أوجد ناتج كلٍّ مما يأتي: \[\text{(a)}\; A\cdot B \qquad \text{(b)}\; B\cdot A \qquad \text{(c)}\; A\cdot C
-          \qquad \text{(d)}\; C\cdot B\]</p>
-        <p><strong>الحل:</strong></p>
-        <p>\[\text{(a)}\quad A\cdot B = \begin{bmatrix} 2 &amp; 8\\ 1 &amp; 3 \end{bmatrix} \begin{bmatrix} 2 &amp; 8\\ 1 &amp; -3
-          \end{bmatrix} = \begin{bmatrix} 12 &amp; -8\\ 5 &amp; -1 \end{bmatrix}\]</p>
-        <p>\[\text{(b)}\quad B\cdot A = \begin{bmatrix} 2 &amp; 8\\ 1 &amp; -3 \end{bmatrix} \begin{bmatrix} 2 &amp; 8\\ 1 &amp; 3
-          \end{bmatrix} = \begin{bmatrix} 12 &amp; 40\\ -1 &amp; -1 \end{bmatrix}\]</p></div>
+      <h3>أمثلة شاملة على ضرب المصفوفات</h3>
+      <p class="lead">إذا كانت \(A= \begin{bmatrix} 2 &amp; 8\\ 1 &amp; 3 \end{bmatrix}\) و \(B= \begin{bmatrix} 2 &amp; 8\\ 1 &amp; -3 \end{bmatrix}\)
+        و \(C= \begin{bmatrix} 2 &amp; 0 &amp; 4\\ 6 &amp; 1 &amp; -2 \end{bmatrix}\)، أوجد ناتج كلٍّ مما يأتي إن أمكن:</p>
+      <div class="problems cols-2">
+        <div class="problem">
+          <p class="problem-title"><span class="num">1</span> <span class="pt-text">\(A\cdot B\)</span></p>
+          <div class="problem-sol">\[\begin{aligned}
+            &amp;= \begin{bmatrix} \hla{2}(2) + \hla{8}(1) &amp; \hla{2}(8) + \hla{8}(-3) \\ \hlb{1}(2) + \hlb{3}(1) &amp; \hlb{1}(8) + \hlb{3}(-3) \end{bmatrix} \\[4pt]
+            &amp;= \mathbf{\begin{bmatrix} 12 &amp; -8\\ 5 &amp; -1 \end{bmatrix}}
+            \end{aligned}\]</div>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">2</span> <span class="pt-text">\(B\cdot A\)</span> <span class="warn">(قارن بالناتج السابق)</span></p>
+          <div class="problem-sol">\[\begin{aligned}
+            &amp;= \begin{bmatrix} \hla{2}(2) + \hla{8}(1) &amp; \hla{2}(8) + \hla{8}(3) \\ \hlb{1}(2) + (\hlb{-3})(1) &amp; \hlb{1}(8) + (\hlb{-3})(3) \end{bmatrix} \\[4pt]
+            &amp;= \mathbf{\begin{bmatrix} 12 &amp; 40\\ -1 &amp; -1 \end{bmatrix}}
+            \end{aligned}\]</div>
+        </div>
+      </div>
     </section>
 
     <section class="slide">
-      <div class="example">
-        <p>\[\text{(c)}\quad A\cdot C = \begin{bmatrix} 2 &amp; 8\\ 1 &amp; 3 \end{bmatrix} \begin{bmatrix} 2 &amp; 0 &amp; 4\\ 6 &amp; 1 &amp;
-          -2 \end{bmatrix} = \begin{bmatrix} 52 &amp; 8 &amp; -8\\ 20 &amp; 3 &amp; -2 \end{bmatrix}\]</p>
-        <p>\[\text{(d)}\quad C\cdot B\]</p>
-        <div class="note">
-          <p>لا يمكن إيجاد \(C\cdot B\) لأن عدد أعمدة المصفوفة \(C\) لا يساوي عدد صفوف المصفوفة \(B\).</p>
-        </div></div>
+      <h3>أمثلة شاملة على ضرب المصفوفات (تابع)</h3>
+      <div class="problems cols-1">
+        <div class="problem">
+          <p class="problem-title"><span class="num">3</span> <span class="pt-text">\(A\cdot C\)</span></p>
+          <p class="solution-label">\(A_{2\times\hlb{2}}\cdot C_{\hlb{2}\times3}\)، فالضرب ممكن والناتج من الرتبة \(2\times3\):</p>
+          <div class="problem-sol">\[\begin{aligned}
+            &amp;= \begin{bmatrix} \hla{2}(2) + \hla{8}(6) &amp; \hla{2}(0) + \hla{8}(1) &amp; \hla{2}(4) + \hla{8}(-2) \\ \hlb{1}(2) + \hlb{3}(6) &amp; \hlb{1}(0) + \hlb{3}(1) &amp; \hlb{1}(4) + \hlb{3}(-2) \end{bmatrix} \\[4pt]
+            &amp;= \mathbf{\begin{bmatrix} 52 &amp; 8 &amp; -8\\ 20 &amp; 3 &amp; -2 \end{bmatrix}}
+            \end{aligned}\]</div>
+        </div>
+        <div class="problem">
+          <p class="problem-title"><span class="num">4</span> <span class="pt-text">\(C\cdot B\)</span> <span class="warn">(تحقق من الرتبة أولاً)</span></p>
+          <div class="problem-sol">\[C_{2\times\hla{3}}\cdot B_{\hlb{2}\times2}\]</div>
+          <p class="solution-label">الحل: لا يمكن إيجاد \(C\cdot B\)، لأن عدد أعمدة \(C\) \((\hla{3})\) لا يساوي عدد صفوف \(B\) \((\hlb{2})\).</p>
+        </div>
+      </div>
       <div class="myrule">
-        <p>من الفقرتين (a) و (b) نلاحظ أن \(A\cdot B \neq B\cdot A\)، أي أن عملية ضرب المصفوفات غير تبديليّة.</p>
+        <p>من المثالين (1) و (2) نلاحظ أن \(A\cdot B \neq B\cdot A\)، أي أن عملية ضرب المصفوفات غير تبديليّة.</p>
       </div>
     </section>
 
@@ -466,12 +514,12 @@
         <p>لكل مصفوفة مربعة \(A\) عدد حقيقي يُسمى <strong>محدد المصفوفة</strong> ويُرمز له بالرمز \(|A|\).</p>
       </div>
       <div class="myrule">
-        <p>إذا كانت \(A= \begin{bmatrix} a &amp; b\\ c &amp; d \end{bmatrix}\) فإن: \[|A| = \begin{vmatrix} a &amp; b\\ c &amp; d
-          \end{vmatrix} = ad - bc\]</p>
+        <p>إذا كانت \(A= \begin{bmatrix} a &amp; b\\ c &amp; d \end{bmatrix}\) فإن: \[|A| = \begin{vmatrix} \hla{a} &amp; \hlb{b}\\ \hlb{c} &amp; \hla{d}
+          \end{vmatrix} = \hla{ad} - \hlb{bc}\]</p>
       </div>
       <div class="example">
-        <p>إذا كانت \(A= \begin{bmatrix} 4 &amp; 5\\ 3 &amp; 6 \end{bmatrix}\) فإن: \[|A| = \begin{vmatrix} 4 &amp; 5\\ 3 &amp; 6
-          \end{vmatrix} = (4\times6)-(5\times3) = 24-15 = 9\]</p>
+        <p>إذا كانت \(A= \begin{bmatrix} 4 &amp; 5\\ 3 &amp; 6 \end{bmatrix}\) فإن: \[|A| = \begin{vmatrix} \hla{4} &amp; \hlb{5}\\ \hlb{3} &amp; \hla{6}
+          \end{vmatrix} = (\hla{4\times6})-(\hlb{5\times3}) = 24-15 = \mathbf{9}\]</p>
       </div>
     </section>
 
@@ -481,7 +529,10 @@
       <div class="problems cols-2">
         <div class="problem">
           <p class="problem-title"><span class="num">1</span> <span class="pt-text">\(A= \begin{bmatrix} 2 &amp; 1\\ -4 &amp; 3 \end{bmatrix}\)</span></p>
-          <div class="problem-sol">\[|A| = (2\times3)-(1\times(-4)) = 6+4 = 10\]</div>
+          <div class="problem-sol">\[\begin{aligned}
+            |A| &amp;= (\hla{2\times3})-(\hlb{1\times(-4)}) \\
+            &amp;= 6-(-4) = \mathbf{10}
+            \end{aligned}\]</div>
           <p class="solution-label">المصفوفة مربعة، نطبق القانون \(ad - bc\).</p>
         </div>
         <div class="problem">
@@ -540,6 +591,7 @@
     </section>
 
     <section class="slide">
+      <h3>مثال على المحدد \(3\times 3\)</h3>
       <div class="example">
         <p>أوجد محدد المصفوفة \(\begin{bmatrix} 4 &amp; -1 &amp; 3 \\ -3 &amp; 2 &amp; 6 \\ -2 &amp; 5 &amp; 1 \end{bmatrix}\) بطريقة الأسهم (قاعدة ساروس):</p>
         <div style="width:100%; overflow-x:auto; text-align:center;">
@@ -578,7 +630,7 @@
           &amp;\quad - \textcolor[RGB]{14,165,233}{((3 \times 2 \times (-2)) + (4 \times 6 \times 5) + (-1 \times (-3) \times 1))} \\
           &amp;= \textcolor[RGB]{139,92,246}{(8 + 12 + (-45))} - \textcolor[RGB]{14,165,233}{((-12) + 120 + 3)} \\
           &amp;= \textcolor[RGB]{139,92,246}{-25} - \textcolor[RGB]{14,165,233}{111} \\
-          &amp;= -136
+          &amp;= \mathbf{-136}
           \end{aligned}\]</p>
       </div>
     </section>
@@ -590,6 +642,7 @@
     </section>
 
     <section class="slide">
+      <h3>تعريف مقلوب المصفوفة</h3>
       <div class="definition">
         <p>إذا كانت \(A\) مصفوفة مربعة ومحددها لا يساوي الصفر، فإنه يوجد مقلوب للمصفوفة \(A\) يُرمز له بالرمز
           \(A^{-1}\) بحيث: \[AA^{-1} = A^{-1}A = I\]</p>
@@ -597,7 +650,8 @@
       <div class="myrule">
         <p>إذا كانت \(A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\) أعداد حقيقية بحيث أن: \[|A| = \begin{vmatrix} a
           &amp; b \\ c &amp; d \end{vmatrix} = ad - bc \neq 0\] فإن:
-          \[A^{-1} = \frac{1}{|A|} \begin{bmatrix} d &amp; -b \\ -c &amp; a \end{bmatrix}\]</p>
+          \[A^{-1} = \frac{1}{|A|} \begin{bmatrix} \hla{d} &amp; \hlb{-b} \\ \hlb{-c} &amp; \hla{a} \end{bmatrix}\]</p>
+        <p><span class="hl-a">نبدّل عنصري القطر الرئيسي</span>، و<span class="hl-b">نعكس إشارة عنصري القطر الآخر</span>، ثم نقسم على المحدد.</p>
       </div>
     </section>
 
@@ -607,14 +661,17 @@
       <div class="problems cols-2">
         <div class="problem">
           <p class="problem-title"><span class="num">1</span> <span class="pt-text">\(A = \begin{bmatrix} 2 &amp; 1 \\ 6 &amp; 3 \end{bmatrix}\)</span></p>
-          <div class="problem-sol">\[|A| = (2 \times 3) - (1 \times 6) = 0\]</div>
+          <div class="problem-sol">\[|A| = (\hla{2 \times 3}) - (\hlb{1 \times 6}) = 6 - 6 = \mathbf{0}\]</div>
           <p class="solution-label">المحدد يساوي صفراً، إذن لا يوجد \(A^{-1}\).</p>
         </div>
         <div class="problem">
           <p class="problem-title"><span class="num">2</span> <span class="pt-text">\(B = \begin{bmatrix} 2 &amp; 2 \\ 3 &amp; 4 \end{bmatrix}\)</span></p>
-          <div class="problem-sol">\[|B| = (2 \times 4) - (2 \times 3) = 2\]
-            \[B^{-1} = \frac{1}{2} \begin{bmatrix} 4 &amp; -2 \\ -3 &amp; 2 \end{bmatrix} = \begin{bmatrix} 2 &amp; -1 \\ -1.5 &amp; 1
-            \end{bmatrix}\]</div>
+          <div class="problem-sol">\[\begin{aligned}
+            |B| &amp;= (\hla{2 \times 4}) - (\hlb{2 \times 3}) \\
+            &amp;= 8 - 6 = 2 \neq 0 \\[6pt]
+            B^{-1} &amp;= \frac{1}{2} \begin{bmatrix} \hla{4} &amp; \hlb{-2} \\ \hlb{-3} &amp; \hla{2} \end{bmatrix} \\[4pt]
+            &amp;= \mathbf{\begin{bmatrix} 2 &amp; -1 \\ -1.5 &amp; 1 \end{bmatrix}}
+            \end{aligned}\]</div>
           <p class="solution-label">المحدد لا يساوي صفراً، نبدّل عنصري القطر الرئيسي ونعكس إشارة الآخرَين ثم نقسم على المحدد.</p>
         </div>
       </div>

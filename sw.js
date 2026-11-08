@@ -2,7 +2,7 @@
    once it has been visited. Pages and assets are served from the cache
    first and refreshed in the background. */
 
-const VERSION = 'm101-v3';
+const VERSION = 'm101-v4';
 const CACHE = `${VERSION}-site`;
 const RUNTIME = `${VERSION}-runtime`;
 
@@ -14,6 +14,7 @@ const PRECACHE = [
     'app.css',
     'app.js',
     'enrichment-app.js',
+    'videos-app.js',
     'styles.css',
     'main.js',
     'logo.svg',

@@ -19,8 +19,7 @@ if (APP_MODE) {
     // Pages the app already shows natively (its sections: home, content, enrich, quizzes, more)
     const page = decodeURIComponent(window.location.pathname.split('/').pop());
     const go = (r) => window.location.replace(SITE_ROOT + 'app.html#' + r);
-    if (new URL('.', window.location.href).href !== SITE_ROOT) go('page/' + encodeURIComponent(page)); // an enrichment topic page
-    else if (page === 'ex+.html') go('enrich');
+    if (page === 'ex+.html') go(/^#u\d-\d+$/.test(window.location.hash) ? 'e/' + window.location.hash.slice(1) : 'enrich');
     else if (page === 'units.html') go('content');
     else if (page === 'exercises.html') go('quizzes');
 }
@@ -61,13 +60,14 @@ function initAppChrome() {
     // Same tabs as app.html
     const tabs = [
         ['home', '🏠', 'الرئيسية'],
-        ['content', '📘', 'المحتوى'],
+        ['videos', '🎬', 'الفيديوهات'],
         ['enrich', '✨', 'الإثرائية'],
         ['quizzes', '📝', 'التمارين'],
         ['more', '☰', 'المزيد']
     ];
     const [, tab, back] = [
-        [/^u\d\.html$/, 'content', 'app.html#content'],
+        [/^videos\.html$/, 'videos', 'app.html#home'],
+        [/^u\d\.html$/, 'more', 'app.html#content'],
         [/^ex\d\.html$/, 'quizzes', 'app.html#quizzes'],
         [/./, 'more', 'app.html#more']
     ].find(([re]) => re.test(page));
@@ -84,7 +84,7 @@ function initAppChrome() {
     nav.className = 'm-tabbar';
     nav.setAttribute('aria-label', 'أقسام التطبيق');
     nav.innerHTML = tabs.map(([id, icon, label]) =>
-        `<a href="${SITE_ROOT}app.html#${id}"${id === tab ? ' class="active"' : ''}><span aria-hidden="true">${icon}</span>${label}</a>`).join('');
+        `<a href="${SITE_ROOT}${id === 'videos' ? 'videos.html' : `app.html#${id}`}"${id === tab ? ' class="active"' : ''}><span aria-hidden="true">${icon}</span>${label}</a>`).join('');
     document.body.appendChild(nav);
 }
 
@@ -1590,12 +1590,11 @@ function initPresentation() {
         if (i !== -1) start = i;
     }
 
+    // The app always shows units as a normal page: its videos tab carries the explanations
     if (APP_MODE) {
-        let deck = null;
-        try { deck = localStorage.getItem('phone-deck'); } catch (e) { }
-        setCards(deck !== 'page');
-        if (isCards()) show(start, false);
-        else if (match || (hash && start)) setTimeout(() => scrollToSlide(start), 300);
+        toolbar.style.display = 'none';
+        setCards(false);
+        if (match || (hash && start)) setTimeout(() => scrollToSlide(start), 300);
         return;
     }
     setMode(phone ? choice === 'slides' : (choice || saved) !== 'page');

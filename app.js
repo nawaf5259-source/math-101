@@ -3,9 +3,9 @@
  * Enrichment data comes from enrichment-app.js; progress is kept per device in localStorage.
  */
 (function () {
-    const E = window.M101_ENRICH || [];
+    const E = (window.M101_ENRICH || []).filter(u => u.topics.length); // units with exercises so far
     const FEEDBACK_URL = 'https://formspree.io/f/mojjvkzz';
-    const KEY_E = 'm101-enrich-v1';
+    const KEY_E = 'm101-enrich-v2';
     const KEY_LAST = 'm101-last';
 
     // Unit pages (slides) and unit quizzes on the website
@@ -242,7 +242,7 @@
         view.innerHTML = `
             <div class="lesson-head"><small>الوحدة ${u.num} · الدرس ${i + 1} من ${u.topics.length}</small><h2>${esc(x.title)}</h2></div>
             ${x.intro ? `<div class="card intro">${x.intro}</div>` : ''}
-            <a class="card link-row alt" href="u${u.num}.html">📘 راجع شرح الوحدة ${u.num} أولًا</a>
+            <a class="card link-row alt" href="videos.html#${k}">🎬 شاهد فيديو الدرس أولًا</a>
             <div class="ex-head"><h3>${plural(x.ex.length, 'تمارين', 'تمرينًا')} محلولة</h3><span class="score"></span></div>
             <p class="hint">حلّ التمرين في دفترك أولًا، ثم اضغط «أظهر الحل» وقيّم إجابتك.</p>
             ${exercisesHTML(x.ex)}
@@ -252,7 +252,7 @@
 
     function renderContent() {
         view.innerHTML = `
-            <p class="hint">شرح كل وحدة في بطاقات: اسحب يمينًا ويسارًا للتنقل بين الشرائح.</p>
+            <p class="hint">شرح كل وحدة مكتوبًا مع الأمثلة المحلولة.</p>
             <div class="unit-list">${UNITS.map(u => `
                 <a class="card unit-row" href="u${u.num}.html">
                     <span class="unit-num">${u.num}</span>
@@ -275,6 +275,7 @@
         const item = (href, icon, title, sub) => `<a class="card menu-item" href="${href}"><span>${icon}</span><div><b>${title}</b><small>${sub}</small></div></a>`;
         view.innerHTML = `
             <div class="menu">
+                ${item('#content', '📘', 'المحتوى', 'شرح الوحدات مكتوبًا')}
                 ${item('plan.html', '🗓️', 'الخطة التدريبية', 'توزيع الموضوعات والتقييم على الأسابيع')}
                 ${item('book.html', '📖', 'كتاب المقرر', 'اقرأ الكتاب أو حمّله')}
                 ${item('presentations.html', '📊', 'العروض التقديمية', 'عرض لكل وحدة')}
@@ -299,22 +300,12 @@
         const sec = cut < 0 ? h : h.slice(0, cut), arg = cut < 0 ? '' : h.slice(cut + 1);
         let tab = sec, title = TITLES[sec], back = null, m;
 
-        // An enrichment page of the website (by file name) opens as its topic here
-        if (sec === 'page') {
-            for (const u of E) {
-                const i = u.topics.findIndex(t => t.page === arg);
-                if (i >= 0) { location.replace(`#e/${topicKey(u, i)}`); return; }
-            }
-            location.replace('#enrich');
-            return;
-        }
-
         if (sec === 'enrich' && unitById(arg)) {
             const u = unitById(arg);
             renderEnrichUnit(u); back = '#enrich'; title = `الإثرائية · الوحدة ${u.num}`;
         } else if (sec === 'enrich') renderEnrichList();
         else if (sec === 'quizzes') renderQuizzes();
-        else if (sec === 'content') renderContent();
+        else if (sec === 'content') { renderContent(); tab = 'more'; back = '#more'; }
         else if (sec === 'more') renderMore();
         else if (sec === 'e' && (m = /^(u\d)-(\d+)$/.exec(arg)) && unitById(m[1]) && unitById(m[1]).topics[m[2] - 1]) {
             const u = unitById(m[1]);
